@@ -11,26 +11,44 @@
 # define MAC_W 4096
 # define MAC_H 2304
 # define NAME "so_long"
-# define HOUR 4
 
-typedef struct s_map
+# define COLLECT	"../assets/images/collect.xpm"
+# define EMPTY		"../assets/images/empty.xpm"
+# define EXIT		"../assets/images/exit.xpm"
+# define PLAYER		"../assets/images/player.xpm"
+# define WALL		"../assets/images/wall.xpm"
+# define WINNER		"../assets/images/win.xpm"
+
+typedef struct s_images
 {
-    void **map;
-    int     width;
-    int     height;
+	void	*collect;
+	void	*empty;
+	void	*exit;
+	void	*player;
+	void	*wall;
+	void	*winner;
+}	t_images;
 
-} t_map;
-
-typedef struct s_mlx
+typedef struct s_info_map
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		moves;
-	t_map	*map;
-}				t_mlx;
+	int				hight;
+	int				width;
+	int				x;
+	int				y;
+	int				player;
+	int				count;
+	int				finish;
+	unsigned int	step;
+	char			*txt;
+	char			**map;
+	void			*mlx;
+	void			*win;
+	t_images		*images;
+}	t_info_map;
 
-// init_mlx.c
-void	init_mlx(t_mlx *mlx, t_map *map);
-void	*new_win(void *mlx_ptr, int height, int width, char *name);
+// funtions
+
+void	ft_map_size(t_info_map *data);
+void	ft_malloc_map(t_info_map *data);
 
 #endif

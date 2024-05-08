@@ -16,7 +16,7 @@ MLX_LINUX = $(MLX_DIR)libmlx_Linux.a
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 
-SRCS_FILES	= main.c
+SRCS_FILES	= main.c ft_read_map.c
 OBJS_FILES = $(SRCS_FILES:.c=.o)
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
@@ -45,7 +45,7 @@ all: $(NAME)
 
 $(NAME) :	$(LIBFT) $(MLX) $(OBJS)
 	echo "\nCompiling $(BLUE)$(NAME)$(DEF_COLOR)"
-	$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -o $(NAME)
+	$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)
 	echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 
