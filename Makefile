@@ -1,10 +1,5 @@
 NAME	= so_long
 
-LIBFT	= libft.a
-MLX		= libmlx.a
-MLX_LINUX = libmlx_Linux.a
-
-
 CC		= cc
 CCFLAGS = -Wextra -Werror -Wall -fsanitize=address -g3 -I $(INC) -I $(LIBFT_DIR)inc/ -I $(MLX_DIR)
 MLXFLAG = -lmlx -lXext -lX11
@@ -12,15 +7,22 @@ MLXFLAG = -lmlx -lXext -lX11
 INC = inc/
 
 LIBFT_DIR	= $(INC)libft/
+LIBFT	= $(LIBFT_DIR)libft.a
+
 MLX_DIR		= $(INC)minilibx-linux/
+MLX		= $(MLX_DIR)libmlx.a
+MLX_LINUX = $(MLX_DIR)libmlx_Linux.a
+
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
+
+SRCS_FILES	= main.c
+OBJS_FILES = $(SRCS_FILES:.c=.o)
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS		= $(addprefix $(OBJS_DIR), $(OBJS_FILES))
 
-SRCS_FILES	= main.c
-OBJS_FILES = $(SRCS_FILES:.c=.o)
+
 
 # Colors
 
@@ -43,8 +45,8 @@ all: $(NAME)
 
 $(NAME) :	$(LIBFT) $(MLX) $(OBJS)
 	echo "\nCompiling $(BLUE)$(NAME)$(DEF_COLOR)"
-	$(CC) $(CCFLAGS) $(MLXFLAGS) $(LIBFT_DIR)$(LIBFT) $(MLX_DIR)$(MLX) $(MLX_DIR)$(MLX_LINUX) $(OBJS)  -o $(NAME)
-	echo "$(BLUE)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
+	$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -o $(NAME)
+	echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c

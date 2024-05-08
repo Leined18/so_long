@@ -1,8 +1,9 @@
 #include "so_long.h"
 
-int main()
+int	main(void)
 {
-    printf("hola");
-    printf("hora : %d", HOUR);
-
+    char *s = get_next_line(1);
+    printf("%s", s);
+    free(s);
+	return (0);
 }
