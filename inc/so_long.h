@@ -1,9 +1,10 @@
 #ifndef SO_LONG_H
 #   define SO_LONG_H
 
-#   include <unistd.h>
-#   include <fcntl.h>
+# include "libft.h"
+# include "mlx.h"
 
-#   include "mlx.h"  // Incluir la biblioteca miniblx
+# include <unistd.h>
+# include <fcntl.h>
 
 #endif /* SO_LONG_H */
