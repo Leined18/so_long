@@ -43,14 +43,14 @@ all: $(NAME)
 
 $(NAME) :	$(LIBFT) $(MLX) $(OBJS)
 	echo "\nCompiling $(BLUE)$(NAME)$(DEF_COLOR)"
-	$(CC) $(MLXFLAGS) $(CFLAGS) $(LIBFT_DIR)$(LIBFT) $(MLX_DIR)$(MLX) $(MLX_DIR)$(MLX_LINUX) $(OBJS) -o $(NAME)
+	$(CC) $(CCFLAGS) $(MLXFLAGS) $(LIBFT_DIR)$(LIBFT) $(MLX_DIR)$(MLX) $(MLX_DIR)$(MLX_LINUX) $(OBJS)  -o $(NAME)
 	echo "$(BLUE)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	[ -d $(OBJS_DIR) ] | mkdir -p $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	printf "\33[2K\r$(GRAY)$(CC) $(CFLAGS) -c $< -o $@$(DEF_COLOR)"
+	@$(CC) $(CCFLAGS) -c $< -o $@
+	printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) -c $< -o $@$(DEF_COLOR)"
 
 
 $(LIBFT):
