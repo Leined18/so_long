@@ -1,24 +1,32 @@
 #include "so_long.h"
 
+
 void	ft_load_img(t_info_map *data)
 {
 	int	img_hight;
 	int	img_width;
 
 	data->images = malloc(sizeof(t_images));
-	if (!(data->images->player = mlx_xpm_file_to_image(data->mlx, PLAYER, &img_width, &img_hight)))
-		ft_error("failed to load image");
-	if (!(data->images->wall = mlx_xpm_file_to_image(data->mlx, WALL, &img_width, &img_hight)))
-		ft_error("failed to load image");
-	if (!(data->images->empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &img_width, &img_hight)))
-		ft_error("failed to load image");
-	if (!(data->images->exit = mlx_xpm_file_to_image(data->mlx, EXIT, &img_width, &img_hight)))
-		ft_error("failed to load image");
-	if (!(data->images->collect = mlx_xpm_file_to_image(data->mlx, COLLECT, &img_width, &img_hight)))
-		ft_error("failed to load image");
-	if (!(data->images->winner = mlx_xpm_file_to_image(data->mlx, WINNER, &img_width, &img_hight)))
-		ft_error("failed to load image");
-	ft_successful("all images loaded");
+	if (!data->images)
+		ft_error("Not Malloc");
+	data->images->player = mlx_xpm_file_to_image(data->mlx, PLAYER, &img_width, &img_hight);
+	if (!data->images->player)
+		ft_error("Player image failed to load");
+	data->images->wall = mlx_xpm_file_to_image(data->mlx, WALL, &img_width, &img_hight);
+	if (!data->images->wall)
+		ft_error("Wall image failed to load");
+	data->images->empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &img_width, &img_hight);
+	if (!data->images->empty)
+		ft_error("Empty image failed to load");
+	data->images->exit = mlx_xpm_file_to_image(data->mlx, EXIT, &img_width, &img_hight);
+	if (!data->images->exit)
+		ft_error("Exit image failed to load");
+	data->images->collect = mlx_xpm_file_to_image(data->mlx, COLLECT, &img_width, &img_hight);
+	if (!data->images->collect)
+		ft_error("Collectible image failed to load");
+	data->images->winner = mlx_xpm_file_to_image(data->mlx, WINNER, &img_width, &img_hight);
+	if (!data->images->winner)
+		ft_error("Winner image failed to load");
 }
 
 void	ft_reset_data(t_info_map *data, char *name)
@@ -79,7 +87,7 @@ int main(int words, char **args)
         ft_map_size(&data);
         ft_malloc_map(&data);
 		ft_general_check(&data);
-		data.win = mlx_new_window(data.mlx, data.width * 40, data.hight * 40, NAME);
+		data.win = mlx_new_window(data.mlx, data.width * RES, data.hight * RES, NAME);
 		mlx_hook(data.win, 17, 0, ft_exit, &data);
 		mlx_hook(data.win, 02, 0, ft_press_key, &data);
 		mlx_loop_hook(data.mlx, ft_frame, &data);
