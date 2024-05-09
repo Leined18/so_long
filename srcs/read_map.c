@@ -23,7 +23,8 @@ void	ft_map_size(t_info_map *data)
 	data->hight = 0;
 	while (line)
 	{
-		if ((int)ft_strlen(line) - 1 != data->width)
+		printf("len: %d %s", (int)ft_strlen(line) - 1 , line);
+		if (((int)ft_strlen(line) - 1) != (data->width))
 		{
 			ft_error("Map not valid");
 			exit (EXIT_FAILURE);
