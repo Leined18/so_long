@@ -53,22 +53,22 @@ WHITE		= \033[0;97m
 all: $(NAME)
 
 $(NAME): $(OBJS) 
-	$(AR) $(NAME) $(OBJS)
-	$(LIB) $(NAME)
+	@$(AR) $(NAME) $(OBJS) 
+	@$(LIB) $(NAME)
 	@echo "$(GREEN)\nlibft.a compiled!$(DEF_COLOR)"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	[ -d $(OBJS_DIR) ] | mkdir -p $(OBJS_DIR)
+	@[ -d $(OBJS_DIR) ] | mkdir -p $(OBJS_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	printf "\33[2K\r$(GRAY) $(CC) $(CFLAGS) -c $< -o $@ $(DEF_COLOR)"
+	@printf "\33[2K\r$(GRAY) $(CC) $(CFLAGS) -c $< -o $@ $(DEF_COLOR)"
 
 
 clean:
-	$(RM) $(OBJS_DIR)
+	@$(RM) $(OBJS_DIR) 
 	@echo "$(GREEN)\nlibft$(YELLOW) cleaned$(DEF_COLOR)"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
