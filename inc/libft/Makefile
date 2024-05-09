@@ -26,7 +26,7 @@ SRCS_FILES	= ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isdigit.c ft_isprint.c ft
 			ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c \
 		  	ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c $(ADD_FUNCT)
 
-ADD_FUNCT			= ft_error.c get_next_line.c
+ADD_FUNCT			= ft_error.c get_next_line.c ft_successful.c
 						
 SRCS_DIR			= srcs/
 OBJS_DIR			= objs/

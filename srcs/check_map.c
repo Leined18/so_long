@@ -21,8 +21,60 @@ void	ft_check_outline(t_info_map *data)
 		i++;
 	}
 	if (err != 0)
+		ft_error("Map outline bad");
+}
+
+void	ft_check_format_dotber(t_info_map *data)
+{
+	
+	if (ft_strncmp(&data->txt[ft_strlen(data->txt) - 4], ".ber", ft_strlen(data->txt + 1)) != 0
+		|| ft_strlen(data->txt) <= 4)
+		ft_error("Bad extension");
+}
+
+void	ft_check_map_inputs(t_info_map *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map[y])
 	{
-		write(2, "Error\nMap outline bad\n", 23);
-		exit (EXIT_FAILURE);
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] != '1' && data->map[y][x] != '0'
+				&& data->map[y][x] != 'C' && data->map[y][x] != 'P'
+				&& data->map[y][x] != 'E')
+				ft_error("Bad map input");
+			else
+			x++;
+		}
+		y++;
 	}
+}
+
+void	ft_check_map_objects(t_info_map *data)
+{
+	int	y;
+	int	x;
+	int	end;
+
+	end = 0;
+	y = -1;
+	while (data->map[++y])
+	{
+		x = -1;
+		while (data->map[y][++x])
+		{
+			if (data->map[y][x] == 'P')
+				data->player++;
+			if (data->map[y][x] == 'C')
+				data->count++;
+			if (data->map[y][x] == 'E')
+				end++;
+		}
+	}
+	if (data->player != 1 || data->count < 1 || end != 1)
+		ft_error("Bad map inputs");
 }

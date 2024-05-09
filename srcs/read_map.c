@@ -1,12 +1,6 @@
 
 # include "so_long.h"
 
-static void	ft_bad_malloc(void)
-{
-	ft_error("Map not malloc");
-	exit (EXIT_FAILURE);
-}
-
 void	ft_map_size(t_info_map *data)
 {
 	char	*line;
@@ -15,20 +9,13 @@ void	ft_map_size(t_info_map *data)
 	fd = open(data->txt, O_RDONLY);
 	line = get_next_line(fd);
 	if (!line)
-	{
 		ft_error("Map not read");
-		exit (EXIT_FAILURE);
-	}
 	data->width = ft_strlen(line) - 1;
 	data->hight = 0;
 	while (line)
 	{
-		printf("len: %d %s", (int)ft_strlen(line) - 1 , line);
 		if (((int)ft_strlen(line) - 1) != (data->width))
-		{
 			ft_error("Map not valid");
-			exit (EXIT_FAILURE);
-		}
 		data->hight++;
 		free(line);
 		line = get_next_line(fd);
@@ -47,15 +34,15 @@ void	ft_malloc_map(t_info_map *data)
 	i = 0;
 	data->map = (char **)malloc(sizeof (char *) * (data->hight + 1));
 	if (!data->map)
-		ft_bad_malloc();
+		ft_error("not Malloc");
 	while (i < data->hight)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			ft_bad_malloc();
+			ft_error("not Malloc");
 		data->map[i] = ft_strdup(line);
 		if (!data->map[i])
-			ft_bad_malloc();
+			ft_error("not Malloc");
 		data->map[i][data->width] = '\0';
 		i++;
 		free(line);
