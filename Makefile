@@ -7,10 +7,10 @@ MLXFLAG = -lmlx -lXext -lX11
 
 INC = inc/
 
-LIBFT_DIR	= $(INC)libft/
+LIBFT_DIR	= libft/
 LIBFT	= $(LIBFT_DIR)libft.a
 
-MLX_DIR		= $(INC)minilibx-linux/
+MLX_DIR		= minilibx-linux/
 MLX		= $(MLX_DIR)libmlx.a
 MLX_LINUX = $(MLX_DIR)libmlx_Linux.a
 
@@ -41,15 +41,15 @@ WHITE		= \033[0;97m
 all: $(NAME)
 
 $(NAME) :	$(LIBFT) $(MLX) $(OBJS)
-	@echo "\nCompiling $(BLUE)$(NAME)$(DEF_COLOR)"
-	@$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)
-	@printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)"
+	echo "\nCompiling $(BLUE)$(NAME)$(DEF_COLOR)"
+	$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)
+	printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)"
 	@echo "\n$(GREEN)$(NAME) compiled!$(DEF_COLOR)"
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	@[ -d $(OBJS_DIR) ] | mkdir -p $(OBJS_DIR)
-	@$(CC) $(CCFLAGS) -c $< -o $@
+	[ -d $(OBJS_DIR) ] | mkdir -p $(OBJS_DIR)
+	$(CC) $(CCFLAGS) -c $< -o $@
 	@printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) -c $< -o $@$(DEF_COLOR)"
 
 $(LIBFT):
@@ -61,14 +61,14 @@ $(MLX):
 	@make -C $(MLX_DIR)
 
 clean:
-	@rm -rf $(OBJS_DIR)
-	@make fclean -C $(LIBFT_DIR)
-	@make clean -C $(MLX_DIR)
+	rm -rf $(OBJS_DIR)
+	make fclean -C $(LIBFT_DIR)
+	make clean -C $(MLX_DIR)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@echo "$(GREEN)$(NAME)$(YELLOW) cleaned\n$(DEF_COLOR)"
+	rm -rf $(NAME)
+	echo "$(GREEN)$(NAME)$(YELLOW) cleaned\n$(DEF_COLOR)"
 
 re: all fclean
 
-.SILENT: all
+.SILENT: all clean fclean
