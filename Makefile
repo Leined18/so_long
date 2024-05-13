@@ -23,10 +23,7 @@ OBJS_FILES = $(SRCS_FILES:.c=.o)
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 OBJS		= $(addprefix $(OBJS_DIR), $(OBJS_FILES))
 
-
-
 # Colors
-
 BOLD_PURPLE	= \033[1;35m
 BOLD_CYAN	= \033[1;36m
 BOLD_YELLOW	= \033[1;33m
@@ -41,32 +38,27 @@ MAGENTA 	= \033[0;95m
 CYAN 		= \033[0;96m
 WHITE		= \033[0;97m
 
-
 all: $(NAME)
 
 $(NAME) :	$(LIBFT) $(MLX) $(OBJS)
 	@echo "\nCompiling $(BLUE)$(NAME)$(DEF_COLOR)"
-	@$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME) > /dev/null
-	@printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)" > /dev/null
+	@$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)
+	@printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)"
 	@echo "\n$(GREEN)$(NAME) compiled!$(DEF_COLOR)"
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
-
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	@[ -d $(OBJS_DIR) ] | mkdir -p $(OBJS_DIR) > /dev/null
-	@$(CC) $(CCFLAGS) -c $< -o $@ > /dev/null
+	@[ -d $(OBJS_DIR) ] | mkdir -p $(OBJS_DIR)
+	@$(CC) $(CCFLAGS) -c $< -o $@
 	@printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) -c $< -o $@$(DEF_COLOR)"
-
 
 $(LIBFT):
 	@echo "\nCompiling $(BLUE)libft$(DEF_COLOR)"
 	@make -C $(LIBFT_DIR)
 
-
 $(MLX):
 	@echo "\nCompiling $(BLUE)mlx$(DEF_COLOR)"
 	@make -C $(MLX_DIR)
-
 
 clean:
 	@rm -rf $(OBJS_DIR)
@@ -78,3 +70,5 @@ fclean: clean
 	@echo "$(GREEN)$(NAME)$(YELLOW) cleaned\n$(DEF_COLOR)"
 
 re: all fclean
+
+.SILENT: all
