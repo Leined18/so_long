@@ -6,6 +6,7 @@ CCFLAGS = -Wextra -Werror -Wall -fsanitize=address -g3 -I $(INC) -I $(LIBFT_DIR)
 MLXFLAG = -lmlx -lXext -lX11
 
 INC = inc/
+Map = assets/maps/mapa1.ber
 
 #libft
 LIBFT_DIR	= libft/
@@ -62,6 +63,9 @@ $(LIBFT):
 $(MLX):
 	@echo "\nCompiling $(BLUE)mlx$(DEF_COLOR)"
 	@make -C $(MLX_DIR)
+
+exe:
+	./$(NAME) $(Map)
 
 clean:
 	rm -rf $(OBJS_DIR)

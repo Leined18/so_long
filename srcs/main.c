@@ -73,8 +73,6 @@ void	print(t_info_map *data)
 		printf("%s\n", data->map[i++]);
 }
 
-
-
 int main(int words, char **args)
 {
 	t_info_map	data;

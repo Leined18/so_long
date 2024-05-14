@@ -26,9 +26,7 @@ void	ft_check_outline(t_info_map *data)
 
 void	ft_check_format_dotber(t_info_map *data)
 {
-	
-	if (ft_strncmp(&data->txt[ft_strlen(data->txt) - 4], ".ber", ft_strlen(data->txt + 1)) != 0
-		|| ft_strlen(data->txt) <= 4)
+	if (ft_strrncmp(data->txt, ".ber", 4))
 		ft_error("Bad extension");
 }
 

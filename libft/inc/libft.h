@@ -89,6 +89,7 @@ size_t	ft_strlcpy(char *dest, char const *src, size_t n);
 size_t	ft_strlen(char const *str);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int		ft_strncmp(char const *s1, char const *s2, size_t n);
+int		ft_strrncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(char const *haystack, char const *needle, size_t n);
 char	*ft_strrchr(char const *str, int c);
 char	*ft_strtrim(char const *s1, char const *set);
