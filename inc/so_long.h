@@ -10,14 +10,14 @@
 
 # define NAME "so_long"
 
-# define RES 64
+# define RES 40
 
-# define COLLECT "../assets/images/collect.xpm"
-# define EMPTY "../assets/images/empty.xpm"
-# define EXIT "../assets/images/exit.xpm"
-# define PLAYER "../assets/images/player.xpm"
-# define WALL "../assets/images/wall.xpm"
-# define WINNER "../assets/images/win.xpm"
+# define COLLECT "assets/images/collect.xpm"
+# define EMPTY "assets/images/empty.xpm"
+# define EXIT "assets/images/exit.xpm"
+# define PLAYER "assets/images/player.xpm"
+# define WALL "assets/images/wall.xpm"
+# define WINNER "assets/images/win.xpm"
 
 typedef struct s_images
 {

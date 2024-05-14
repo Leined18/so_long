@@ -7,13 +7,16 @@ MLXFLAG = -lmlx -lXext -lX11
 
 INC = inc/
 
+#libft
 LIBFT_DIR	= libft/
 LIBFT	= $(LIBFT_DIR)libft.a
 
+#mlx
 MLX_DIR		= mlx/
 MLX		= $(MLX_DIR)libmlx.a
 MLX_LINUX = $(MLX_DIR)libmlx_Linux.a
 
+#srcs#objs
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 

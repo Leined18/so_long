@@ -20,7 +20,6 @@ void	ft_map_size(t_info_map *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	line = NULL;
 	close(fd);
 }
 
