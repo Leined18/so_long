@@ -88,8 +88,9 @@ int main(int words, char **args)
 		ft_successful(" General Check");
 		data.win = mlx_new_window(data.mlx, data.width * RES, data.hight * RES, NAME);
 		mlx_hook(data.win, 17, 0, ft_exit, &data);
-		mlx_hook(data.win, 02, 0, ft_press_key, &data);
+		mlx_key_hook(data.win, ft_press_key, &data);
 		mlx_loop_hook(data.mlx, ft_frame, &data);
+		print(&data);
 		mlx_loop(data.mlx);
 	}
 	return (0);
