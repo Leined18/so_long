@@ -41,6 +41,7 @@ void	ft_reset_data(t_info_map *data, char *name)
 	data->finish = 0;
 	data->txt = name;
 	ft_load_img(data);
+	ft_successful(" Reset Data");
 }
 
 void	ft_general_check(t_info_map *data)
@@ -49,7 +50,8 @@ void	ft_general_check(t_info_map *data)
 	ft_check_format_dotber(data);
 	ft_check_map_inputs(data);
 	ft_check_map_objects(data);
-	//ft_check_is_posible(data);
+	ft_check_is_posible(data);
+	ft_successful(" General Check");
 }
 
 int	ft_frame(t_info_map *data)
@@ -62,6 +64,7 @@ int	ft_frame(t_info_map *data)
 }
 
 
+/*
 #include <stdio.h>
 
 void	print(t_info_map *data)
@@ -72,6 +75,7 @@ void	print(t_info_map *data)
 	while(data->map[i] != NULL)
 		printf("%s\n", data->map[i++]);
 }
+*/
 
 int main(int words, char **args)
 {
@@ -81,14 +85,12 @@ int main(int words, char **args)
 	{
 		data.mlx = mlx_init();
 		ft_reset_data(&data, args[1]);
-		ft_successful(" Reset Data");
 		ft_map_size(&data);
 		ft_malloc_map(&data);
 		ft_general_check(&data);
-		ft_successful(" General Check");
 		data.win = mlx_new_window(data.mlx, data.width * RES, data.hight * RES, NAME);
 		mlx_hook(data.win, 17, 0, ft_exit, &data);
-		mlx_hook(data.win, 02, 0, ft_press_key, &data);
+		mlx_key_hook(data.win, ft_press_key, &data);
 		mlx_loop_hook(data.mlx, ft_frame, &data);
 		mlx_loop(data.mlx);
 	}

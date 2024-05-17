@@ -92,13 +92,13 @@ int	ft_press_key(int keycode, t_info_map *data)
 {
 	if (keycode == K_ESC)
 		ft_exit(data);
-	else if ((keycode == K_W || keycode == K_U) && data->finish == 0)
+	else if ((keycode == K_W || keycode == K_AR_U) && data->finish == 0)
 		move_w(data);
-	else if ((keycode == K_S || keycode == K_D) && data->finish == 0)
+	else if ((keycode == K_S || keycode == K_AR_D) && data->finish == 0)
 		move_s(data);
-	else if ((keycode == K_A || keycode == K_L) && data->finish == 0)
+	else if ((keycode == K_A || keycode == K_AR_L) && data->finish == 0)
 		move_a(data);
-	else if ((keycode == K_D || keycode == K_R) && data->finish == 0)
+	else if ((keycode == K_D || keycode == K_AR_R) && data->finish == 0)
 		move_d(data);
 	return (0);
 }

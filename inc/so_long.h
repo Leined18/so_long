@@ -31,20 +31,32 @@ typedef struct s_images
 
 typedef struct s_info_map
 {
-	int				hight;
-	int				width;
-	int				x;
-	int				y;
-	int				player;
-	int				count;
-	int				finish;
-	unsigned int	step;
-	char			*txt;
-	char			**map;
-	void			*mlx;
-	void			*win;
-	t_images		*images;
-}	t_info_map;
+    int             hight;
+    int             width;
+    int             x;
+    int             y;
+    int             has_changed;
+    int             player;
+    int             count;
+    int             finish;
+    unsigned int    step;
+    char            *txt;
+    void            *img;
+    char            *addr;
+    int             endian;
+    int             bits_per_pixel;
+    int             line_length;
+    char            **map;
+    void            *mlx;
+    void            *win;
+    t_images        *images;
+}   t_info_map;
+
+typedef struct s_checker
+{
+	int	**map;
+	int	coins_left;
+}	t_checker;
 
 // map
 
@@ -57,7 +69,8 @@ void	ft_check_outline(t_info_map *data);
 void	ft_check_format_dotber(t_info_map *data);
 void	ft_check_map_inputs(t_info_map *data);
 void	ft_check_map_objects(t_info_map *data);
-// void	ft_check_is_posible(t_info_map *data);
+void	ft_check_is_posible(t_info_map *data);
+void	ft_is_posible(t_info_map *data, int j, int i, int left);
 
 // finish
 

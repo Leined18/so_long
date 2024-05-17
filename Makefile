@@ -21,7 +21,7 @@ MLX_LINUX = $(MLX_DIR)libmlx_Linux.a
 SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 
-SRCS_FILES	= main.c read_map.c check_map.c finish.c draw_map.c move_key.c
+SRCS_FILES	= main.c read_map.c check_map.c finish.c draw_map.c move_key.c is_posible.c
 OBJS_FILES = $(SRCS_FILES:.c=.o)
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_FILES))

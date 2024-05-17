@@ -76,3 +76,27 @@ void	ft_check_map_objects(t_info_map *data)
 	if (data->player != 1 || data->count < 1 || end != 1)
 		ft_error("Bad map inputs");
 }
+void	ft_check_is_posible(t_info_map *data)
+{
+	int	i[2];
+	int	j[2];
+	int	left;
+
+	left = 0;
+	i[0] = -1;
+	while (data->map[++i[0]]) // { 0, 0, 0}
+	{
+		i[1] = -1; // { 0, -1}
+		while (data->map[i[0]][++i[1]]) // { "111111", "100000001", 111111 }
+		{
+			if (data->map[i[0]][i[1]] == 'P') //  [i[0] == 0][i[1] == 0] 
+			{
+				j[0] = i[0]; //j[0] == 0 
+				j[1] = i[1]; //j[1] == 0
+			}
+			if (data->map[i[0]][i[1]] == 'E' || data->map[i[0]][i[1]] == 'C')
+				left++;
+		}
+	}
+	ft_is_posible(data, j[0], j[1], left);
+}

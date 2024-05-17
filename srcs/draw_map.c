@@ -19,33 +19,32 @@ static void	put_player_img(t_info_map *data, int *j, int *i)
 	data->y = *i;
 	data->x = *j;
 }
-
-void	ft_draw_map(t_info_map *data)
+void ft_draw_map(t_info_map *data)
 {
-	int	y;
-	int	x;
-
-	y = 0;
+	char    tile;
+    int     y;
+    int     x;   
+    
+    y = 0;
 	while (data->map[y])
-	{
+    {
 		x = 0;
 		while (data->map[y][x])
-		{
-			if (data->map[y][x] == '1')
+        {
+			tile = data->map[y][x];
+			if (tile == '1')
 				put_wall_img(data, &x, &y);
-			else if (data->map[y][x] == '0')
+			else if (tile == '0')
 				put_empty_img(data, &x, &y);
-			else if (data->map[y][x] == 'P')
+			else if (tile == 'P')
 				put_player_img(data, &x, &y);
-			else if (data->map[y][x] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win,
-					data->images->collect, x * RES, y * RES);
-			else if (data->map[y][x] == 'E')
-				mlx_put_image_to_window(data->mlx, data->win,
-					data->images->exit, x * RES, y * RES);
+			else if (tile == 'C')
+				mlx_put_image_to_window(data->mlx, data->win, data->images->collect, x * RES, y * RES);
+			else if (tile == 'E')
+				mlx_put_image_to_window(data->mlx, data->win, data->images->exit, x * RES, y * RES);
 			x++;
 		}
-	y++;
+		y++;
 	}
 }
 
