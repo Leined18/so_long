@@ -1,104 +1,54 @@
 #include "so_long.h"
 
-void	move_w(t_info_map *data)
+void	move(t_info *data, int dx, int dy)
 {
-	if (data->map[data->y - 1][data->x] != '1'
-		&& data->map[data->y - 1][data->x] != 'E')
+	if (data->map[data->y + dy][data->x + dx] != '1'
+		&& data->map[data->y + dy][data->x + dx] != 'E')
 	{
-		if (data->map[data->y - 1][data->x] == 'C'
-				|| data->map[data->y - 1][data->x] == '0')
+		if (data->map[data->y + dy][data->x + dx] == 'C'
+			|| data->map[data->y + dy][data->x + dx] == '0')
 		{
-			if (data->map[data->y - 1][data->x] == 'C')
+			if (data->map[data->y + dy][data->x + dx] == 'C')
 				data->count--;
 			data->map[data->y][data->x] = '0';
-			data->map[data->y - 1][data->x] = 'P';
+			data->map[data->y + dy][data->x + dx] = 'P';
 		}
-		data->y--;
+		data->x += dx;
+		data->y += dy;
 		data->step++;
+		data->has_changed = 1;
 		ft_steps(data->step);
 	}
-	else if (data->map[data->y - 1][data->x] == 'E'
+	else if (data->map[data->y + dy][data->x + dx] == 'E'
 		&& data->count == 0)
 		data->finish = 1;
 }
 
-void	move_s(t_info_map *data)
+int	ft_press_key(int keycode, t_info *data)
 {
-	if (data->map[data->y + 1][data->x] != '1'
-		&& data->map[data->y + 1][data->x] != 'E')
-	{
-		if (data->map[data->y + 1][data->x] == 'C'
-				|| data->map[data->y + 1][data->x] == '0')
-		{
-			if (data->map[data->y + 1][data->x] == 'C')
-				data->count--;
-			data->map[data->y][data->x] = '0';
-			data->map[data->y + 1][data->x] = 'P';
-		}
-		data->y++;
-		data->step++;
-		ft_steps(data->step);
-	}
-	else if (data->map[data->y + 1][data->x] == 'E'
-		&& data->count == 0)
-		data->finish = 1;
-}
-
-void	move_a(t_info_map *data)
-{
-	if (data->map[data->y][data->x - 1] != '1'
-		&& data->map[data->y][data->x - 1] != 'E')
-	{
-		if (data->map[data->y][data->x - 1] == 'C'
-				|| data->map[data->y][data->x - 1] == '0')
-		{
-			if (data->map[data->y][data->x - 1] == 'C')
-				data->count--;
-			data->map[data->y][data->x] = '0';
-			data->map[data->y][data->x - 1] = 'P';
-		}
-		data->x--;
-		data->step++;
-		ft_steps(data->step);
-	}
-	else if (data->map[data->y][data->x - 1] == 'E'
-		&& data->count == 0)
-		data->finish = 1;
-}
-
-void	move_d(t_info_map *data)
-{
-	if (data->map[data->y][data->x + 1] != '1'
-		&& data->map[data->y][data->x + 1] != 'E')
-	{
-		if (data->map[data->y][data->x + 1] == 'C'
-				|| data->map[data->y][data->x + 1] == '0')
-		{
-			if (data->map[data->y][data->x + 1] == 'C')
-				data->count--;
-			data->map[data->y][data->x] = '0';
-			data->map[data->y][data->x + 1] = 'P';
-		}
-		data->x++;
-		data->step++;
-		ft_steps(data->step);
-	}
-	else if (data->map[data->y][data->x + 1] == 'E'
-		&& data->count == 0)
-		data->finish = 1;
-}
-
-int	ft_press_key(int keycode, t_info_map *data)
-{
+	if (data->finish == 1)
+		return (0);
 	if (keycode == K_ESC)
 		ft_exit(data);
-	else if ((keycode == K_W || keycode == K_AR_U) && data->finish == 0)
-		move_w(data);
-	else if ((keycode == K_S || keycode == K_AR_D) && data->finish == 0)
-		move_s(data);
-	else if ((keycode == K_A || keycode == K_AR_L) && data->finish == 0)
-		move_a(data);
-	else if ((keycode == K_D || keycode == K_AR_R) && data->finish == 0)
-		move_d(data);
+	else if (keycode == K_W || keycode == K_AR_U)
+	{
+		data->direction = 'N'; // Set direction to 'W'
+		move(data, 0, -1); // W or Up arrow key
+	}
+	else if (keycode == K_S || keycode == K_AR_D)
+	{
+		data->direction = 'S'; // Set direction to 'S'
+		move(data, 0, 1); // S or Down arrow key
+	}
+	else if (keycode == K_A || keycode == K_AR_L)
+	{
+		data->direction = 'W';
+		move(data, -1, 0);
+	}
+	else if (keycode == K_E || keycode == K_AR_R)
+	{
+		data->direction = 'E'; // Set direction to 'D'
+		move(data, 1, 0); // D or Right arrow key
+	}
 	return (0);
 }

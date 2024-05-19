@@ -1,7 +1,7 @@
 
 # include "so_long.h"
 
-void	ft_map_size(t_info_map *data)
+void	ft_map_size(t_info *data)
 {
 	char	*line;
 	int		fd;
@@ -23,7 +23,7 @@ void	ft_map_size(t_info_map *data)
 	close(fd);
 }
 
-void	ft_malloc_map(t_info_map *data)
+void	ft_malloc_map(t_info *data)
 {
 	char	*line;
 	int		fd;

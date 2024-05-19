@@ -1,6 +1,6 @@
 # include "so_long.h"
 
-void	malloc_and_fill(t_checker *c, t_info_map *data)
+void	malloc_and_fill(t_checker *c, t_info *data)
 {
 	int	y;
 	int	x;
@@ -18,7 +18,7 @@ void	malloc_and_fill(t_checker *c, t_info_map *data)
 	}
 }
 
-void	iter_checker(t_checker *c, t_info_map *data, int i, int j)
+void	iter_checker(t_checker *c, t_info *data, int i, int j)
 {
 	if (c->coins_left == 0)
 		return ;
@@ -47,7 +47,7 @@ void	free_checker(t_checker *c, int hight)
 	c->map = NULL;
 }
 
-void	ft_is_posible(t_info_map *data, int j, int i, int left)
+void	ft_is_posible(t_info *data, int j, int i, int left)
 {
 	t_checker	c;
 

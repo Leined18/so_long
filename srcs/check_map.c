@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	ft_check_outline(t_info_map *data)
+void	ft_check_outline(t_info *data)
 {
 	int	i;
 	int	err;
@@ -24,13 +24,13 @@ void	ft_check_outline(t_info_map *data)
 		ft_error("Map outline bad");
 }
 
-void	ft_check_format_dotber(t_info_map *data)
+void	ft_check_format_dotber(t_info *data)
 {
 	if (ft_strrncmp(data->txt, ".ber", 4))
 		ft_error("Bad extension");
 }
 
-void	ft_check_map_inputs(t_info_map *data)
+void	ft_check_map_inputs(t_info *data)
 {
 	int	x;
 	int	y;
@@ -52,7 +52,7 @@ void	ft_check_map_inputs(t_info_map *data)
 	}
 }
 
-void	ft_check_map_objects(t_info_map *data)
+void	ft_check_map_objects(t_info *data)
 {
 	int	y;
 	int	x;
@@ -76,7 +76,7 @@ void	ft_check_map_objects(t_info_map *data)
 	if (data->player != 1 || data->count < 1 || end != 1)
 		ft_error("Bad map inputs");
 }
-void	ft_check_is_posible(t_info_map *data)
+void	ft_check_is_posible(t_info *data)
 {
 	int	i[2];
 	int	j[2];
