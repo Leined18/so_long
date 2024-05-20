@@ -1,60 +1,75 @@
-NAME	= so_long
-MAKEFLAGS += --no-print-directory
+NAME        = so_long
+MAKEFLAGS   += --no-print-directory
 
-CC		= gcc
-CCFLAGS = -Wextra -Werror -Wall -fsanitize=address -g3 -I $(INC) -I $(LIBFT_DIR)inc/ -I $(MLX_DIR)
-MLXFLAG = -lmlx -lXext -lX11
+CC          = gcc
+CFLAGS      = -Wextra -Werror -Wall -fsanitize=address -g3 -I$(INC) -I$(LIBFT_DIR)inc/ -I$(MLX_DIR)
+LDFLAGS     = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -lm -lbsd
 
-INC = inc/
-Map1 = assets/maps/map1.ber
+INC         = inc/
+map        = assets/maps
 
-LIBFT_DIR	= libft/
-LIBFT	= $(LIBFT_DIR)libft.a
+LIBFT_DIR   = libft/
+LIBFT       = $(LIBFT_DIR)libft.a
 
-#mlx
-MLX_DIR		= mlx/
-MLX		= $(MLX_DIR)libmlx.a
-MLX_LINUX = $(MLX_DIR)libmlx_Linux.a
+MLX_DIR     = mlx/
+MLX         = $(MLX_DIR)libmlx.a
+MLX_LINUX   = $(MLX_DIR)libmlx_Linux.a
 
-#srcs#objs
-SRCS_DIR	= srcs/
-OBJS_DIR	= objs/
+SRCS_DIR    = srcs/
+OBJS_DIR    = objs/
 
-SRCS_FILES	= main.c read_map.c check_map.c init.c load_img.c\
-				free.c finish.c draw_map.c move_key.c is_posible.c
-OBJS_FILES = $(SRCS_FILES:.c=.o)
+SRCS_FILES  = main.c read_map.c check_map.c init.c load_img.c \
+			  free.c finish.c draw_map.c move_key.c is_posible.c
+OBJS_FILES  = $(SRCS_FILES:.c=.o)
 
-SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_FILES))
-OBJS		= $(addprefix $(OBJS_DIR), $(OBJS_FILES))
+SRCS        = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
+OBJS        = $(addprefix $(OBJS_DIR), $(OBJS_FILES))
 
 # Colors
-BOLD_PURPLE	= \033[1;35m
-BOLD_CYAN	= \033[1;36m
-BOLD_YELLOW	= \033[1;33m
-NO_COLOR	= \033[0m
-DEF_COLOR 	= \033[0;39m
-GRAY 		= \033[0;90m
-RED 		= \033[0;91m
-GREEN		= \033[0;92m
-YELLOW 		= \033[0;93m
-BLUE 		= \033[0;94m
-MAGENTA 	= \033[0;95m
-CYAN 		= \033[0;96m
-WHITE		= \033[0;97m
+BOLD_BLACK   = \033[1;30m
+BOLD_RED     = \033[1;31m
+BOLD_GREEN   = \033[1;32m
+BOLD_YELLOW  = \033[1;33m
+BOLD_BLUE    = \033[1;34m
+BOLD_PURPLE  = \033[1;35m
+BOLD_CYAN    = \033[1;36m
+BOLD_WHITE   = \033[1;37m
+
+BLACK        = \033[0;30m
+RED          = \033[0;31m
+GREEN        = \033[0;32m
+YELLOW       = \033[0;33m
+BLUE         = \033[0;34m
+PURPLE       = \033[0;35m
+CYAN         = \033[0;36m
+WHITE        = \033[0;37m
+
+GRAY         = \033[0;90m
+LIGHT_RED    = \033[0;91m
+LIGHT_GREEN  = \033[0;92m
+LIGHT_YELLOW = \033[0;93m
+LIGHT_BLUE   = \033[0;94m
+LIGHT_PURPLE = \033[0;95m
+LIGHT_CYAN   = \033[0;96m
+LIGHT_WHITE  = \033[0;97m
+
+NO_COLOR     = \033[0m
+DEF_COLOR    = \033[0;39m
+
 
 all: $(NAME)
 
-$(NAME) :	$(LIBFT) $(MLX) $(OBJS)
-	echo "\nCompiling $(BLUE)$(NAME)$(DEF_COLOR)"
-	$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)
-	printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -o $(NAME)"
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	@echo "\nCompiling $(BLUE)$(NAME)$(DEF_COLOR)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@printf "\33[2K\r$(GRAY)$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)$(DEF_COLOR)"
 	@echo "\n$(GREEN)$(NAME) compiled!$(DEF_COLOR)"
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	[ -d $(OBJS_DIR) ] | mkdir -p $(OBJS_DIR)
-	$(CC) $(CCFLAGS) -c $< -o $@
-	@printf "\33[2K\r$(GRAY)$(CC) $(CCFLAGS) -c $< -o $@$(DEF_COLOR)"
+	@[ -d $(OBJS_DIR) ] || mkdir -p $(OBJS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@printf "\33[2K\r$(GRAY)$(CC) $(CFLAGS) -c $< -o $@$(DEF_COLOR)"
 
 $(LIBFT):
 	@echo "\nCompiling $(BLUE)libft$(DEF_COLOR)"
@@ -64,8 +79,12 @@ $(MLX):
 	@echo "\nCompiling $(BLUE)mlx$(DEF_COLOR)"
 	@make -C $(MLX_DIR)
 
-map1:
-	./$(NAME) $(Map1)
+run:
+	@if [ -z "$(MAP_NAME)" ]; then \
+		echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP_NAME=nombre_del_mapa $(DEF_COLOR)"; \
+	else \
+		./$(NAME) $(map)/$(MAP_NAME); \
+	fi
 
 clean:
 	rm -rf $(OBJS_DIR)
@@ -74,7 +93,7 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-	echo "$(GREEN)$(NAME)$(YELLOW) cleaned\n$(DEF_COLOR)"
+	@echo "$(GREEN)$(NAME)$(YELLOW) cleaned$(DEF_COLOR)"
 
 re: all fclean
 

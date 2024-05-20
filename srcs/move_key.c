@@ -45,7 +45,7 @@ int	ft_press_key(int keycode, t_info *data)
 		data->direction = 'W';
 		move(data, -1, 0);
 	}
-	else if (keycode == K_E || keycode == K_AR_R)
+	else if (keycode == K_D || keycode == K_AR_R)
 	{
 		data->direction = 'E'; // Set direction to 'D'
 		move(data, 1, 0); // D or Right arrow key
