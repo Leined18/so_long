@@ -79,7 +79,11 @@ $(MLX):
 	@echo "\nCompiling $(BLUE)mlx$(DEF_COLOR)"
 	@make -C $(MLX_DIR)
 
-run:
+test: $(NAME)
+	$(CC) $(CFLAGS) $(SRCS_DIR)animation.c $(LDFLAGS) -o test
+
+
+run: $(NAME)
 	@if [ -z "$(MAP_NAME)" ]; then \
 		echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP_NAME=nombre_del_mapa $(DEF_COLOR)"; \
 	else \

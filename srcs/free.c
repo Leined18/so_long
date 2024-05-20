@@ -12,7 +12,6 @@ void free_info(t_info *data) {
     free(data->images->collect);
     free(data->images->winner);
     free(data->images);
-
     // Finalmente, liberar la memoria de la estructura en sí
     free(data);
 }

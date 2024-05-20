@@ -11,6 +11,7 @@
 # define NAME "so_long"
 
 # define RES 40
+# define DELAY 100000
 
 # define COLLECT "assets/images/collect.xpm"
 # define EMPTY "assets/images/empty.xpm"
