@@ -15,20 +15,15 @@
 #define F_H 64
 #define N_FPD 4
 #define DELAY 100000
+#define FALSE 0
+#define TRUE 1
 
-#define PLAYER_SPRITESHEET "assets/images/p_sprites.xpm"
-
-# define COLLECT "assets/images/collect.xpm"
-# define EMPTY "assets/images/empty.xpm"
-# define EXIT "assets/images/exit.xpm"
-
-# define PLAYER_UP "assets/images/p_up.xpm"
-# define PLAYER_DOWN "assets/images/p_down.xpm"
-# define PLAYER_LEFT "assets/images/p_left.xpm"
-# define PLAYER_RIGHT "assets/images/p_right.xpm"
-
-# define WALL "assets/images/wall.xpm"
-# define WINNER "assets/images/win.xpm"
+#define PLAYER_SPRITESHEET "assets/images/p_sprites.xpm" // done
+#define COLLECT_SPRITESHEET "assets/images/c_sprites.xpm" // done
+#define FIELD_SPRITESHEET "assets/images/f_sprites.xpm" // done
+#define EXIT_SPRITESHEET "assets/images/x_sprites.xpm"
+#define WALL_SPRITESHEET "assets/images/w_sprites.xpm" // done
+#define WINNER_SPRITESHEET "assets/images/win_sprites.xpm"
 
 typedef enum
 {
@@ -37,42 +32,36 @@ typedef enum
     RIGHT,
     UP,
     N_D
-} Direction;
+} direction;
 
 typedef enum
 {
     COLLECT_SPRITE,
-    EMPTY_SPRITE,
+    FIELD_SPRITE,
     EXIT_SPRITE,
     PLAYER_SPRITE,
     WALL_SPRITE,
     WINNER_SPRITE,
     NUMBERS_SPRITE
-} Sprites;
+} sprite_type;
 
 
-typedef struct s_images
+typedef struct s_sprites
 {
-	void	*collect;
-	void	*empty;
-	void    *exit;
-	void	*p_up;
-    void	*p_down;
-    void	*p_left;
-    void	*p_right;
     void    *spritesheet[NUMBERS_SPRITE];
     void    *sprites[NUMBERS_SPRITE][N_D][N_FPD];
-	void	*wall;
-	void	*winner;
-}	t_images;
+}	t_sprites;
+
+
 
 typedef struct s_info
 {
     int             hight;
     int             width;
-    int             x;
-    int             y;
+    int             px;
+    int             py;
     int             has_changed;
+    int             running;
     int             player;
     int             count;
     int             finish;
@@ -82,7 +71,7 @@ typedef struct s_info
     void            *mlx;
     void            *win;
     char            direction;
-    t_images        *images;
+    t_sprites       images;
 }   t_info;
 
 typedef struct s_checker
@@ -120,7 +109,7 @@ void	ft_game_result(t_info *data);
 
 // draw_map
 
-void    ft_load_spritesheet(t_info *data, Sprites sprite, char *sheet_path);
+void    ft_load_spritesheet(t_info *data, sprite_type sprite, char *sheet_path);
 void    ft_load_img(t_info *data);
 void	ft_draw_map(t_info *data);
 void	ft_steps(unsigned int n);
@@ -130,6 +119,6 @@ void	ft_steps(unsigned int n);
 int     ft_press_key(int keycode, t_info *data);
 
 // animation
-void    ft_animate_sprites(Sprites sprite , Direction direction, t_info *data);
+void    ft_animate_sprites(sprite_type sprite , direction direction, t_info *data);
 
 #endif

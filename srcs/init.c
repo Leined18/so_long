@@ -4,8 +4,8 @@ void	ft_reset_data(t_info *data, char *name)
 {
 	data->hight = 0;
 	data->width = 0;
-	data->x = 0;
-	data->y = 0;
+	data->px = 0;
+	data->py = 0;
 	data->player = 0;
 	data->count = 0;
 	data->step = 0;

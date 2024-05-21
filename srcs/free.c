@@ -11,7 +11,7 @@ void ft_free_sprites(t_info *data)
 		j = 0;
 		while (j < N_D)
 		{
-			free(data->images->sprites[i][j]);
+			free(data->images.sprites[i][j]);
 			j++;
 		}
 		i++;
@@ -19,16 +19,6 @@ void ft_free_sprites(t_info *data)
 }
 void ft_free_data(t_info *data)
 {
-	free(data->images->p_up);
-	free(data->images->p_down);
-	free(data->images->p_right);
-	free(data->images->p_left);
-	free(data->images->wall);
-	free(data->images->empty);
-	free(data->images->exit);
-	free(data->images->collect);
-	free(data->images->winner);
-	free(data->images);
 	free(data->txt);
 	free(data->map);
 }

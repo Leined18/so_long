@@ -1,8 +1,6 @@
 #include "so_long.h"
 
-void *extract_frame(void *mlx, void *spritesheet, int x, int y, int width, int height);
-
-void copy_pixels(char *src_data, char *dest_data, int x, int y, int width,
+static void copy_pixels(char *src_data, char *dest_data, int x, int y, int width,
                 int height, int size_line)
 {
     int i;
@@ -28,7 +26,7 @@ void copy_pixels(char *src_data, char *dest_data, int x, int y, int width,
     }
 }
 
-void *extract_frame(void *mlx, void *spritesheet, int x, int y, int width, int height)
+static void *extract_frame(void *mlx, void *spritesheet, int x, int y, int width, int height)
 {
     void *sprite;
     int bpp;
@@ -53,7 +51,7 @@ void *extract_frame(void *mlx, void *spritesheet, int x, int y, int width, int h
     return (sprite);
 }
 
-void ft_animate_sprites(Sprites sprite , Direction direction, t_info *data)
+void ft_animate_sprites(sprite_type sprite , direction direction, t_info *data)
 {
     int i;
     
@@ -63,8 +61,8 @@ void ft_animate_sprites(Sprites sprite , Direction direction, t_info *data)
         while (i < N_FPD)
         {
             mlx_clear_window(data->mlx, data->win);
-            mlx_put_image_to_window(data->mlx, data->win, data->images->sprites[sprite][direction][i],
-                data->x, data->y); // Utiliza las coordenadas XY especificadas
+            mlx_put_image_to_window(data->mlx, data->win, data->images.sprites[sprite][direction][i],
+                data->px, data->py); // Utiliza las coordenadas XY especificadas
             usleep(DELAY);
             i++;
         }
@@ -72,34 +70,44 @@ void ft_animate_sprites(Sprites sprite , Direction direction, t_info *data)
     }
 }
 
-void put_frames(t_info *data, Sprites s ,int frame_width, int frame_height)
+void put_frames(t_info *data, sprite_type s , int rows, int frames, int frame_width, int frame_height)
 {
     int i;
     int j;
 
     i = 0;
-    while (i < N_D)
+    while (i < rows)
     {
         j = 0;
-        while (j < N_FPD)
+        while (j < frames)
         {
-            data->images->sprites[s][i][j] = extract_frame(data->mlx, data->images->spritesheet[s],
+            data->images.sprites[s][i][j] = extract_frame(data->mlx, data->images.spritesheet[s],
                 j * frame_width, i * frame_height, frame_width, frame_height);
-            if (!data->images->sprites[s][i][j])
+            if (!data->images.sprites[s][i][j])
                 ft_error("Error extrayendo frame");
             j++;
         }
         i++;
     }
+
 }
 
 
-void    ft_load_spritesheet(t_info *data, Sprites sprite, char *sheet_path)
+void    ft_load_spritesheet(t_info *data, sprite_type sprite, char *sheet_path)
 {
     int img_width, img_height;
 
-    data->images->spritesheet[sprite] = mlx_xpm_file_to_image(data->mlx, sheet_path, &img_width, &img_height);
-    if (!data->images->spritesheet[sprite])
+    data->images.spritesheet[sprite] = mlx_xpm_file_to_image(data->mlx, sheet_path, &img_width, &img_height);
+    if (!data->images.spritesheet[sprite])
         ft_error("Error cargando el spritesheet");
-    put_frames(data, sprite, F_W, F_H);
+    if (img_width != F_W * N_FPD || img_height != F_H * N_D)
+        ft_error("Error en las dimensiones del spritesheet");
+    if (sprite == PLAYER_SPRITE)
+        put_frames(data, sprite, N_D, N_FPD, F_W, F_H);
+    if (sprite == COLLECT_SPRITE)
+        put_frames(data, sprite, 1, 4, F_W, F_H);
+    if (sprite == FIELD_SPRITE)
+        put_frames(data, sprite, 4, 1 ,F_W, F_H);
+    if (sprite == EXIT_SPRITE)
+        put_frames(data, sprite, 1, 4, F_W, F_H);
 }
