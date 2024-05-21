@@ -29,8 +29,6 @@ void ft_free_data(t_info *data)
 	free(data->images->collect);
 	free(data->images->winner);
 	free(data->images);
-	free(data->sprite);
-	free(data->directions);
 	free(data->txt);
 	free(data->map);
 }
@@ -39,8 +37,8 @@ void ft_free_data(t_info *data)
 void ft_free_info(t_info *data)
 {
 	// Liberar la memoria de las imágenes
-	ft_free_data(data);
 	ft_free_sprites(data);
+	ft_free_data(data);
 	// Finalmente, liberar la memoria de la estructura en sí
 	free(data);
 }

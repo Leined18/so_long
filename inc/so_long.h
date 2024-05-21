@@ -83,8 +83,6 @@ typedef struct s_info
     void            *win;
     char            direction;
     t_images        *images;
-    Sprites         *sprite;
-    Direction       *directions;
 }   t_info;
 
 typedef struct s_checker

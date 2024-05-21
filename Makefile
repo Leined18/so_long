@@ -1,6 +1,4 @@
 NAME        = so_long
-MAKEFLAGS   += --no-print-directory
-
 CC          = gcc
 CFLAGS      = -Wextra -Werror -Wall -fsanitize=address -g3 -I$(INC) -I$(LIBFT_DIR)inc/ -I$(MLX_DIR)
 LDFLAGS     = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -lm -lbsd
@@ -21,6 +19,8 @@ OBJS_DIR    = objs/
 SRCS_FILES  = main.c read_map.c check_map.c init.c load_img.c \
 			  free.c finish.c draw_map.c move_key.c is_posible.c \
 			  animation.c
+
+
 OBJS_FILES  = $(SRCS_FILES:.c=.o)
 
 SRCS        = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
