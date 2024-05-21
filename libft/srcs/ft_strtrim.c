@@ -66,10 +66,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (trim);
 }
 /*
-int	main()
+int	main(void)
 {
 	char s1[] = "lorem ipsum dolor sit amet";
-    printf("%s\n", ft_strtrim(s1, "te"));
+	printf("%s\n", ft_strtrim(s1, "te"));
 
-	return 0;
+	return (0);
 }*/

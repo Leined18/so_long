@@ -20,7 +20,7 @@ int	ft_isprint(int c)
 		return (0);
 }
 /*
-int main()
+int	main(void)
 {
 	char a = ' ';
 

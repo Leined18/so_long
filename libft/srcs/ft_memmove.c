@@ -49,11 +49,11 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	return (dst);
 }
 /*
-int main()
+int	main(void)
 {
 	char src[] = "hello";
 	char dst[] = "sdas";
 
 	printf("%s", ft_memmove(dst, src, sizeof(dst)));
-	return 0;
+	return (0);
 }*/

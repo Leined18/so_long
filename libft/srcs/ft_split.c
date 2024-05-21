@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 // obtener la cantidad de letras encontradas
 static size_t	count_words(char const *s, char c)
 {
@@ -98,21 +99,20 @@ char	**ft_split(char const *s, char c)
 }
 
 /*
-void print_string_array(char **arr)
+void	print_string_array(char **arr)
 {
 	if (!arr)
 	{
 		printf("Array is NULL\n");
 		return ;
 	}
-
 	for (int i = 0; arr[i]; i++)
 	{
 		printf("%s\n", arr[i]);
 	}
 }
 
-int main()
+int	main(void)
 {
 	char const *input_str = "Ejemplo-de-cadena";
 	char delimiter = '-';
@@ -127,5 +127,5 @@ int main()
 		i++;
 	}
 	free(result);
-	return 0;
+	return (0);
 }*/

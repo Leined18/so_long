@@ -19,12 +19,12 @@ int	ft_isdigit(int c)
 	return (0);
 }
 /*
-int main()
+int	main(void)
 {
 	int c;
-   	scanf("%d", &c);
+	scanf("%d", &c);
 	int a;
-   	scanf("%d", &a);
+	scanf("%d", &a);
 
 	printf("%d\n", ft_isdigit(c));
 	printf("%d\n", ft_isdigit(a));

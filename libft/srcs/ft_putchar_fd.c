@@ -17,11 +17,11 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 /*
-int main() {
-    // Write C code here
-    char c = 'a';
+int	main(void) {
+	// Write C code here
+	char c = 'a';
 
-    ft_putchar_fd(NULL,1);
+	ft_putchar_fd(NULL,1);
 
-    return 0;
+	return (0);
 }*/

@@ -26,7 +26,7 @@ char	*ft_strchr(const char *s, int c)
 		return (NULL);
 }
 /*
-int main()
+int	main(void)
 {
 	int c = 't';
 	char s[] = "baens trdes";

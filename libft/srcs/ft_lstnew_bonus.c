@@ -24,17 +24,17 @@ t_list	*ft_lstnew(void *content)
 	return (new_node);
 }
 /*
-int main()
+int	main(void)
 {
-    t_list	*list;
+	t_list	*list;
 	t_list	*list2;
 	int		lol[] = {1, 4, 5, 6};
 
-    list = ft_lstnew("buenas");
-    list2 = ft_lstnew(lol);
-    printf("%zu\n", sizeof(t_list));
-    printf("%s\n", list->content);
-    printf("%s\n", list2->content);
+	list = ft_lstnew("buenas");
+	list2 = ft_lstnew(lol);
+	printf("%zu\n", sizeof(t_list));
+	printf("%s\n", list->content);
+	printf("%s\n", list2->content);
 	free(list);
 	return (0);
 }*/

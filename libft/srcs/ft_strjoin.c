@@ -57,17 +57,17 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (ptr);
 }
 /*
-int main()
+int	main(void)
 {
-    const char *cadena1 = "Hola, ";
-    const char *cadena2 = "mundo!";
+	const char *cadena1 = "Hola, ";
+	const char *cadena2 = "mundo!";
 
-    char *resultado = ft_strjoin(NULL, NULL);
+	char *resultado = ft_strjoin(NULL, NULL);
 
-    printf("Cadena resultante: %s\n", resultado);
+	printf("Cadena resultante: %s\n", resultado);
 
-    // Libera la memoria asignada para la cadena resultante
-    free(resultado);
+	// Libera la memoria asignada para la cadena resultante
+	free(resultado);
 
-    return 0;
+	return (0);
 }*/

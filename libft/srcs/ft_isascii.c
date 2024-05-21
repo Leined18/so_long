@@ -20,7 +20,7 @@ int	ft_isascii(int c)
 		return (0);
 }
 /*
-int main()
+int	main(void)
 {
 	int c;
 	c =  ' ';

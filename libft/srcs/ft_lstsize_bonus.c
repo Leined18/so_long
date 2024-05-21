@@ -30,20 +30,20 @@ int	ft_lstsize(t_list *lst)
 	return (size);
 }
 /*
-int main(void)
+int	main(void)
 {
-    t_list *l;
- 	int actual;
- 	int expected;
+	t_list *l;
+	int actual;
+	int expected;
 
- 	l = ft_lstnew(strdup("1"));
- 	l->next = ft_lstnew(strdup("2"));
- 	l->next->next = ft_lstnew(strdup("3"));
+	l = ft_lstnew(strdup("1"));
+	l->next = ft_lstnew(strdup("2"));
+	l->next->next = ft_lstnew(strdup("3"));
 
 	while (l)
 	{
-    	printf("Size of the list: %d\n", ft_lstsize(l));
+		printf("Size of the list: %d\n", ft_lstsize(l));
 		l = l->next;
 	}
-    return 0;
+	return (0);
 }*/

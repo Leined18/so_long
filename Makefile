@@ -19,7 +19,8 @@ SRCS_DIR    = srcs/
 OBJS_DIR    = objs/
 
 SRCS_FILES  = main.c read_map.c check_map.c init.c load_img.c \
-			  free.c finish.c draw_map.c move_key.c is_posible.c
+			  free.c finish.c draw_map.c move_key.c is_posible.c \
+			  animation.c
 OBJS_FILES  = $(SRCS_FILES:.c=.o)
 
 SRCS        = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
@@ -79,15 +80,11 @@ $(MLX):
 	@echo "\nCompiling $(BLUE)mlx$(DEF_COLOR)"
 	@make -C $(MLX_DIR)
 
-test: $(NAME)
-	$(CC) $(CFLAGS) $(SRCS_DIR)animation.c $(LDFLAGS) -o test
-
-
 run: $(NAME)
-	@if [ -z "$(MAP_NAME)" ]; then \
-		echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP_NAME=nombre_del_mapa $(DEF_COLOR)"; \
+	@if [ -z "$(MAP)" ]; then \
+		echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP=nombre_del_mapa $(DEF_COLOR)"; \
 	else \
-		./$(NAME) $(map)/$(MAP_NAME); \
+		./$(NAME) $(map)/$(MAP); \
 	fi
 
 clean:
@@ -96,7 +93,7 @@ clean:
 	make clean -C $(MLX_DIR)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) test
 	@echo "$(GREEN)$(NAME)$(YELLOW) cleaned$(DEF_COLOR)"
 
 re: all fclean

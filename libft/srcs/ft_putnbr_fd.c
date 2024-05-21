@@ -35,11 +35,11 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 }
 /*
-int main() {
+int	main(void) {
 	// Write C code here
 	int i = 19999;
 
 	ft_putnbr_fd(NULL,1);
 
-	return 0;
+	return (0);
 }*/

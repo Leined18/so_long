@@ -35,7 +35,7 @@ size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t dstsize)
 	return (total_len);
 }
 /*
-int main()
+int	main(void)
 {
 	char src[] = "buenas";
 	char dst[] = "t";

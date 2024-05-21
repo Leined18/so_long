@@ -29,12 +29,12 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	return (NULL);
 }
 /*
-int main()
+int	main(void)
 {
 	char str[] = "Hello, World! buennas aasdasdasd";
 	char sub[] = "W";
 	char *result = ft_strnstr(str, sub, sizeof(str));
-	
+
 	printf("%s\n", result);
 	return (0);
 }*/

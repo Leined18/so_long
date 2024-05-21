@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	if (!lst || !del)
 		return ;
@@ -19,26 +19,26 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*))
 	free(lst);
 }
 /*
-void free_content(void *content)
+void	free_content(void *content)
 {
-    free(content);
+	free(content);
 }
 
-int main()
+int	main(void)
 {
-    t_list *head = NULL;
-    t_list *new_node = malloc(sizeof(t_list));
+	t_list *head = NULL;
+	t_list *new_node = malloc(sizeof(t_list));
 
-    new_node->content = strdup("Node to delete");
-    new_node->next = NULL;
+	new_node->content = strdup("Node to delete");
+	new_node->next = NULL;
 
-    head = new_node;
+	head = new_node;
 
-    printf("Before deletion: %s\n", (char *)head->content);
+	printf("Before deletion: %s\n", (char *)head->content);
 
-    ft_lstdelone(head, free_content);
+	ft_lstdelone(head, free_content);
 
-    printf("After deletion: %s\n", (char *)head->content);
+	printf("After deletion: %s\n", (char *)head->content);
 
-    return 0;
+	return (0);
 }*/

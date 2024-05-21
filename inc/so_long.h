@@ -11,12 +11,16 @@
 # define NAME "so_long"
 
 # define RES 40
-# define DELAY 100000
+#define F_W 64
+#define F_H 64
+#define N_FPD 4
+#define DELAY 100000
+
+#define PLAYER_SPRITESHEET "assets/images/p_sprites.xpm"
 
 # define COLLECT "assets/images/collect.xpm"
 # define EMPTY "assets/images/empty.xpm"
 # define EXIT "assets/images/exit.xpm"
-# define PLAYER "assets/images/player.xpm"
 
 # define PLAYER_UP "assets/images/p_up.xpm"
 # define PLAYER_DOWN "assets/images/p_down.xpm"
@@ -25,6 +29,26 @@
 
 # define WALL "assets/images/wall.xpm"
 # define WINNER "assets/images/win.xpm"
+
+typedef enum
+{
+    DOWN,
+    LEFT,
+    RIGHT,
+    UP,
+    N_D
+} Direction;
+
+typedef enum
+{
+    COLLECT_SPRITE,
+    EMPTY_SPRITE,
+    EXIT_SPRITE,
+    PLAYER_SPRITE,
+    WALL_SPRITE,
+    WINNER_SPRITE,
+    NUMBERS_SPRITE
+} Sprites;
 
 
 typedef struct s_images
@@ -36,6 +60,8 @@ typedef struct s_images
     void	*p_down;
     void	*p_left;
     void	*p_right;
+    void    *spritesheet[NUMBERS_SPRITE];
+    void    *sprites[NUMBERS_SPRITE][N_D][N_FPD];
 	void	*wall;
 	void	*winner;
 }	t_images;
@@ -57,6 +83,8 @@ typedef struct s_info
     void            *win;
     char            direction;
     t_images        *images;
+    Sprites         *sprite;
+    Direction       *directions;
 }   t_info;
 
 typedef struct s_checker
@@ -85,7 +113,7 @@ void	ft_is_posible(t_info *data, int j, int i, int left);
 
 // free
 
-void    free_info(t_info *data);
+void    ft_free_info(t_info *data);
 
 // finish
 
@@ -94,13 +122,16 @@ void	ft_game_result(t_info *data);
 
 // draw_map
 
-
+void    ft_load_spritesheet(t_info *data, Sprites sprite, char *sheet_path);
 void    ft_load_img(t_info *data);
 void	ft_draw_map(t_info *data);
 void	ft_steps(unsigned int n);
 
 // move_key
 
-int	ft_press_key(int keycode, t_info *data);
+int     ft_press_key(int keycode, t_info *data);
+
+// animation
+void    ft_animate_sprites(Sprites sprite , Direction direction, t_info *data);
 
 #endif

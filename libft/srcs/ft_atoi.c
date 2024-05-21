@@ -43,11 +43,11 @@ int	main(void)
 	char	str1[20];
 	printf("introduce a string\n");
 	scanf("%s", str1);
- 	int i1 = atoi(str1);
- 	int i2 = ft_atoi(str1);
+	int i1 = atoi(str1);
+	int i2 = ft_atoi(str1);
 
- 	if (i1 == i2)
- 		printf("TEST_SUCCESS\n%d",i1);
+	if (i1 == i2)
+		printf("TEST_SUCCESS\n%d",i1);
 	else
- 		printf("TEST_FAILED\n%d", i2);
+		printf("TEST_FAILED\n%d", i2);
 }*/

@@ -1,5 +1,5 @@
 
-# include "so_long.h"
+#include "so_long.h"
 
 void	ft_map_size(t_info *data)
 {
@@ -25,13 +25,13 @@ void	ft_map_size(t_info *data)
 
 void	ft_malloc_map(t_info *data)
 {
-	char	*line;
-	int		fd;
-	int		i;
+	char *line;
+	int fd;
+	int i;
 
 	fd = open(data->txt, O_RDONLY);
 	i = 0;
-	data->map = (char **)malloc(sizeof (char *) * (data->hight + 1));
+	data->map = (char **)malloc(sizeof(char *) * (data->hight + 1));
 	if (!data->map)
 		ft_error("not Malloc");
 	while (i < data->hight)

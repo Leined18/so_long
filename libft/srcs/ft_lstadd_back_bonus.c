@@ -27,23 +27,23 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	temp->next = new;
 }
 /*
-int main()
+int	main(void)
 {
-    t_list *head = NULL;
-    t_list *new_node = malloc(sizeof(t_list));
+	t_list *head = NULL;
+	t_list *new_node = malloc(sizeof(t_list));
 
-    new_node->content = "New Node";
-    new_node->next = NULL;
+	new_node->content = "New Node";
+	new_node->next = NULL;
 
-    ft_lstadd_back(&head, new_node);
+	ft_lstadd_back(&head, new_node);
 
-    t_list *current = head;
-    while (current != NULL)
-    {
-        printf("%s\n", (char *)current->content);
-        current = current->next;
-    }
+	t_list *current = head;
+	while (current != NULL)
+	{
+		printf("%s\n", (char *)current->content);
+		current = current->next;
+	}
 
-    free(new_node);
-    return 0;
+	free(new_node);
+	return (0);
 }*/

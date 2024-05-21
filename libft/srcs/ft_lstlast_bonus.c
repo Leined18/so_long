@@ -21,22 +21,22 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 /*
-int main()
+int	main(void)
 {
-    t_list *head = NULL;
-    t_list *node = malloc(sizeof(t_list));
+	t_list *head = NULL;
+	t_list *node = malloc(sizeof(t_list));
 	t_list *node2 = malloc(sizeof(t_list));
 
-    node->content = "hashimemashite Daniel Jin desu";
-    node->next = NULL;
+	node->content = "hashimemashite Daniel Jin desu";
+	node->next = NULL;
 	node2->content = "buenas tardes";
 	node2->next = NULL;
-	node = node2; 
-    head = node;
+	node = node2;
+	head = node;
 
-    char *lastNodeContent = ft_lstlast(head)->content;
-    printf("El contenido del último nodo es: %s\n", lastNodeContent);
+	char *lastNodeContent = ft_lstlast(head)->content;
+	printf("El contenido del último nodo es: %s\n", lastNodeContent);
 
-    free(node);
-    return 0;
+	free(node);
+	return (0);
 }*/

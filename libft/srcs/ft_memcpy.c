@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	*ft_memcpy(void	*dest, void const *src, size_t n)
+void	*ft_memcpy(void *dest, void const *src, size_t n)
 {
 	void	*dest_ptr;
 
@@ -24,11 +24,11 @@ void	*ft_memcpy(void	*dest, void const *src, size_t n)
 	return (dest_ptr);
 }
 /*
-int main()
+int	main(void)
 {
 	char src[] = "hello bould";
 	char dst[sizeof(src)];
-	
+
 	printf("%s", ft_memcpy(dst,src,sizeof(src)));
 	return (0);
 }*/

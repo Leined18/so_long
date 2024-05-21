@@ -1,4 +1,4 @@
-# include "so_long.h"
+#include "so_long.h"
 
 void	malloc_and_fill(t_checker *c, t_info *data)
 {
@@ -49,12 +49,12 @@ void	free_checker(t_checker *c, int hight)
 
 void	ft_is_posible(t_info *data, int j, int i, int left)
 {
-	t_checker	c;
+	t_checker c;
 
 	c.coins_left = left;
 	malloc_and_fill(&c, data);
 	iter_checker(&c, data, j, i);
 	if (c.coins_left != 0)
-        ft_error("Map is imposible");
+		ft_error("Map is imposible");
 	free_checker(&c, data->hight);
 }

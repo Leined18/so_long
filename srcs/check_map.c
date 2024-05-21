@@ -46,7 +46,7 @@ void	ft_check_map_inputs(t_info *data)
 				&& data->map[y][x] != 'E')
 				ft_error("Bad map input");
 			else
-			x++;
+				x++;
 		}
 		y++;
 	}
@@ -78,21 +78,21 @@ void	ft_check_map_objects(t_info *data)
 }
 void	ft_check_is_posible(t_info *data)
 {
-	int	i[2];
-	int	j[2];
-	int	left;
+	int i[2];
+	int j[2];
+	int left;
 
 	left = 0;
 	i[0] = -1;
 	while (data->map[++i[0]]) // { 0, 0, 0}
 	{
-		i[1] = -1; // { 0, -1}
+		i[1] = -1;                      // { 0, -1}
 		while (data->map[i[0]][++i[1]]) // { "111111", "100000001", 111111 }
 		{
-			if (data->map[i[0]][i[1]] == 'P') //  [i[0] == 0][i[1] == 0] 
+			if (data->map[i[0]][i[1]] == 'P') //  [i[0] == 0][i[1] == 0]
 			{
-				j[0] = i[0]; //j[0] == 0 
-				j[1] = i[1]; //j[1] == 0
+				j[0] = i[0]; // j[0] == 0
+				j[1] = i[1]; // j[1] == 0
 			}
 			if (data->map[i[0]][i[1]] == 'E' || data->map[i[0]][i[1]] == 'C')
 				left++;

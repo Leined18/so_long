@@ -38,17 +38,17 @@ char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 /*
-int main()
+int	main(void)
 {
 	char *s1 = "tamaño";
-    char *custom	= ft_strdup(NULL);
+	char *custom	= ft_strdup(NULL);
 	//char *original	= strdup(NULL);
 
-    //printf("Original: %s\n", original);
-    printf("Custom  : %s\n", custom);
+	//printf("Original: %s\n", original);
+	printf("Custom  : %s\n", custom);
 
-    free(custom);
+	free(custom);
 	//free(original);
 
-    return 0;
+	return (0);
 }*/

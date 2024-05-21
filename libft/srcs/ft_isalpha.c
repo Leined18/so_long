@@ -20,14 +20,14 @@ int	ft_isalpha(int c)
 		return (0);
 }
 /*
-int main()
+int	main(void)
 {
 	char c;
-   	scanf("%c ", &c);
+	scanf("%c ", &c);
 	char a;
-   	scanf("%c", &a);
+	scanf("%c", &a);
 
-	printf("%d\n", ft_isalpha(c));	
+	printf("%d\n", ft_isalpha(c));
 	printf("%d\n", ft_isalpha(a));
 
 	return (0);

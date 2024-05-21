@@ -18,16 +18,16 @@ void	ft_putendl_fd(char *s, int fd)
 	ft_putchar_fd('\n', fd);
 }
 /*
-int main() {
-    // Write C code here
-    char c[] = "Ayuda";
-    int i = 0;
+int	main(void) {
+	// Write C code here
+	char c[] = "Ayuda";
+	int i = 0;
 
-    while (i < sizeof(short int))
-    {
-        ft_putendl_fd(c,1);
-        i++;
-    }
+	while (i < sizeof(short int))
+	{
+		ft_putendl_fd(c,1);
+		i++;
+	}
 
-    return 0;
+	return (0);
 }*/

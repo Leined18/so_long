@@ -2,11 +2,11 @@
 
 void	move(t_info *data, int dx, int dy)
 {
-	if (data->map[data->y + dy][data->x + dx] != '1'
-		&& data->map[data->y + dy][data->x + dx] != 'E')
+	if (data->map[data->y + dy][data->x + dx] != '1' && data->map[data->y
+		+ dy][data->x + dx] != 'E')
 	{
-		if (data->map[data->y + dy][data->x + dx] == 'C'
-			|| data->map[data->y + dy][data->x + dx] == '0')
+		if (data->map[data->y + dy][data->x + dx] == 'C' || data->map[data->y
+			+ dy][data->x + dx] == '0')
 		{
 			if (data->map[data->y + dy][data->x + dx] == 'C')
 				data->count--;
@@ -19,8 +19,7 @@ void	move(t_info *data, int dx, int dy)
 		data->has_changed = 1;
 		ft_steps(data->step);
 	}
-	else if (data->map[data->y + dy][data->x + dx] == 'E'
-		&& data->count == 0)
+	else if (data->map[data->y + dy][data->x + dx] == 'E' && data->count == 0)
 		data->finish = 1;
 }
 
@@ -33,12 +32,12 @@ int	ft_press_key(int keycode, t_info *data)
 	else if (keycode == K_W || keycode == K_AR_U)
 	{
 		data->direction = 'N'; // Set direction to 'W'
-		move(data, 0, -1); // W or Up arrow key
+		move(data, 0, -1);     // W or Up arrow key
 	}
 	else if (keycode == K_S || keycode == K_AR_D)
 	{
 		data->direction = 'S'; // Set direction to 'S'
-		move(data, 0, 1); // S or Down arrow key
+		move(data, 0, 1);      // S or Down arrow key
 	}
 	else if (keycode == K_A || keycode == K_AR_L)
 	{
@@ -48,7 +47,7 @@ int	ft_press_key(int keycode, t_info *data)
 	else if (keycode == K_D || keycode == K_AR_R)
 	{
 		data->direction = 'E'; // Set direction to 'D'
-		move(data, 1, 0); // D or Right arrow key
+		move(data, 1, 0);      // D or Right arrow key
 	}
 	return (0);
 }

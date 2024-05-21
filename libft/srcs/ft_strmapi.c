@@ -15,16 +15,19 @@
 /* Ejemplo
 char	ft_toupper(unsigned int i, char c)
 {
-    if ((unsigned char)c >= 'a' && (unsigned char )c <= 'z')
-        c -= 32;
-    return (c);
-}*/
-
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-{
 	size_t			len;
 	char			*result;
 	unsigned int	i;
+
+	if ((unsigned char)c >= 'a' && (unsigned char )c <= 'z')
+		c -= 32;
+	return (c);
+}*/
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	int len;
+	char *result;
+	int i;
 
 	if (!s || !f)
 		return (NULL);
@@ -42,9 +45,9 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (result);
 }
 /*
-int main() {
-    char *s = "hello, world";
-    printf("%s\n", ft_strmapi(s,ft_toupper));
+int	main(void) {
+	char *s = "hello, world";
+	printf("%s\n", ft_strmapi(s,ft_toupper));
 
-    return 0;
+	return (0);
 }*/

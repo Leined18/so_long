@@ -3,8 +3,8 @@
 
 static char	*ft_set_line(char *line_buffer)
 {
-	char		*left_c;
-	ssize_t		i;
+	char	*left_c;
+	ssize_t	i;
 
 	i = 0;
 	while (line_buffer[i] != '\n' && line_buffer[i] != '\0')
@@ -52,9 +52,9 @@ static char	*ft_fill_line_buffer(int fd, char *left_c, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*left_c[MAX_FD];
-	char		*line;
-	char		*buffer;
+	static char *left_c[MAX_FD];
+	char *line;
+	char *buffer;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0)

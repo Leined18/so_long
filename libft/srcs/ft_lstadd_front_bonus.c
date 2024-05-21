@@ -30,7 +30,7 @@ void	print_list(t_list *lst)
 	}
 }
 
-int	main()
+int	main(void)
 {
 	t_list *lst = NULL;
 	t_list *new_node = ft_lstnew("Hello");

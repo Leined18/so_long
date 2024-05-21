@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-	size_t	i;	
+	size_t	i;
 
 	i = 0;
 	while (src[i])
@@ -27,11 +27,11 @@ size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 	return (i);
 }
 /*
-int main()
+int	main(void)
 {
 	char src[] = "nice to meeto you";
 	char dst[] = "buenas tardes";
 	printf("%zu\n%s", ft_strlcpy(dst, src, sizeof(dst)), dst);
-	
+
 	return (0);
 }*/

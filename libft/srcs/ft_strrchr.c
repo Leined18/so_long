@@ -29,11 +29,11 @@ char	*ft_strrchr(char const *s, int c)
 		return ((char *)aux);
 }
 /*
-int main()
+int	main(void)
 {
-    char s[] = "ELELELEL buenas";
-    char c = 'E';
+	char s[] = "ELELELEL buenas";
+	char c = 'E';
 
-    printf("%s", ft_strrchr(s,c));
-    return (0);
+	printf("%s", ft_strrchr(s,c));
+	return (0);
 }*/

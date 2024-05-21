@@ -31,10 +31,10 @@ void	*ft_calloc(size_t count, size_t size)
 	return (memory);
 }
 /*
-int main()
+int	main(void)
 {
-    char *i1 = calloc(2, sizeof(char));
-    char *i2 = ft_calloc(0, sizeof(char));
+	char *i1 = calloc(2, sizeof(char));
+	char *i2 = ft_calloc(0, sizeof(char));
 
 	if (memcmp(i1, i2, 10 * sizeof(char)) == 0)
 		printf("Memory contents are the same\n");
@@ -42,11 +42,11 @@ int main()
 		printf("Memory contents are different\n");
 
 
-    printf("i1: %p\n", (void *)i1);
-    printf("i2: %p\n", (void *)i2);
+	printf("i1: %p\n", (void *)i1);
+	printf("i2: %p\n", (void *)i2);
 
-    free(i1);
-    free(i2);
+	free(i1);
+	free(i2);
 
-    return 0;
+	return (0);
 }*/

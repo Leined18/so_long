@@ -4,7 +4,7 @@ int	ft_exit(t_info *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	exit(EXIT_SUCCESS);
-	free_info(data);
+	ft_free_info(data);
 }
 
 void	ft_game_result(t_info *data)

@@ -24,7 +24,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	return (0);
 }
 /*
-int main()
+int	main(void)
 {
 	char arr1[] = {2, 3, 5};
 	char arr2[] = {2, 3, 7};

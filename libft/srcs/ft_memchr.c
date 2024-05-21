@@ -22,7 +22,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	return (NULL);
 }
 /*
-int main()
+int	main(void)
 {
 	char s[] = {0, 1, 2 ,3 ,4 ,5};
 

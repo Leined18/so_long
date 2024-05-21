@@ -18,10 +18,10 @@ void	ft_bzero(void *s, size_t n)
 		*(unsigned char *)s++ = 0;
 }
 /*
-int main()
+int	main(void)
 {
 	char string[10] = "holabuena";
-	
+
 	ft_bzero(string, sizeof(string));
 	printf("%s", string);
 	return (0);

@@ -21,17 +21,17 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 /*
-int main() {
-    // Write C code here
-    char c[] = "Piano";
-    int i = 0;
+int	main(void) {
+	// Write C code here
+	char c[] = "Piano";
+	int i = 0;
 
-    while (i < sizeof(int))
-    {
-        ft_putstr_fd(c,1);
-        ft_putchar_fd(' ', 1);
-        i++;
-    }
+	while (i < sizeof(int))
+	{
+		ft_putstr_fd(c,1);
+		ft_putchar_fd(' ', 1);
+		i++;
+	}
 
-    return 0;
+	return (0);
 }*/
