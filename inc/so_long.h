@@ -18,12 +18,12 @@
 #define FALSE 0
 #define TRUE 1
 
-#define PLAYER_SPRITESHEET "assets/images/p_sprites.xpm" // done
-#define COLLECT_SPRITESHEET "assets/images/c_sprites.xpm" // done
-#define FIELD_SPRITESHEET "assets/images/f_sprites.xpm" // done
-#define EXIT_SPRITESHEET "assets/images/x_sprites.xpm"
-#define WALL_SPRITESHEET "assets/images/w_sprites.xpm" // done
-#define WINNER_SPRITESHEET "assets/images/win_sprites.xpm"
+#define PLAYER_SPRITESHEET "assets/sprites/p_sprites.xpm"
+#define COLLECT_SPRITESHEET "assets/sprites/c_sprites.xpm"
+#define FIELD_SPRITESHEET "assets/sprites/f_sprites.xpm"
+#define EXIT_SPRITESHEET "assets/sprites/x_sprites.xpm"
+#define WALL_SPRITESHEET "assets/sprites/w_sprites.xpm"
+#define WINNER_SPRITESHEET "assets/sprites/win_sprites.xpm"
 
 typedef enum
 {
@@ -48,11 +48,17 @@ typedef enum
 
 typedef struct s_sprites
 {
-    void    *spritesheet[NUMBERS_SPRITE];
-    void    *sprites[NUMBERS_SPRITE][N_D][N_FPD];
+    void    **spritesheet;
+    void    ****sprites;
 }	t_sprites;
 
-
+typedef struct s_spritesheet_info {
+    int total_frames;
+    int frames;
+    int rows;
+    int width;
+    int height;
+} t_spritesheetInfo;
 
 typedef struct s_info
 {
@@ -72,6 +78,8 @@ typedef struct s_info
     void            *win;
     char            direction;
     t_sprites       images;
+    t_spritesheetInfo spritesheetInfo;
+    struct  s_info  *next;
 }   t_info;
 
 typedef struct s_checker
@@ -109,7 +117,7 @@ void	ft_game_result(t_info *data);
 
 // draw_map
 
-void    ft_load_spritesheet(t_info *data, sprite_type sprite, char *sheet_path);
+void    ft_load_spritesheet(t_info *data, sprite_type sprite, char *spritesheet_path);
 void    ft_load_img(t_info *data);
 void	ft_draw_map(t_info *data);
 void	ft_steps(unsigned int n);
@@ -120,5 +128,10 @@ int     ft_press_key(int keycode, t_info *data);
 
 // animation
 void    ft_animate_sprites(sprite_type sprite , direction direction, t_info *data);
+t_info	*ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height);
+void	ft_lst_info_add_back(t_info *data, t_info *new);
+int     ft_get_image_dimensions(t_info *data, char *file_path);
 
+int     ft_spritesheet(t_info *data, char *path);
+void    ft_allocate_sprites(void *****sprite, void ***spritesheet, t_info *data);
 #endif

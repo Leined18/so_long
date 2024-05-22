@@ -51,25 +51,6 @@ static void *extract_frame(void *mlx, void *spritesheet, int x, int y, int width
     return (sprite);
 }
 
-void ft_animate_sprites(sprite_type sprite , direction direction, t_info *data)
-{
-    int i;
-    
-    i = 0;
-    while (data->has_changed == 1) // mientras el jugador se mueva
-    {
-        while (i < N_FPD)
-        {
-            mlx_clear_window(data->mlx, data->win);
-            mlx_put_image_to_window(data->mlx, data->win, data->images.sprites[sprite][direction][i],
-                data->px, data->py); // Utiliza las coordenadas XY especificadas
-            usleep(DELAY);
-            i++;
-        }
-        i = 0; // Reiniciar el índice para la animación continua
-    }
-}
-
 void put_frames(t_info *data, sprite_type s , int rows, int frames, int frame_width, int frame_height)
 {
     int i;
@@ -93,11 +74,12 @@ void put_frames(t_info *data, sprite_type s , int rows, int frames, int frame_wi
 }
 
 
-void    ft_load_spritesheet(t_info *data, sprite_type sprite, char *sheet_path)
+void    ft_load_spritesheet(t_info *data, sprite_type sprite, char *spritesheet_path)
 {
-    int img_width, img_height;
+    int img_width;
+    int img_height;
 
-    data->images.spritesheet[sprite] = mlx_xpm_file_to_image(data->mlx, sheet_path, &img_width, &img_height);
+    data->images.spritesheet[sprite] = mlx_xpm_file_to_image(data->mlx, spritesheet_path, &img_width, &img_height);
     if (!data->images.spritesheet[sprite])
         ft_error("Error cargando el spritesheet");
     if (img_width != F_W * N_FPD || img_height != F_H * N_D)
