@@ -1,7 +1,5 @@
 {
     "files.associations": {
-        "so_long.h": "c",
-        "libft.h": "c",
-        "key_linux.h": "c"
+        "so_long.h": "c"
     }
 }

@@ -1,69 +1,45 @@
 #include "so_long.h"
 
-t_info	*ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height)
+void	ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite)
 {
-	t_info	*info;
-	int					columns;
+	int columns;
 
-	info = (t_info *)malloc(sizeof(t_info));
-	if (!info)
-		ft_error("Error reservando memoria para la información del spritesheet");
 	if (frame_width == 0 || frame_height == 0)
 	{
-		info->spritesheetInfo.total_frames = 0;
-		info->spritesheetInfo.rows = 0;
+		data->spritesheetInfo.total_frames[sprite] = 0;
+		data->spritesheetInfo.rows[sprite] = 0;
 	}
 	else
 	{
-		info->spritesheetInfo.rows = data->spritesheetInfo.height / frame_height;
-		columns = data->width / frame_width;
-		info->spritesheetInfo.total_frames = info->spritesheetInfo.rows * columns;
-		info->spritesheetInfo.frames = columns;
-		info->next = NULL;
+		data->spritesheetInfo.rows[sprite] = data->spritesheetInfo.height[sprite] / frame_height;
+		columns = data->spritesheetInfo.width[sprite] / frame_width;
+		data->spritesheetInfo.total_frames[sprite] = data->spritesheetInfo.rows[sprite] * columns;
+		data->spritesheetInfo.frames[sprite] = columns;
 	}
-	return (info);
 }
 
-int	ft_get_image_dimensions(t_info *data, char *file_path)
+int	ft_get_image_dimensions(t_info *data, char *file_path, sprite_type sprite)
 {
-	void	*img;
-	int		width;
-	int		height;
+	int	w;
+	int	h;
 
-	img = mlx_xpm_file_to_image(data->mlx, file_path, &width, &height);
-	if (!img)
-	{
-		data->spritesheetInfo.width = 0;
-		data->spritesheetInfo.height = 0;
-		return (1);
-	}
-	if (data && data->spritesheetInfo.width == 0 && data->spritesheetInfo.height == 0)
-	{
-    	data->spritesheetInfo.width = width;
-    	data->spritesheetInfo.height = height;
-	}
-	else
-    	ft_error("Error: 'data' no ha sido asignado.");
-	mlx_destroy_image(data->mlx, img);
-	return (0);
-}
-void	ft_lst_info_add_back(t_info *data, t_info *new)
-{
-	t_info	*temp;
-
+	w = 0;
+	h = 0;
 	if (data == NULL)
 		ft_error("Error: 'data' es NULL.");
-	if (new == NULL)
-		ft_error("Error: 'new' no ha sido asignado.");
-	if (data->next == NULL)
-	{
-		data->next = new;
-		new->next = NULL;
-		return;
-	}
-	temp = data;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = new;
-	new->next = NULL;
+	if (data->mlx == NULL)
+		ft_error("Error: 'data->mlx' es NULL.");
+	if (file_path == NULL)
+		ft_error("Error: 'file_path' es NULL.");
+	if (w || h)
+		ft_error("Error: 'width' o 'height' no han sido inicializados.");
+	data->img = mlx_xpm_file_to_image(data->mlx, file_path, &w, &h);
+	if (!data->img)
+		return (1);
+	data->spritesheetInfo.width[sprite] = w;
+	data->spritesheetInfo.height[sprite] = h;
+	mlx_destroy_image(data->mlx, data->img);
+	if (!data->mlx)
+		ft_error("Error: mlx_xpm_file_to_image() failed");
+	return (0);
 }

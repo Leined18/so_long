@@ -96,7 +96,7 @@ fclean: clean
 	rm -rf $(NAME) test
 	@echo "$(GREEN)$(NAME)$(YELLOW) cleaned$(DEF_COLOR)"
 
-re: all fclean
+re: fclean all 
 
 .PHONY: all clean fclean re map1
 .SILENT: all clean fclean
