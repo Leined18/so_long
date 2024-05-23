@@ -39,11 +39,11 @@ void	ft_draw_map(t_info *data)
 	int		y;
 	int		x;
 
-	y = 0;
-	while (data->map[y++])
+	y = -1;
+	while (data->map[++y])
 	{
-		x = 0;
-		while (data->map[y][x++])
+		x = -1;
+		while (data->map[y][++x])
 		{
 			tile = data->map[y][x];
 			if (tile == '1')
@@ -54,7 +54,8 @@ void	ft_draw_map(t_info *data)
 				put_player_img(data, &x, &y);
 			else if (tile == 'C')
 				mlx_put_image_to_window(data->mlx, data->win,
-					data->images.sprites[COLLECT_SPRITE][0][0], x * RES, y * RES);
+					data->images.sprites[COLLECT_SPRITE][0][0], x * RES, y
+					* RES);
 			else if (tile == 'E')
 				mlx_put_image_to_window(data->mlx, data->win,
 					data->images.sprites[EXIT_SPRITE][0][0], x * RES, y * RES);

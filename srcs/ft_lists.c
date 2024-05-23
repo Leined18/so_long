@@ -1,8 +1,9 @@
 #include "so_long.h"
 
-void	ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite)
+void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
+		int frame_height, sprite_type sprite)
 {
-	int columns;
+	int	columns;
 
 	if (frame_width == 0 || frame_height == 0)
 	{
@@ -11,17 +12,19 @@ void	ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_heig
 	}
 	else
 	{
-		data->spritesheetInfo.rows[sprite] = data->spritesheetInfo.height[sprite] / frame_height;
+		data->spritesheetInfo.rows[sprite] = data->spritesheetInfo.height[sprite]
+			/ frame_height;
 		columns = data->spritesheetInfo.width[sprite] / frame_width;
-		data->spritesheetInfo.total_frames[sprite] = data->spritesheetInfo.rows[sprite] * columns;
+		data->spritesheetInfo.total_frames[sprite] = data->spritesheetInfo.rows[sprite]
+			* columns;
 		data->spritesheetInfo.frames[sprite] = columns;
 	}
 }
 
 int	ft_get_image_dimensions(t_info *data, char *file_path, sprite_type sprite)
 {
-	int	w;
-	int	h;
+	int w;
+	int h;
 
 	w = 0;
 	h = 0;
