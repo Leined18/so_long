@@ -1,7 +1,6 @@
 #include "so_long.h"
 
-void	ft_free_sprites(t_img *****sprite, t_img ***spritesheet, t_info *data,
-		sprite_type type)
+void    ft_free_sprites(void ****sprite, void **spritesheet, t_info *data, sprite_type type)
 {
 	int	i;
 	int	j;
@@ -15,36 +14,20 @@ void	ft_free_sprites(t_img *****sprite, t_img ***spritesheet, t_info *data,
 		{
 			k = -1;
 			while (++k < data->spritesheetInfo.frames[type])
-				free((*sprite)[i][j][k]);
+				free(sprite[i][j][k]);
 			free((*sprite)[i][j]);
 		}
 		free((*sprite)[i]);
 	}
-	free(*sprite);
+	free(sprite);
 	i = -1;
 	while (++i < NUMBERS_SPRITE)
-		free((*spritesheet)[i]);
-	free(*spritesheet);
-}
-
-void	ft_free_data(t_info *data, sprite_type type)
-{
-	data->txt = 0;
-	data->map = 0;
-	data->spritesheetInfo.total_frames[type] = 0;
-	data->spritesheetInfo.frames[type] = 0;
-	data->spritesheetInfo.rows[type] = 0;
-	data->spritesheetInfo.width[type] = 0;
-	data->spritesheetInfo.height[type] = 0;
-	free(data->txt);
-	free(data->map);
-	free(data);
+		free((spritesheet)[i]);
+	free(spritesheet);
 }
 
 void	ft_free_info(t_info *data, sprite_type type)
 {
-	ft_free_sprites(&data->images.sprites, &data->images.spritesheet, data,
-		type);
-	ft_free_data(data, type);
+	ft_free_sprites(data->images.sprites, data->images.spritesheet, data, type);
 	free(data);
 }

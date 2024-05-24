@@ -16,18 +16,18 @@ static void	put_player_img(t_info *data, int *j, int *i)
 {
 	if (data->direction == 'N')
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->images.sprites[PLAYER_SPRITE][UP][0], (*j) * RES, (*i) * RES);
+			data->images.sprites[PLAYER_SPRITE][0][0], (*j) * RES, (*i) * RES);
 	else if (data->direction == 'S')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->images.sprites[PLAYER_SPRITE][DOWN][0], (*j) * RES, (*i)
 			* RES);
 	else if (data->direction == 'E')
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->images.sprites[PLAYER_SPRITE][RIGHT][0], (*j) * RES, (*i)
+			data->images.sprites[PLAYER_SPRITE][0][0], (*j) * RES, (*i)
 			* RES);
 	else if (data->direction == 'W')
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->images.sprites[PLAYER_SPRITE][LEFT][0], (*j) * RES, (*i)
+			data->images.sprites[PLAYER_SPRITE][0][0], (*j) * RES, (*i)
 			* RES);
 	data->py = *i;
 	data->px = *j;

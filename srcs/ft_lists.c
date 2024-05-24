@@ -1,7 +1,6 @@
 #include "so_long.h"
 
-void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
-		int frame_height, sprite_type sprite)
+void	ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite)
 {
 	int	columns;
 
@@ -12,11 +11,9 @@ void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
 	}
 	else
 	{
-		data->spritesheetInfo.rows[sprite] = data->spritesheetInfo.height[sprite]
-			/ frame_height;
+		data->spritesheetInfo.rows[sprite] = data->spritesheetInfo.height[sprite] / frame_height;
 		columns = data->spritesheetInfo.width[sprite] / frame_width;
-		data->spritesheetInfo.total_frames[sprite] = data->spritesheetInfo.rows[sprite]
-			* columns;
+		data->spritesheetInfo.total_frames[sprite] = data->spritesheetInfo.rows[sprite] * columns;
 		data->spritesheetInfo.frames[sprite] = columns;
 	}
 }

@@ -43,12 +43,6 @@ typedef enum
     NUMBERS_SPRITE
 } sprite_type;
 
-typedef struct s_frame {
-    int     x;
-    int     y;
-    int     width;
-    int     height;
-}               t_frame;
 
 typedef struct s_img {
     void    *img;
@@ -90,11 +84,12 @@ typedef struct s_info
     char            direction;
     struct
     {
-        t_img   **spritesheet;
-        t_img    ****sprites;
+        void   *spritesheet[NUMBERS_SPRITE];
+        void    ****sprites;
+        t_img    *img[NUMBERS_SPRITE];
+        t_img    *spritesheet_img[NUMBERS_SPRITE];
     } images;
     void            *img;
-    t_frame         frame;
     t_spritesheetInfo spritesheetInfo;
 } t_info;
 
@@ -121,8 +116,7 @@ void ft_check_is_posible(t_info *data);
 void ft_is_posible(t_info *data, int j, int i, int left);
 
 // free
-void ft_free_info(t_info *data, sprite_type type);
-void	ft_free_sprites(t_img *****sprite, t_img ***spritesheet, t_info *data, sprite_type type);
+void ft_free_info(t_info *data, sprite_type type);;
 void ft_free_data(t_info *data, sprite_type type);
 void ft_reset_data(t_info *data, char *name);
 
@@ -145,5 +139,5 @@ void ft_animate_sprites(sprite_type sprite, direction direction, t_info *data);
 void ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite);
 int ft_get_image_dimensions(t_info *data, char *file_path, sprite_type sprite);
 int ft_spritesheet(t_info *data, char *path, sprite_type type);
-void ft_allocate_sprites(t_info *data);
+void	ft_allocate_sprites(t_info *data);
 #endif

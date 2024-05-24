@@ -2,7 +2,7 @@
 static char *_5baf93d88a946a2e126cfd4b3f5af68Cbo66jZShC0Sosay[] = {
 /* columns rows colors chars-per-pixel */
 "162 41 9 1 ",
-"  c None",
+"  c #ACBD4F",
 ". c #1B2121",
 "X c #5F7161",
 "o c #4C8050",

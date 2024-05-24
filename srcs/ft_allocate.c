@@ -1,98 +1,55 @@
+// Allocation of memory for the sprites
 #include "so_long.h"
 
-void	init_sprites(t_info *data)
+static void	init_img(t_info *data, sprite_type sprite)
 {
-	int	i;
-	int	j;
-	int	k;
 
-	i = -1;
-	while (++i < NUMBERS_SPRITE)
-	{
-		j = -1;
-		while (++j < data->spritesheetInfo.rows[i])
-		{
-			k = -1;
-			while (++k < data->spritesheetInfo.frames[i])
-			{
-				if (data->images.sprites[i][j][k]) {
-					data->images.sprites[i][j][k]->width = RES;
-					data->images.sprites[i][j][k]->height = RES;
-					data->images.sprites[i][j][k]->addr = 0;
-					data->images.sprites[i][j][k]->bits_per_pixel = 0;
-					data->images.sprites[i][j][k]->line_length = 0;
-					data->images.sprites[i][j][k]->endian = 0;
-				}
-			}
-		}
-	}
-}
-
-void	ft_allocate_memory_for_sprites(t_img ****sprite, t_info *temp,
-		sprite_type type, int j)
-{
-	int	k;
-
-	k = -1;
-	while (++k < temp->spritesheetInfo.frames[type])
-	{
-		(*sprite)[j][k] = ft_calloc(1, sizeof(t_img));
-		if (!(*sprite)[j][k])
-		{
-			while (k-- > 0)
-				free((*sprite)[j][k]);
-			free((*sprite)[j]);
-			ft_error("Error allocating memory for the fourth level");
-		}
-	}
-}
-
-void	ft_allocate_single_sprite(t_img ****sprite, t_info *temp,
-		sprite_type type)
-{
-	int	j;
-
-	*sprite = ft_calloc(temp->spritesheetInfo.rows[type], sizeof(t_img ***));
-	if (!*sprite)
-		ft_error("Error allocating memory for the second level");
-	j = -1;
-	while (++j < temp->spritesheetInfo.rows[type])
-	{
-		(*sprite)[j] = ft_calloc(temp->spritesheetInfo.frames[type],
-				sizeof(t_img **));
-		if (!(*sprite)[j])
-		{
-			while (j-- > 0) // Free the previously allocated memory
-				free((*sprite)[j]);
-			free(*sprite); // Free the first level
-			ft_error("Error allocating memory for the third level");
-		}
-		ft_allocate_memory_for_sprites(sprite, temp, type, j);
-	}
+	data->images.img[sprite] = ft_calloc(1, sizeof(t_img));
+	if (!data->images.img[sprite])
+		ft_error("Error allocating memory");
+	data->images.spritesheet_img[sprite] = ft_calloc(1, sizeof(t_img));
+	if (!data->images.spritesheet_img[sprite])
+		ft_error("Error allocating memory");
+	data->images.spritesheet_img[sprite]->addr = NULL;
+	data->images.spritesheet_img[sprite]->img = NULL;
+	data->images.spritesheet_img[sprite]->width = 0;
+	data->images.spritesheet_img[sprite]->height = 0;
+	data->images.spritesheet_img[sprite]->bits_per_pixel = 0;
+	data->images.spritesheet_img[sprite]->line_length = 0;
+	data->images.spritesheet_img[sprite]->endian = 0;
+	data->images.img[sprite]->addr = NULL;
+	data->images.img[sprite]->img = NULL;
+	data->images.img[sprite]->width = 0;
+	data->images.img[sprite]->height = 0;
+	data->images.img[sprite]->bits_per_pixel = 0;
+	data->images.img[sprite]->line_length = 0;
+	data->images.img[sprite]->endian = 0;
 }
 
 void	ft_allocate_sprites(t_info *data)
 {
+	int r[NUMBERS_SPRITE];
+	int c[NUMBERS_SPRITE];
 	int i;
-	sprite_type type;
+	int sp;
 
-	data->images.sprites = ft_calloc(NUMBERS_SPRITE, sizeof(t_img ****));
-	if (!data->images.sprites)
-		ft_error("Error reservando memoria para el primer nivel");
-	data->images.spritesheet = ft_calloc(NUMBERS_SPRITE, sizeof(t_img **));
-	if (!data->images.spritesheet)
+	i = -1;
+	while (++i < NUMBERS_SPRITE)
 	{
-		free(data->images.sprites); // Free the first level
-		ft_error("Error allocating memory for the second level");
+		r[i] = data->spritesheetInfo.rows[i];
+		c[i] = data->spritesheetInfo.frames[i];
 	}
-	i = 0;
-	while (i < NUMBERS_SPRITE)
+	data->images.sprites = ft_calloc(NUMBERS_SPRITE, sizeof(void ***));
+	sp = -1;
+	while (++sp < NUMBERS_SPRITE)
 	{
-		type = i;
-		ft_allocate_single_sprite(&data->images.sprites[i], data, type);
-		i++;
+		data->images.sprites[sp] = ft_calloc(r[sp], sizeof(void **));
+		i = -1;
+		while (++i < r[sp])
+			data->images.sprites[sp][i] = ft_calloc(c[sp], sizeof(void *));
 	}
-	if (data->images.sprites) {
-		init_sprites(data);
-	}
+	ft_successful("sprites allocated successfully");
+	sp = -1;
+	while (++sp < NUMBERS_SPRITE)
+		init_img(data, sp);
 }
