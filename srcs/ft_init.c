@@ -73,6 +73,5 @@ void	init(char **argv)
 	mlx_hook(data.win, 17, 0, ft_exit, &data);
 	mlx_key_hook(data.win, ft_press_key, &data);
 	mlx_loop_hook(data.mlx, ft_frame, &data);
-	list();
 	mlx_loop(data.mlx);
 }

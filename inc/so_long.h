@@ -34,18 +34,18 @@ typedef enum
 
 typedef enum
 {
-    COLLECT_SPRITE,
-    FIELD_SPRITE,
-    EXIT_SPRITE,
-    PLAYER_SPRITE,
-    WALL_SPRITE,
-    WINNER_SPRITE,
+    COLLECT,
+    FIELD,
+    EXIT,
+    PLAYER,
+    WALL,
+    WINNER,
     NUMBERS_SPRITE
 } sprite_type;
 
-
 typedef struct s_img
 {
+    int    frameNumber;
     void    *img;
     char    *addr;
     int     bits_per_pixel;
@@ -54,7 +54,14 @@ typedef struct s_img
     int     width;
     int     height;
     struct s_img *next;
-}               t_img;
+} t_img;
+
+typedef struct s_sprites
+{
+    int sprite;
+    t_img *frames[30];
+    t_img *spritesheet;
+} t_sprites;
 
 typedef struct s_spritesheet_info
 {
@@ -82,15 +89,9 @@ typedef struct s_info
     void            *mlx;
     void            *win;
     char            direction;
-    struct
-    {
-        void   *spritesheet[NUMBERS_SPRITE];
-        t_img    *sprites[NUMBERS_SPRITE][N_D][N_FPD];
-        t_img    *img[NUMBERS_SPRITE];
-        t_img    *spritesheet_img[NUMBERS_SPRITE];
-    } images;
     void            *img;
-    t_spritesheetInfo spritesheetInfo;
+    t_sprites       images[NUMBERS_SPRITE];
+    t_spritesheetInfo s_info;
 } t_info;
 
 typedef struct s_checker
@@ -101,7 +102,15 @@ typedef struct s_checker
 
 // init
 void init(char **argv);
-void    list();
+void list();
+
+// lists
+t_img* createNode(int frameNumber);
+void insertAtEnd(t_img** head, int frameNumber);
+void deleteNode(t_img** head, int frameNumber);
+
+// get_frame
+t_img	*ft_extract_frame(t_info *data, sprite_type sprite, int frame_x, int frame_y);
 
 // map
 void ft_map_size(t_info *data);
@@ -124,9 +133,9 @@ void ft_reset_data(t_info *data, char *name);
 // finish
 int ft_exit(t_info *data);
 void ft_game_result(t_info *data);
+void ft_exit_error(t_info *data, char *err);
 
 // draw_map
-int	ft_load_spritesheet(t_info *data, sprite_type sprite, char *spritesheet_path);
 void ft_load_img(t_info *data);
 void ft_draw_map(t_info *data);
 void ft_steps(unsigned int n);
@@ -135,10 +144,10 @@ void ft_steps(unsigned int n);
 int ft_press_key(int keycode, t_info *data);
 
 // animation
-void ft_lst_info_add_back(t_info *data, t_info *new);
 void ft_animate_sprites(sprite_type sprite, direction direction, t_info *data);
 void ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite);
-int ft_get_image_dimensions(t_info *data, char *file_path, sprite_type sprite);
 int ft_spritesheet(t_info *data, char *path, sprite_type type);
-void	ft_allocate_sprites(t_info *data);
+void ft_allocate_sprites(t_info *data);
+int	ft_get_s_sheet_img(t_info *data, char *path, sprite_type sprite);
+
 #endif
