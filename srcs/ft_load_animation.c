@@ -12,7 +12,7 @@ static int get_pixel_color(t_img *img, int x, int y)
     return (color);
 }
 
-static void *ft_extract_frame(t_info *data, sprite_type sprite, int frame_x, int frame_y, int frame_width, int frame_height)
+static t_img *ft_extract_frame(t_info *data, sprite_type sprite, int frame_x, int frame_y, int frame_width, int frame_height)
 {
     t_img *frame;
     int x, y;
@@ -36,7 +36,7 @@ static void *ft_extract_frame(t_info *data, sprite_type sprite, int frame_x, int
             *(unsigned int *)dst = color;
         }
     }
-    return ((void *)frame->img);
+    return (frame);
 }
 
 int	ft_load_spritesheet(t_info *data, sprite_type sprite, char *spritesheet_path)
@@ -50,14 +50,16 @@ int	ft_load_spritesheet(t_info *data, sprite_type sprite, char *spritesheet_path
     if (data->images.spritesheet[sprite] == NULL)
         i = 1;
     rows = -1;
-    while (++rows < data->spritesheetInfo.rows[sprite])
+    while (++rows < N_D)
     {
         frames = -1;
-        while (++frames < data->spritesheetInfo.frames[sprite])
+        while (++frames < N_FPD)
         {
             if ((frames + 1) * data->spritesheetInfo.width[sprite] > data->spritesheetInfo.width[sprite] || (rows + 1) * data->spritesheetInfo.height[sprite] > data->spritesheetInfo.height[sprite])
                 break;
-            data->images.sprites[sprite][rows][frames] = (void *)ft_extract_frame(data, sprite, frames * data->spritesheetInfo.width[sprite], rows * data->spritesheetInfo.height[sprite], data->spritesheetInfo.width[sprite], data->spritesheetInfo.height[sprite]);   
+            data->images.sprites[sprite][rows][frames] = ft_extract_frame(data, sprite, frames * data->spritesheetInfo.width[sprite], rows * data->spritesheetInfo.height[sprite], data->spritesheetInfo.width[sprite], data->spritesheetInfo.height[sprite]);   
+            if (data->images.sprites[sprite][rows][frames] == NULL)
+                return (1);
         }
     }
 	return (i);

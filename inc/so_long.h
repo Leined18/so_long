@@ -44,7 +44,8 @@ typedef enum
 } sprite_type;
 
 
-typedef struct s_img {
+typedef struct s_img
+{
     void    *img;
     char    *addr;
     int     bits_per_pixel;
@@ -52,9 +53,8 @@ typedef struct s_img {
     int     endian;
     int     width;
     int     height;
+    struct s_img *next;
 }               t_img;
-
-
 
 typedef struct s_spritesheet_info
 {
@@ -85,7 +85,7 @@ typedef struct s_info
     struct
     {
         void   *spritesheet[NUMBERS_SPRITE];
-        void    ****sprites;
+        t_img    *sprites[NUMBERS_SPRITE][N_D][N_FPD];
         t_img    *img[NUMBERS_SPRITE];
         t_img    *spritesheet_img[NUMBERS_SPRITE];
     } images;
@@ -101,6 +101,7 @@ typedef struct s_checker
 
 // init
 void init(char **argv);
+void    list();
 
 // map
 void ft_map_size(t_info *data);
@@ -116,7 +117,7 @@ void ft_check_is_posible(t_info *data);
 void ft_is_posible(t_info *data, int j, int i, int left);
 
 // free
-void ft_free_info(t_info *data, sprite_type type);;
+void ft_free_info(t_info *data);
 void ft_free_data(t_info *data, sprite_type type);
 void ft_reset_data(t_info *data, char *name);
 

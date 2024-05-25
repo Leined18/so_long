@@ -62,12 +62,12 @@ void	ft_load_img(t_info *data)
 {
 	ft_load_info_spritesheet(data);
 	ft_successful("images info_spritesheet loaded successfully");
-	ft_allocate_sprites(data, COLLECT_SPRITE);
-	ft_allocate_sprites(data, FIELD_SPRITE);
-	ft_allocate_sprites(data, EXIT_SPRITE);
-	ft_allocate_sprites(data, PLAYER_SPRITE);
-	ft_allocate_sprites(data, WALL_SPRITE);
-	ft_allocate_sprites(data, WINNER_SPRITE);
+	ft_allocate_sprites(data);
+	ft_allocate_sprites(data);
+	ft_allocate_sprites(data);
+	ft_allocate_sprites(data);
+	ft_allocate_sprites(data);
+	ft_allocate_sprites(data);
 	ft_successful("images allocated successfully");
 	load1(data);
 	ft_successful("images loaded successfully");

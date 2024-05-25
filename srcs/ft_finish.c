@@ -3,8 +3,8 @@
 int	ft_exit(t_info *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
+	ft_free_info(data);
 	exit(EXIT_SUCCESS);
-	ft_free_info(data, PLAYER_SPRITE);
 }
 
 void	ft_game_result(t_info *data)

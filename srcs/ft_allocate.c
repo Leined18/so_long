@@ -1,7 +1,8 @@
 // Allocation of memory for the sprites
 #include "so_long.h"
 
-static void	init_img(t_info *data, sprite_type sprite)
+
+static void	init_img2(t_info *data, sprite_type sprite)
 {
 
 	data->images.img[sprite] = ft_calloc(1, sizeof(t_img));
@@ -26,30 +27,59 @@ static void	init_img(t_info *data, sprite_type sprite)
 	data->images.img[sprite]->endian = 0;
 }
 
+static void	init_img(t_img *img)
+{
+	img = ft_calloc(1, sizeof(t_img));
+	img->addr = NULL;
+	img->bits_per_pixel = 0;
+	img->endian = 0;
+	img->height = 0;
+	img->img = NULL;
+	img->line_length = 0;
+	img->width = 0;
+	img->next = NULL;
+}
+
 void	ft_allocate_sprites(t_info *data)
 {
-	int r[NUMBERS_SPRITE];
-	int c[NUMBERS_SPRITE];
-	int i;
-	int sp;
+	sprite_type	sp;
+	int frame;
+	int rows;
 
-	i = -1;
-	while (++i < NUMBERS_SPRITE)
+
+	sp = -1;
+	frame = -1;
+	rows = -1;
+
+	while (++sp < NUMBERS_SPRITE )
 	{
-		r[i] = data->spritesheetInfo.rows[i];
-		c[i] = data->spritesheetInfo.frames[i];
+		while (++rows < N_D)
+		{
+			while (++frame < N_FPD)
+				data->images.sprites[sp][rows][frame] = ft_calloc(1, sizeof(t_img));
+		}
 	}
-	data->images.sprites = ft_calloc(NUMBERS_SPRITE, sizeof(void ***));
+
 	sp = -1;
 	while (++sp < NUMBERS_SPRITE)
+		init_img2(data, sp);
+}
+
+/// aqui se inicializa una lista de imagenes que luego se añadira con lstaddback
+void	list()
+{
+	t_img data_img;
+	t_img new;
+	t_img *head;
+	init_img(&data_img);
+	init_img(&new);
+	head = &data_img;
+	data_img.next = &new;
+
+	head->next = &new;
+	while (head != NULL)
 	{
-		data->images.sprites[sp] = ft_calloc(r[sp], sizeof(void **));
-		i = -1;
-		while (++i < r[sp])
-			data->images.sprites[sp][i] = ft_calloc(c[sp], sizeof(void *));
+		printf("head: %p\n", head);
+		head = head->next;
 	}
-	ft_successful("sprites allocated successfully");
-	sp = -1;
-	while (++sp < NUMBERS_SPRITE)
-		init_img(data, sp);
 }
