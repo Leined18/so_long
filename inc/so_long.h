@@ -10,11 +10,16 @@
 
 # define NAME "so_long"
 
-# define RES 40
+# define RES 36
 # define N_FPD 4
+# define F 30
 # define DELAY 100000
 # define FALSE 0
 # define TRUE 1
+# define UP 12 + 1
+# define DOWN 0 + 1
+# define RIGHT 12 + 1
+# define LEFT 8 + 1
 
 # define PLAYER_SPRITESHEET "assets/sprites/p_sprites.xpm"
 # define COLLECT_SPRITESHEET "assets/sprites/c_sprites.xpm"
@@ -23,14 +28,7 @@
 # define WALL_SPRITESHEET "assets/sprites/w_sprites.xpm"
 # define WINNER_SPRITESHEET "assets/sprites/win_sprites.xpm"
 
-typedef enum
-{
-    DOWN,
-    LEFT,
-    RIGHT,
-    UP,
-    N_D
-} direction;
+
 
 typedef enum
 {
@@ -59,7 +57,7 @@ typedef struct s_img
 typedef struct s_sprites
 {
     int sprite;
-    t_img *frames[30];
+    t_img *frames[F];
     t_img *spritesheet;
 } t_sprites;
 
@@ -103,6 +101,8 @@ typedef struct s_checker
 // init
 void init(char **argv);
 void list();
+void ft_init_img(t_img **img, int sp);
+
 
 // lists
 t_img* createNode(int frameNumber);
@@ -111,6 +111,8 @@ void deleteNode(t_img** head, int frameNumber);
 
 // get_frame
 t_img	*ft_extract_frame(t_info *data, sprite_type sprite, int frame_x, int frame_y);
+void ft_load_img(t_info *data);
+void ft_load_frames(t_info *data, int i);
 
 // map
 void ft_map_size(t_info *data);
@@ -144,7 +146,6 @@ void ft_steps(unsigned int n);
 int ft_press_key(int keycode, t_info *data);
 
 // animation
-void ft_animate_sprites(sprite_type sprite, direction direction, t_info *data);
 void ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite);
 int ft_spritesheet(t_info *data, char *path, sprite_type type);
 void ft_allocate_sprites(t_info *data);

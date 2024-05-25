@@ -18,7 +18,7 @@ OBJS_DIR    = objs/
 
 SRCS_FILES  = main.c ft_read_map.c ft_check_map.c ft_init.c ft_load.c ft_get_frame.c \
 			  ft_free.c ft_finish.c ft_draw_map.c ft_move_key.c ft_map_is_posible.c \
-			  ft_allocate.c ft_get_info.c
+			  ft_allocate.c ft_get_info.c ft_spritesheet.c
 
 
 OBJS_FILES  = $(SRCS_FILES:.c=.o)
