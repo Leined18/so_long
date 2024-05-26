@@ -32,6 +32,15 @@
 
 typedef enum
 {
+    S,
+    E,
+    W,
+    N,
+    Directions
+} Direction;
+
+typedef enum
+{
     COLLECT,
     FIELD,
     EXIT,
@@ -57,7 +66,7 @@ typedef struct s_img
 typedef struct s_sprites
 {
     int sprite;
-    t_img *frames[F];
+    t_img *frames[F][F];
     t_img *spritesheet;
 } t_sprites;
 
