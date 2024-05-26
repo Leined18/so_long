@@ -1,45 +1,83 @@
 #include "so_long.h"
 
-void	ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite)
+// Función para eliminar un nodo por su número de frame
+void	deleteNode(t_img **head, int frameNumber)
 {
-	int columns;
+	t_img	*temp;
+	t_img	*prev;
 
-	if (frame_width == 0 || frame_height == 0)
+	temp = *head;
+	prev = NULL;
+	if (temp != NULL && temp->frameNumber == frameNumber)
 	{
-		data->spritesheetInfo.total_frames[sprite] = 0;
-		data->spritesheetInfo.rows[sprite] = 0;
+		*head = temp->next;
+		free(temp);
+		return ;
+	}
+	while (temp != NULL && temp->frameNumber != frameNumber)
+	{
+		prev = temp;
+		temp = temp->next;
+	}
+	if (temp == NULL)
+	{
+		ft_putstr_fd("No se encontró el frameNumber\n", 1);
+		return ;
+	}
+	prev->next = temp->next;
+	free(temp);
+}
+
+t_img	*createNode(int frameNumber)
+{
+	t_img	*newNode;
+
+	newNode = (t_img *)malloc(sizeof(t_img));
+	if (newNode == NULL)
+	{
+		printf("Error al asignar memoria.\n");
+		exit(1);
+	}
+	newNode->frameNumber = frameNumber;
+	newNode->next = NULL;
+	return (newNode);
+}
+
+void	insertAtEnd(t_img **head, int frameNumber)
+{
+	t_img	*newNode;
+	t_img	*temp;
+
+	newNode = createNode(frameNumber);
+	if (*head == NULL)
+	{
+		*head = newNode;
 	}
 	else
 	{
-		data->spritesheetInfo.rows[sprite] = data->spritesheetInfo.height[sprite] / frame_height;
-		columns = data->spritesheetInfo.width[sprite] / frame_width;
-		data->spritesheetInfo.total_frames[sprite] = data->spritesheetInfo.rows[sprite] * columns;
-		data->spritesheetInfo.frames[sprite] = columns;
+		temp = *head;
+		while (temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = newNode;
 	}
 }
 
-int	ft_get_image_dimensions(t_info *data, char *file_path, sprite_type sprite)
+void	list(void)
 {
-	int	w;
-	int	h;
+	t_img data_img;
+	t_img new;
+	t_img *head;
+	init_img(&data_img);
+	init_img(&new);
+	head = &data_img;
+	data_img.next = &new;
 
-	w = 0;
-	h = 0;
-	if (data == NULL)
-		ft_error("Error: 'data' es NULL.");
-	if (data->mlx == NULL)
-		ft_error("Error: 'data->mlx' es NULL.");
-	if (file_path == NULL)
-		ft_error("Error: 'file_path' es NULL.");
-	if (w || h)
-		ft_error("Error: 'width' o 'height' no han sido inicializados.");
-	data->img = mlx_xpm_file_to_image(data->mlx, file_path, &w, &h);
-	if (!data->img)
-		return (1);
-	data->spritesheetInfo.width[sprite] = w;
-	data->spritesheetInfo.height[sprite] = h;
-	mlx_destroy_image(data->mlx, data->img);
-	if (!data->mlx)
-		ft_error("Error: mlx_xpm_file_to_image() failed");
-	return (0);
+	head->next = &new;
+	while (head != NULL)
+	{
+		printf("head: %p\n", head);
+		head = head->next;
+	}
 }

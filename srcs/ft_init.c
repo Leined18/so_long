@@ -14,7 +14,7 @@ void	ft_reset_data(t_info *data, char *name)
 	data->direction = 'S';
 	data->has_changed = 1;
 	data->running = 0;
-    data->map = NULL;
+	data->map = NULL;
 	ft_load_img(data);
 	ft_successful("Reset Data");
 }

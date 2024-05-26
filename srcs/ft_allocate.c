@@ -1,42 +1,31 @@
+// Allocation of memory for the sprites
 #include "so_long.h"
 
-#include "so_long.h"
-
-void	ft_allocate_single_sprite(void ****sprite, t_info *temp, sprite_type type)
+void	ft_init_img(t_img **img, int sp)
 {
-	unsigned int	j;
-
-	if (temp->spritesheetInfo.rows[type] >= 500 || temp->spritesheetInfo.frames[type] >= 50)
-		ft_error("Invalid number of rows or frames");
-	if (temp->spritesheetInfo.rows[type] <= 0 || temp->spritesheetInfo.frames[type] <= 0)
-		ft_error("Invalid number of rows or frames");
-	*sprite = malloc(temp->spritesheetInfo.rows[type] * sizeof(void *));
-	if (!*sprite)
-		ft_error("Error allocating memory for the second level");
-	j = 0;
-	while (j < temp->spritesheetInfo.rows[type])
-	{
-		(*sprite)[j] = malloc(temp->spritesheetInfo.frames[type] * sizeof(void *));
-		if (!(*sprite)[j])
-			ft_error("Error allocating memory for the third level");
-		j++;
-	}
+	img[sp] = ft_calloc(1, sizeof(t_img));
+	img[sp]->frameNumber = sp;
 }
 
-void	ft_allocate_sprites(void ****sprite, void ***spritesheet, t_info *data, sprite_type type)
+void	ft_allocate_sprites(t_info *data)
 {
-	int i;
+	
+	int x;
+	int y;
+	int img_index;
 
-	*sprite = malloc(NUMBERS_SPRITE * sizeof(void **));
-	if (!*sprite)
-		ft_error("Error reservando memoria para el primer nivel");
-	*spritesheet = malloc(NUMBERS_SPRITE * sizeof(void *));
-	if (!*spritesheet)
-		ft_error("Error reservando memoria para spritesheet");
-	i = 0;
-	while (i < NUMBERS_SPRITE)
+	img_index = -1;
+	while (++img_index < NUMBERS_SPRITE)
 	{
-		ft_allocate_single_sprite(&(sprite[i]), data, type);
-		i++;
+		y = -1;
+		data->images[img_index].sprite = img_index;
+		data->images[img_index].spritesheet = ft_calloc(1, sizeof(t_img));
+		while (++y < F)
+		{
+			x = -1;
+			while (++x < F)
+				ft_init_img(data->images[img_index].frames[y], x);
+	
+		}
 	}
 }

@@ -10,11 +10,16 @@
 
 # define NAME "so_long"
 
-# define RES 40
+# define RES 36
 # define N_FPD 4
+# define F 30
 # define DELAY 100000
 # define FALSE 0
 # define TRUE 1
+# define UP 12 + 1
+# define DOWN 0 + 1
+# define RIGHT 12 + 1
+# define LEFT 8 + 1
 
 # define PLAYER_SPRITESHEET "assets/sprites/p_sprites.xpm"
 # define COLLECT_SPRITESHEET "assets/sprites/c_sprites.xpm"
@@ -23,44 +28,55 @@
 # define WALL_SPRITESHEET "assets/sprites/w_sprites.xpm"
 # define WINNER_SPRITESHEET "assets/sprites/win_sprites.xpm"
 
-typedef enum
-{
-    DOWN,
-    LEFT,
-    RIGHT,
-    UP,
-    N_D
-} direction;
+
 
 typedef enum
 {
-    COLLECT_SPRITE,
-    FIELD_SPRITE,
-    EXIT_SPRITE,
-    PLAYER_SPRITE,
-    WALL_SPRITE,
-    WINNER_SPRITE,
+    S,
+    E,
+    W,
+    N,
+    Directions
+} Direction;
+
+typedef enum
+{
+    COLLECT,
+    FIELD,
+    EXIT,
+    PLAYER,
+    WALL,
+    WINNER,
     NUMBERS_SPRITE
 } sprite_type;
 
-typedef struct s_sprites
-{
-    void    **spritesheet;
-    void    ****sprites;
-} t_sprites;
-
 typedef struct s_img
 {
+    int    frameNumber;
     void    *img;
+    char    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
+    int     width;
+    int     height;
+    struct s_img *next;
 } t_img;
+
+typedef struct s_sprites
+{
+    int sprite;
+    t_img *frames[F][F];
+    t_img *spritesheet;
+} t_sprites;
 
 typedef struct s_spritesheet_info
 {
-    unsigned int total_frames[NUMBERS_SPRITE];
-    unsigned int frames[NUMBERS_SPRITE];
-    unsigned int rows[NUMBERS_SPRITE];
-    unsigned int width[NUMBERS_SPRITE];
-    unsigned int height[NUMBERS_SPRITE];
+    int total_frames[NUMBERS_SPRITE];
+    int frames[NUMBERS_SPRITE];
+    int rows[NUMBERS_SPRITE];
+    int width[NUMBERS_SPRITE];
+    int height[NUMBERS_SPRITE];
 } t_spritesheetInfo;
 
 typedef struct s_info
@@ -80,9 +96,9 @@ typedef struct s_info
     void            *mlx;
     void            *win;
     char            direction;
-    t_sprites       images;
-    t_img           *img;
-    t_spritesheetInfo spritesheetInfo;
+    void            *img;
+    t_sprites       images[NUMBERS_SPRITE];
+    t_spritesheetInfo s_info;
 } t_info;
 
 typedef struct s_checker
@@ -92,16 +108,27 @@ typedef struct s_checker
 } t_checker;
 
 // init
-
 void init(char **argv);
-// map
+void list();
+void ft_init_img(t_img **img, int sp);
 
+
+// lists
+t_img* createNode(int frameNumber);
+void insertAtEnd(t_img** head, int frameNumber);
+void deleteNode(t_img** head, int frameNumber);
+
+// get_frame
+t_img	*ft_extract_frame(t_info *data, sprite_type sprite, int frame_x, int frame_y);
+void ft_load_img(t_info *data);
+void ft_load_frames(t_info *data, int i);
+
+// map
 void ft_map_size(t_info *data);
 void ft_malloc_map(t_info *data);
 int ft_frame(t_info *data);
 
 // checks
-
 void ft_check_outline(t_info *data);
 void ft_check_format_dotber(t_info *data);
 void ft_check_map_inputs(t_info *data);
@@ -110,36 +137,27 @@ void ft_check_is_posible(t_info *data);
 void ft_is_posible(t_info *data, int j, int i, int left);
 
 // free
-
-void	ft_free_info(t_info *data, sprite_type type);
-void    ft_free_sprites(void *****sprite, void ***spritesheet, t_info *data, sprite_type type);
-void	ft_free_data(t_info *data, sprite_type type);
+void ft_free_info(t_info *data);
+void ft_free_data(t_info *data, sprite_type type);
 void ft_reset_data(t_info *data, char *name);
 
 // finish
-
 int ft_exit(t_info *data);
 void ft_game_result(t_info *data);
+void ft_exit_error(t_info *data, char *err);
 
 // draw_map
-
-void ft_load_spritesheet(t_info *data, sprite_type sprite, char *spritesheet_path);
 void ft_load_img(t_info *data);
 void ft_draw_map(t_info *data);
 void ft_steps(unsigned int n);
 
 // move_key
-
 int ft_press_key(int keycode, t_info *data);
 
 // animation
-
-void    ft_lst_info_add_back(t_info *data, t_info *new);
-void    ft_animate_sprites(sprite_type sprite, direction direction, t_info *data);
-void	ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite);
-int	    ft_get_image_dimensions(t_info *data, char *file_path, sprite_type sprite);
-int	    ft_spritesheet(t_info *data, char *path, sprite_type type);
-void	ft_allocate_sprites(void ****sprite, void ***spritesheet, t_info *data, sprite_type type);
-void	ft_allocate_single_sprite(void ****sprite, t_info *temp, sprite_type type);
+void ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite);
+int ft_spritesheet(t_info *data, char *path, sprite_type type);
+void ft_allocate_sprites(t_info *data);
+int	ft_get_s_sheet_img(t_info *data, char *path, sprite_type sprite);
 
 #endif
