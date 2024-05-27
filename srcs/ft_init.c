@@ -4,8 +4,8 @@ void	ft_reset_data(t_info *data, char *name)
 {
 	data->hight = 0;
 	data->width = 0;
-	data->x = 0;
-	data->y = 0;
+	data->px = 0;
+	data->py = 0;
 	data->player = 0;
 	data->count = 0;
 	data->step = 0;
@@ -13,8 +13,10 @@ void	ft_reset_data(t_info *data, char *name)
 	data->txt = name;
 	data->direction = 'S';
 	data->has_changed = 1;
+	data->running = 0;
+	data->map = NULL;
 	ft_load_img(data);
-	ft_successful(" Reset Data");
+	ft_successful("Reset Data");
 }
 
 void	ft_general_check(t_info *data)
@@ -24,7 +26,7 @@ void	ft_general_check(t_info *data)
 	ft_check_map_inputs(data);
 	ft_check_map_objects(data);
 	ft_check_is_posible(data);
-	ft_successful(" General Check");
+	ft_successful("General Check");
 }
 
 int	ft_frame(t_info *data)
@@ -57,13 +59,17 @@ void	init(char **argv)
 {
 	t_info data;
 
-	data.mlx = mlx_init();
+	data.mlx = mlx_init(data);
+	if (!data.mlx)
+		ft_error("Error: mlx_init() failed");
 	ft_reset_data(&data, argv[1]);
 	ft_map_size(&data);
 	ft_malloc_map(&data);
 	ft_general_check(&data);
 	data.win = mlx_new_window(data.mlx, data.width * RES, data.hight * RES,
 			NAME);
+	if (!data.win)
+		ft_error("Error: mlx_new_window() failed");
 	mlx_hook(data.win, 17, 0, ft_exit, &data);
 	mlx_key_hook(data.win, ft_press_key, &data);
 	mlx_loop_hook(data.mlx, ft_frame, &data);

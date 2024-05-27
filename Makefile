@@ -16,9 +16,9 @@ MLX_LINUX   = $(MLX_DIR)libmlx_Linux.a
 SRCS_DIR    = srcs/
 OBJS_DIR    = objs/
 
-SRCS_FILES  = main.c read_map.c check_map.c init.c load_img.c \
-			  free.c finish.c draw_map.c move_key.c is_posible.c \
-			  animation.c
+SRCS_FILES  = main.c ft_read_map.c ft_check_map.c ft_init.c ft_load.c ft_get_frame.c \
+			  ft_free.c ft_finish.c ft_draw_map.c ft_move_key.c ft_map_is_posible.c \
+			  ft_allocate.c ft_get_info.c ft_spritesheet.c
 
 
 OBJS_FILES  = $(SRCS_FILES:.c=.o)
@@ -96,7 +96,7 @@ fclean: clean
 	rm -rf $(NAME) test
 	@echo "$(GREEN)$(NAME)$(YELLOW) cleaned$(DEF_COLOR)"
 
-re: all fclean
+re: fclean all 
 
 .PHONY: all clean fclean re map1
 .SILENT: all clean fclean

@@ -2,24 +2,24 @@
 
 void	move(t_info *data, int dx, int dy)
 {
-	if (data->map[data->y + dy][data->x + dx] != '1' && data->map[data->y
-		+ dy][data->x + dx] != 'E')
+	if (data->map[data->py + dy][data->px + dx] != '1' && data->map[data->py
+		+ dy][data->px + dx] != 'E')
 	{
-		if (data->map[data->y + dy][data->x + dx] == 'C' || data->map[data->y
-			+ dy][data->x + dx] == '0')
+		if (data->map[data->py + dy][data->px + dx] == 'C' || data->map[data->py
+			+ dy][data->px + dx] == '0')
 		{
-			if (data->map[data->y + dy][data->x + dx] == 'C')
+			if (data->map[data->py + dy][data->px + dx] == 'C')
 				data->count--;
-			data->map[data->y][data->x] = '0';
-			data->map[data->y + dy][data->x + dx] = 'P';
+			data->map[data->py][data->px] = '0';
+			data->map[data->py + dy][data->px + dx] = 'P';
 		}
-		data->x += dx;
-		data->y += dy;
+		data->px += dx;
+		data->py += dy;
 		data->step++;
 		data->has_changed = 1;
 		ft_steps(data->step);
 	}
-	else if (data->map[data->y + dy][data->x + dx] == 'E' && data->count == 0)
+	else if (data->map[data->py + dy][data->px + dx] == 'E' && data->count == 0)
 		data->finish = 1;
 }
 
