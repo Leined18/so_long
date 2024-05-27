@@ -40,14 +40,13 @@ static t_img	*initialize_frame(t_info *data, int frame_width,
 {
 	t_img	*frame;
 
-	frame = malloc(sizeof(t_img));
+	frame = (t_img *)ft_calloc(1 ,sizeof(t_img));
 	if (!frame)
 		return (NULL);
 	frame->img = mlx_new_image(data->mlx, frame_width, frame_height);
 	frame->addr = mlx_get_data_addr(frame->img, &frame->bits_per_pixel,
 			&frame->line_length, &frame->endian);
 	frame->frameNumber = 0;
-	frame->next = NULL;
 	return (frame);
 }
 
@@ -60,5 +59,5 @@ t_img	*ft_extract_frame(t_info *data, sprite_type sprite, int frame_x,
 	if (!frame->img)
 		return (NULL);
 	extract_colors(data, frame, sprite, frame_x, frame_y, RES, RES);
-	return (frame->img);
+	return (frame);
 }

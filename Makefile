@@ -1,6 +1,6 @@
 NAME        = so_long
 CC          = gcc
-CFLAGS      = -Wextra -Werror -Wall -fsanitize=address -g3 -I$(INC) -I$(LIBFT_DIR)inc/ -I$(MLX_DIR)
+CFLAGS      = -Wextra -Werror -Wall -g3 -fsanitize=address -I$(INC) -I$(LIBFT_DIR)inc/ -I$(MLX_DIR)
 LDFLAGS     = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) $(MLX) $(MLX_LINUX) -lX11 -lXext -lm -lbsd
 
 INC         = inc/
@@ -74,11 +74,11 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 
 $(LIBFT):
 	@echo "\nCompiling $(BLUE)libft$(DEF_COLOR)"
-	@make -C $(LIBFT_DIR)
+	@make -sC $(LIBFT_DIR)
 
 $(MLX):
 	@echo "\nCompiling $(BLUE)mlx$(DEF_COLOR)"
-	@make -C $(MLX_DIR)
+	@make -sC $(MLX_DIR)
 
 run: $(NAME)
 	@if [ -z "$(MAP)" ]; then \
@@ -89,8 +89,8 @@ run: $(NAME)
 
 clean:
 	rm -rf $(OBJS_DIR)
-	make fclean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
+	make fclean -sC $(LIBFT_DIR)
+	make clean -sC $(MLX_DIR)
 
 fclean: clean
 	rm -rf $(NAME) test

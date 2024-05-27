@@ -20,7 +20,6 @@ void	ft_load_frames(t_info *data, int i)
     int count;
 
     count = 0;
-
     while (count < data->s_info.total_frames[i] && count < F)
     {
         r = 0;
@@ -29,7 +28,7 @@ void	ft_load_frames(t_info *data, int i)
             f = 0;
             while (f < data->s_info.frames[i] && count < data->s_info.total_frames[i] && count < F)
             {
-                data->images[i].frames[r][f]->img = ft_extract_frame(data, i, f * RES, r * RES);
+                data->images[i].frames[r][f] = ft_extract_frame(data, i, f * RES, r * RES);
                 count++;
                 f++;
             }

@@ -17,7 +17,7 @@ void	ft_map_size(t_info *data)
 		if (((int)ft_strlen(line) - 1) != (data->width))
 			ft_error("Map not valid");
 		data->hight++;
-		free(line);
+		freedom((void **)&line);
 		line = get_next_line(fd);
 	}
 	close(fd);
@@ -44,7 +44,7 @@ void	ft_malloc_map(t_info *data)
 			ft_error("not Malloc");
 		data->map[i][data->width] = '\0';
 		i++;
-		free(line);
+		freedom((void **)&line);
 	}
 	data->map[i] = NULL;
 	close(fd);

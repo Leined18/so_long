@@ -1,5 +1,14 @@
 #include "so_long.h"
 
+void	freedom(void **ptr)
+{
+	if (*ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	if (argc != 2)

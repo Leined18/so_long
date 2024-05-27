@@ -68,7 +68,7 @@ void	ft_steps(unsigned int n)
 	if (num_str)
 	{
 		write(1, num_str, ft_strlen(num_str));
-		free(num_str);
+		freedom((void **)&num_str);
 	}
 	write(1, "\n", 1);
 }

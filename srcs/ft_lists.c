@@ -11,7 +11,7 @@ void	deleteNode(t_img **head, int frameNumber)
 	if (temp != NULL && temp->frameNumber == frameNumber)
 	{
 		*head = temp->next;
-		free(temp);
+		freedom((void **)&temp);
 		return ;
 	}
 	while (temp != NULL && temp->frameNumber != frameNumber)
@@ -25,7 +25,7 @@ void	deleteNode(t_img **head, int frameNumber)
 		return ;
 	}
 	prev->next = temp->next;
-	free(temp);
+	freedom((void **)&temp);
 }
 
 t_img	*createNode(int frameNumber)

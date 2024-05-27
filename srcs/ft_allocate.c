@@ -9,7 +9,6 @@ void	ft_init_img(t_img **img, int sp)
 
 void	ft_allocate_sprites(t_info *data)
 {
-	
 	int x;
 	int y;
 	int img_index;
@@ -20,12 +19,11 @@ void	ft_allocate_sprites(t_info *data)
 		y = -1;
 		data->images[img_index].sprite = img_index;
 		data->images[img_index].spritesheet = ft_calloc(1, sizeof(t_img));
-		while (++y < F)
+		while (++y < data->s_info.rows[img_index])
 		{
 			x = -1;
-			while (++x < F)
+			while (++x < data->s_info.frames[img_index])
 				ft_init_img(data->images[img_index].frames[y], x);
-	
 		}
 	}
 }

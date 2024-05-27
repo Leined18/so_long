@@ -2,8 +2,8 @@
 
 int	ft_exit(t_info *data)
 {
-	mlx_destroy_window(data->mlx, data->win);
 	ft_free_info(data);
+	mlx_destroy_window(data->mlx, data->win);
 	exit(EXIT_SUCCESS);
 }
 
@@ -15,8 +15,8 @@ void	ft_exit_error(t_info *data, char *err)
 		ft_putstr_fd(err, 2);
 		write(2, "\n", 1);
 	}
-	mlx_destroy_window(data->mlx, data->win);
 	ft_free_info(data);
+	mlx_destroy_window(data->mlx, data->win);
 	exit(EXIT_FAILURE);
 }
 

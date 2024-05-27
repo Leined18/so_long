@@ -42,8 +42,8 @@ void	free_checker(t_checker *c, int hight)
 
 	i = -1;
 	while (++i < hight)
-		free(c->map[i]);
-	free(c->map);
+		freedom((void **)&c->map[i]);
+	freedom((void **)&c->map);
 	c->map = NULL;
 }
 
