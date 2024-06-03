@@ -25,10 +25,10 @@ void	move(t_info *data, int dx, int dy)
 
 int	ft_press_key(int keycode, t_info *data)
 {
-	if (data->finish == 1)
-		return (0);
 	if (keycode == K_ESC)
 		ft_exit(data);
+	if (data->finish == 1)
+		return (0);
 	else if (keycode == K_W || keycode == K_AR_U)
 	{
 		data->direction = 'N'; // Set direction to 'W'

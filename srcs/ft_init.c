@@ -13,7 +13,7 @@ void	ft_reset_data(t_info *data, char *name)
 	data->txt = name;
 	data->direction = 'S';
 	data->has_changed = 1;
-	data->running = 0;
+	data->running = 1;
 	data->map = NULL;
 	ft_load_img(data);
 	ft_successful("Reset Data");
@@ -39,6 +39,8 @@ int	ft_frame(t_info *data)
 		ft_draw_map(data);
 		data->has_changed = 0;
 	}
+	else if (data->player == 1 && data->running == 1)
+		ft_animate_player(data);
 	return (0);
 }
 

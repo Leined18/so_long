@@ -23,6 +23,7 @@ void	ft_exit_error(t_info *data, char *err)
 void	ft_game_result(t_info *data)
 {
 	mlx_clear_window(data->mlx, data->win);
+	data->running = 0;
 	mlx_put_image_to_window(data->mlx, data->win,
 		data->images[WINNER].frames[0][0]->img, data->width * RES / 2.2,
 		data->hight * RES / 4);
