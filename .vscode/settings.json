@@ -1,11 +1,4 @@
 {
-  "files.associations": {
-	"so_long.h": "c",
-	"key_linux.h": "c",
-	"compare": "c",
-	"type_traits": "c",
-	"mlx_int.h": "c"
-},
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",

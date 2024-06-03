@@ -25,8 +25,13 @@ static void	load_all_frames(t_info *data)
 
 void	ft_load_img(t_info *data)
 {
-	ft_allocate_sprites(data);
+	int i;
+
+	i = -1;
+	while (++i < NUMBERS_SPRITE)
+		data->images[i].spritesheet = ft_calloc(1, sizeof(t_img));
 	if (load_all_spritesheets(data))
 		ft_exit_error(data, "Failed to load spritesheet");
+	ft_allocate_sprites(data);
 	load_all_frames(data);
 }

@@ -17,13 +17,13 @@ void	ft_allocate_sprites(t_info *data)
 	while (++img_index < NUMBERS_SPRITE)
 	{
 		y = -1;
-		data->images[img_index].sprite = img_index;
-		data->images[img_index].spritesheet = ft_calloc(1, sizeof(t_img));
 		while (++y < data->s_info.rows[img_index])
 		{
 			x = -1;
 			while (++x < data->s_info.frames[img_index])
 				ft_init_img(data->images[img_index].frames[y], x);
+			
 		}
+		data->images[img_index].frames[y][x] = NULL;
 	}
 }

@@ -19,7 +19,7 @@ static void	put_player_img(t_info *data, int *j, int *i)
 			data->images[PLAYER].frames[N][0]->img, (*j) * RES, (*i) * RES);
 	else if (data->direction == 'S')
 		mlx_put_image_to_window(data->mlx, data->win,
-			data->images[PLAYER].frames[S][0]->img, (*j) * RES, (*i) * RES);
+			data->images[PLAYER].frames[DOWN][3]->img, (*j) * RES, (*i) * RES);
 	else if (data->direction == 'E')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->images[PLAYER].frames[E][0]->img, (*j) * RES, (*i) * RES);
