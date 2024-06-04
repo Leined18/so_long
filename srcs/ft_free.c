@@ -59,10 +59,6 @@ void	ft_free_info(t_info *data)
 	if (data)
 	{
 		ft_free(data);
-		if (data->mlx && data->win)
-		{
-			mlx_destroy_window(data->mlx, data->win);
-		}
 	}
 	exit(EXIT_SUCCESS);
 }
