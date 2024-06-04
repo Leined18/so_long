@@ -155,6 +155,7 @@ int			ft_press_key(int keycode, t_info *data);
 void		ft_calculate_spritesheet_info(t_info *data, int frame_width, int frame_height, sprite_type sprite);
 int			ft_spritesheet(t_info *data, char *path, sprite_type type);
 int			ft_get_s_sheet_img(t_info *data, char *path, sprite_type sprite);
-void		ft_animate_player(t_info *data);
+void		ft_animation(t_info *data);
+void		ft_animate(t_info *data, sprite_type sprite, int direction, int *j, int *i);
 
 #endif

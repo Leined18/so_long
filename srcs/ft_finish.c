@@ -22,9 +22,13 @@ void	ft_exit_error(t_info *data, char *err)
 
 void	ft_game_result(t_info *data)
 {
+	int i;
+	int j;
+
+	i = (data->width) * RES / 2.2;
+	j = (data->hight) * RES / 4;
 	mlx_clear_window(data->mlx, data->win);
+	mlx_string_put(data->mlx, data->win, i, j, 0x00FF00, "You won!");
+	ft_animate(data, WINNER, S, &i, &j);
 	data->running = 0;
-	mlx_put_image_to_window(data->mlx, data->win,
-		data->images[WINNER].frames[0][0]->img, data->width * RES / 2.2,
-		data->hight * RES / 4);
 }

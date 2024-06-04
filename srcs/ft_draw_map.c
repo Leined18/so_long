@@ -12,24 +12,6 @@ static void	put_empty_img(t_info *data, int *j, int *i)
 		data->images[FIELD].frames[0][0]->img, (*j) * RES, (*i) * RES);
 }
 
-static void	put_player_img(t_info *data, int *j, int *i)
-{
-	if (data->direction == 'N')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->images[PLAYER].frames[N][0]->img, (*j) * RES, (*i) * RES);
-	else if (data->direction == 'S')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->images[PLAYER].frames[DOWN][3]->img, (*j) * RES, (*i) * RES);
-	else if (data->direction == 'E')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->images[PLAYER].frames[E][0]->img, (*j) * RES, (*i) * RES);
-	else if (data->direction == 'W')
-		mlx_put_image_to_window(data->mlx, data->win,
-			data->images[PLAYER].frames[W][0]->img, (*j) * RES, (*i) * RES);
-	data->py = *i;
-	data->px = *j;
-}
-
 void	ft_draw_map(t_info *data)
 {
 	char	tile;
@@ -47,8 +29,6 @@ void	ft_draw_map(t_info *data)
 				put_wall_img(data, &x, &y);
 			else if (tile == '0')
 				put_empty_img(data, &x, &y);
-			else if (tile == 'P')
-				put_player_img(data, &x, &y);
 			else if (tile == 'C')
 				mlx_put_image_to_window(data->mlx, data->win,
 					data->images[COLLECT].frames[0][0]->img, x * RES, y * RES);

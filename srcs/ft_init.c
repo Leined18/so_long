@@ -40,7 +40,7 @@ int	ft_frame(t_info *data)
 		data->has_changed = 0;
 	}
 	else if (data->player == 1 && data->running == 1)
-		ft_animate_player(data);
+		ft_animation(data);
 	return (0);
 }
 
