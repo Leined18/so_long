@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_draw_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 12:13:31 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 12:14:39 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static void	put_wall_img(t_info *data, int *j, int *i)
@@ -14,7 +26,6 @@ static void	put_empty_img(t_info *data, int *j, int *i)
 
 static void	put_player_img(t_info *data, int *j, int *i)
 {
-	// Llama a ft_animate_player con la dirección adecuada
 	if (data->direction == 'N')
 		mlx_put_image_to_window(data->mlx, data->win,
 			data->img[PLAYER].frames[N][0]->img, (*j) * RES, (*i) * RES);
@@ -62,7 +73,7 @@ void	ft_draw_map(t_info *data)
 
 void	ft_steps(unsigned int n)
 {
-	char *num_str;
+	char	*num_str;
 
 	write(1, "Number of steps: ", 17);
 	num_str = ft_itoa(n);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_finish.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 12:12:53 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 12:14:52 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	ft_exit(t_info *data)
@@ -22,8 +34,8 @@ void	ft_exit_error(t_info *data, char *err)
 
 void	ft_game_result(t_info *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = (data->width) * RES / 2.2;
 	j = (data->hight) * RES / 4;

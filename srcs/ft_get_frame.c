@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_frame.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 11:55:30 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 12:08:34 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static int	get_pixel_color(t_img *img, int x, int y)
@@ -13,7 +25,7 @@ static int	get_pixel_color(t_img *img, int x, int y)
 }
 
 static void	extract_colors(t_info *data, t_img *frame, sprite_type sprite,
-		int frame_x, int frame_y, int frame_width, int frame_height)
+		int *frames_x_y)
 {
 	unsigned int	color;
 	char			*dst;
@@ -21,13 +33,13 @@ static void	extract_colors(t_info *data, t_img *frame, sprite_type sprite,
 	int				y;
 
 	y = -1;
-	while (++y < frame_height)
+	while (++y < RES)
 	{
 		x = -1;
-		while (++x < frame_width)
+		while (++x < RES)
 		{
-			color = get_pixel_color(data->img[sprite].spsh, frame_x
-					+ x, frame_y + y);
+			color = get_pixel_color(data->img[sprite].spsh, frames_x_y[0] + x,
+					frames_x_y[1] + y);
 			dst = frame->addr + (y * frame->line_length + x
 					* (frame->bits_per_pixel / 8));
 			*(unsigned int *)dst = color;
@@ -40,7 +52,7 @@ static t_img	*initialize_frame(t_info *data, int frame_width,
 {
 	t_img	*frame;
 
-	frame = (t_img *)ft_calloc(1 ,sizeof(t_img));
+	frame = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!frame)
 		return (NULL);
 	frame->img = mlx_new_image(data->mlx, frame_width, frame_height);
@@ -54,10 +66,13 @@ t_img	*ft_extract_frame(t_info *data, sprite_type sprite, int frame_x,
 		int frame_y)
 {
 	t_img	*frame;
+	int		frames_x_y[2];
 
+	frames_x_y[0] = frame_x;
+	frames_x_y[1] = frame_y;
 	frame = initialize_frame(data, RES, RES);
 	if (!frame->img)
 		return (NULL);
-	extract_colors(data, frame, sprite, frame_x, frame_y, RES, RES);
+	extract_colors(data, frame, sprite, frames_x_y);
 	return (frame);
 }

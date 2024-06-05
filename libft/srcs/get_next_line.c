@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 12:29:17 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 12:29:50 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <limits.h>
 
 static char	*ft_set_line(char *line_buffer)
 {
@@ -52,9 +63,9 @@ static char	*ft_fill_line_buffer(int fd, char *left_c, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char *left_c[MAX_FD];
-	char *line;
-	char *buffer;
+	static char	*left_c[MAX_FD];
+	char		*line;
+	char		*buffer;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (fd < 0 || BUFFER_SIZE <= 0)

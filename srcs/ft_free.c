@@ -1,56 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 12:09:59 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 12:12:48 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void	ft_free(t_info *data)
+static void	ft_free_map(t_info *data)
 {
 	int	i;
-	int	j;
-	int	k;
 
-	if (!data)
-		return;
-
-	// Liberar el mapa
-	i = 0;
-	while (i < data->hight)
-	{
+	i = -1;
+	while (++i < data->hight)
 		if (data->map[i])
 			freedom((void **)&data->map[i]);
-		i++;
-	}
 	if (data->map)
 		freedom((void **)&data->map);
+}
 
-	// Liberar spritesheet
-	i = 0;
-	while (i < NUMBERS_SPRITE)
+static void	ft_free_sprites(t_info *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < NUMBERS_SPRITE)
 	{
 		if (data->img[i].spsh && data->img[i].spsh->img)
 		{
 			mlx_destroy_image(data->mlx, data->img[i].spsh->img);
 			freedom((void **)&data->img[i].spsh);
 		}
-		i++;
 	}
-	i = 0;
-	while (i < NUMBERS_SPRITE)
+}
+
+static void	ft_free_frames(t_info *data)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = -1;
+	while (++i < NUMBERS_SPRITE)
 	{
-	    j = 0;
-	    while (j < data->s_info.rows[i])
-	    {
-	        k = 0;
-	        while (k < data->s_info.frames[i])
-	        {
-	            if (data->img[i].frames[j][k])
-	            {
-	                if (data->img[i].frames[j][k]->img)
-	                    mlx_destroy_image(data->mlx, data->img[i].frames[j][k]->img);
-	                freedom((void **)&data->img[i].frames[j][k]);
-	            }
-	            k++;
-	        }
-	        j++;
-	    }
-	    i++;
+		j = -1;
+		while (++j < data->s_info.rows[i])
+		{
+			k = -1;
+			while (++k < data->s_info.frames[i])
+			{
+				if (data->img[i].frames[j][k])
+				{
+					if (data->img[i].frames[j][k]->img)
+						mlx_destroy_image(data->mlx,
+							data->img[i].frames[j][k]->img);
+					freedom((void **)&data->img[i].frames[j][k]);
+				}
+			}
+		}
 	}
 }
 
@@ -58,7 +70,9 @@ void	ft_free_info(t_info *data)
 {
 	if (data)
 	{
-		ft_free(data);
+		ft_free_map(data);
+		ft_free_sprites(data);
+		ft_free_frames(data);
 	}
 	exit(EXIT_SUCCESS);
 }

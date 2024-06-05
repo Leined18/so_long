@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:00:41 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 11:09:34 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:55:20 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
 	}
 }
 
-int	ft_get_s_sheet_img(t_info *data, char *path, sprite_type sprite)
+int	ft_get_s_sheet_img(t_info *data, char *path, sprite_type sp)
 {
-	data->img[sprite].spsh->img = mlx_xpm_file_to_image(data->mlx,
-			path, &data->s_info.width[sprite], &data->s_info.height[sprite]);
-	if (!data->img[sprite].spsh->img)
+	data->img[sp].spsh->img = mlx_xpm_file_to_image(data->mlx, path,
+			&data->s_info.width[sp], &data->s_info.height[sp]);
+	if (!data->img[sp].spsh->img)
 		return (1);
-	data->img[sprite].spsh->addr = mlx_get_data_addr(data->img[sprite].spsh->img,
-			&data->img[sprite].spsh->bits_per_pixel,
-			&data->img[sprite].spsh->line_length,
-			&data->img[sprite].spsh->endian);
+	data->img[sp].spsh->addr = mlx_get_data_addr(data->img[sp].spsh->img,
+			&data->img[sp].spsh->bits_per_pixel,
+			&data->img[sp].spsh->line_length,
+			&data->img[sp].spsh->endian);
 	return (0);
 }

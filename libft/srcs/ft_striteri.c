@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42madrid>       +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:01:58 by danpalac          #+#    #+#             */
-/*   Updated: 2024/02/26 12:19:42 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:28:05 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	noalpha_space(unsigned int index, char *c)
 {
 	size_t			len;
 	unsigned int	i;
+	int				len;
+	int				i;
 
 	if (!(*c >= 'a' && *c <= 'z')){
 		*c = ' ';
@@ -31,9 +33,9 @@ static void	noalpha_space(unsigned int index, char *c)
 }*/
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int len;
-	int i;
-	
+	size_t			len;
+	unsigned int	i;
+
 	if (!s || !f)
 		return ;
 	len = ft_strlen(s);
