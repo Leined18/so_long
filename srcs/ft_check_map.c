@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:15:37 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:18:19 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:05:33 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	ft_check_outline(t_info *data)
 	err = 0;
 	while (i < data->width)
 	{
-		if (data->map[0][i] != '1' || data->map[data->hight - 1][i] != '1')
+		if (data->map[0][i] != '1' || data->map[data->height - 1][i] != '1')
 			err = 1;
 		i++;
 	}
 	i = 0;
-	while (i < data->hight)
+	while (i < data->height)
 	{
 		if (data->map[i][0] != '1' || data->map[i][data->width - 1] != '1')
 			err = 1;

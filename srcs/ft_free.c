@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:09:59 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:12:48 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:05:57 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_free_map(t_info *data)
 	int	i;
 
 	i = -1;
-	while (++i < data->hight)
+	while (++i < data->height)
 		if (data->map[i])
 			freedom((void **)&data->map[i]);
 	if (data->map)

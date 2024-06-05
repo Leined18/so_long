@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:53 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 10:58:05 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:05:21 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	ft_map_size(t_info *data)
 	if (!line)
 		ft_error("Map not read");
 	data->width = ft_strlen(line) - 1;
-	data->hight = 0;
+	data->height = 0;
 	while (line)
 	{
 		if (((int)ft_strlen(line) - 1) != (data->width))
 			ft_error("Map not valid");
-		data->hight++;
+		data->height++;
 		freedom((void **)&line);
 		line = get_next_line(fd);
 	}
@@ -42,10 +42,10 @@ void	ft_malloc_map(t_info *data)
 
 	fd = open(data->txt, O_RDONLY);
 	i = 0;
-	data->map = (char **)malloc(sizeof(char *) * (data->hight + 1));
+	data->map = (char **)malloc(sizeof(char *) * (data->height + 1));
 	if (!data->map)
 		ft_error("not Malloc");
-	while (i < data->hight)
+	while (i < data->height)
 	{
 		line = get_next_line(fd);
 		if (!line)

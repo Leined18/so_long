@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:35 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 10:58:38 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:58:49 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	move(t_info *data, int dx, int dy)
 		data->py += dy;
 		data->step++;
 		data->has_changed = 1;
-		ft_steps(data->step);
+		ft_steps(data);
 	}
 	else if (data->map[data->py + dy][data->px + dx] == 'E' && data->coins == 0)
 		data->finish = 1;

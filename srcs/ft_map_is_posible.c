@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:58:50 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 10:59:22 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:06:19 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	malloc_and_fill(t_checker *c, t_info *data)
 	int	y;
 	int	x;
 
-	c->map = malloc(sizeof(int *) * data->hight);
+	c->map = malloc(sizeof(int *) * data->height);
 	y = -1;
-	while (++y < data->hight)
+	while (++y < data->height)
 		c->map[y] = malloc(sizeof(int *) * data->width);
 	y = -1;
-	while (++y < data->hight)
+	while (++y < data->height)
 	{
 		x = -1;
 		while (++x < data->width)
@@ -68,5 +68,5 @@ void	ft_is_posible(t_info *data, int j, int i, int left)
 	iter_checker(&c, data, j, i);
 	if (c.coins_left != 0)
 		ft_error("Map is imposible");
-	free_checker(&c, data->hight);
+	free_checker(&c, data->height);
 }

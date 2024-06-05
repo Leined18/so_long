@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:59:55 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 11:51:57 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:14:50 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_reset_data(t_info *data, char *name)
 {
-	data->hight = 0;
+	data->lost = 0;
+	data->height = 0;
 	data->width = 0;
 	data->px = 0;
 	data->py = 0;
@@ -78,7 +79,7 @@ void	init(char **argv)
 	ft_map_size(&data);
 	ft_malloc_map(&data);
 	ft_general_check(&data);
-	data.win = mlx_new_window(data.mlx, data.width * RES, data.hight * RES,
+	data.win = mlx_new_window(data.mlx, data.width * RES, data.height * RES,
 			NAME);
 	if (!data.win)
 		ft_error("Error: mlx_new_window() failed");

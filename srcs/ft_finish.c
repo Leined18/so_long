@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:12:53 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:14:52 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:15:38 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	ft_game_result(t_info *data)
 	int	j;
 
 	i = (data->width) * RES / 2.2;
-	j = (data->hight) * RES / 4;
+	j = (data->height) * RES / 4;
 	mlx_clear_window(data->mlx, data->win);
-	mlx_string_put(data->mlx, data->win, i, j, 0x00FF00, "You won!");
+	if (data->lost == 0)
+		mlx_string_put(data->mlx, data->win, i, j, 0x00FF00, "You won!");
+	else
+		mlx_string_put(data->mlx, data->win, i, j, 0xFF0000, "You lost!");
 	data->running = 0;
 }

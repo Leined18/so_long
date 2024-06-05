@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:19:24 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:26:17 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:13:18 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ typedef struct s_spritesheet_info
 typedef struct s_info
 {
 	int					bonus;
-	int					hight;
+	int					lost;
+	int					height;
 	int					width;
 	int					px;
 	int					py;
@@ -156,7 +157,7 @@ void					ft_exit_error(t_info *data, char *err);
 // draw_map
 void					ft_load_img(t_info *data);
 void					ft_draw_map(t_info *data);
-void					ft_steps(unsigned int n);
+void					ft_steps(t_info *data);
 
 // move_key
 int						ft_press_key(int keycode, t_info *data);

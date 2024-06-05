@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:13:31 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:14:39 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:19:20 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,23 @@ void	ft_draw_map(t_info *data)
 	}
 }
 
-void	ft_steps(unsigned int n)
+void	ft_steps(t_info *data)
 {
 	char	*num_str;
 
-	write(1, "Number of steps: ", 17);
-	num_str = ft_itoa(n);
+	if (data->step == 100)
+	{
+		write(1, "\033[0;31mYou have reached the maximum number of steps\n\033[0m", 52);
+		data->lost = 1;
+		data->finish = 1;
+		return ;
+	}
+	num_str = ft_itoa(data->step);
 	if (num_str)
 	{
+		write(1, "Steps: ", 7);
 		write(1, num_str, ft_strlen(num_str));
-		freedom((void **)&num_str);
+		free(num_str);
 	}
 	write(1, "\n", 1);
 }

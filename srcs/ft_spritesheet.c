@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_spritesheet.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:05 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:32:40 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:49:14 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ int	ft_spritesheet(t_info *data, char *path, t_spr type)
 	if (!data->s_info.width[type] || !data->s_info.height[type])
 		return (1);
 	ft_calculate_spritesheet_info(data, RES, RES, type);
-	printf("Sprite %d: %d %d %d %d %d\n", type, data->s_info.width[type],
-		data->s_info.height[type], data->s_info.frames[type],
-		data->s_info.rows[type], data->s_info.total_frames[type]);
 	return (i);
 }
 
