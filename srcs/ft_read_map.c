@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_read_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 10:56:53 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 10:58:05 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -25,9 +36,9 @@ void	ft_map_size(t_info *data)
 
 void	ft_malloc_map(t_info *data)
 {
-	char *line;
-	int fd;
-	int i;
+	char	*line;
+	int		fd;
+	int		i;
 
 	fd = open(data->txt, O_RDONLY);
 	i = 0;

@@ -68,12 +68,12 @@ void	ft_check_map_objects(t_info *data)
 			if (data->map[y][x] == 'P')
 				data->player++;
 			if (data->map[y][x] == 'C')
-				data->count++;
+				data->coins++;
 			if (data->map[y][x] == 'E')
 				end++;
 		}
 	}
-	if (data->player != 1 || data->count < 1 || end != 1)
+	if (data->player != 1 || data->coins < 1 || end != 1)
 		ft_error("Bad map inputs");
 }
 

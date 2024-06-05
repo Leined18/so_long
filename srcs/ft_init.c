@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 10:59:55 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 11:51:57 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	ft_reset_data(t_info *data, char *name)
@@ -7,7 +19,7 @@ void	ft_reset_data(t_info *data, char *name)
 	data->px = 0;
 	data->py = 0;
 	data->player = 0;
-	data->count = 0;
+	data->coins = 0;
 	data->step = 0;
 	data->finish = 0;
 	data->txt = name;
@@ -31,7 +43,7 @@ void	ft_general_check(t_info *data)
 
 int	ft_frame(t_info *data)
 {
-	if (data->count == 0 && data->player == 1 && data->finish == 1)
+	if (data->coins == 0 && data->player == 1 && data->finish == 1)
 		ft_game_result(data);
 	else if (data->has_changed == 1)
 	{
@@ -39,8 +51,6 @@ int	ft_frame(t_info *data)
 		ft_draw_map(data);
 		data->has_changed = 0;
 	}
-	else if (data->player == 1 && data->running == 1)
-		ft_animation(data);
 	return (0);
 }
 
@@ -59,7 +69,7 @@ void	print(t_info *data)
 
 void	init(char **argv)
 {
-	t_info data;
+	t_info	data;
 
 	data.mlx = mlx_init(data);
 	if (!data.mlx)

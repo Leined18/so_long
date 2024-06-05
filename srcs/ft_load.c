@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_load.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 10:59:29 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 11:08:55 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static int	load_all_spritesheets(t_info *data)
@@ -25,15 +37,15 @@ static void	load_all_frames(t_info *data)
 
 void	ft_load_img(t_info *data)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < NUMBERS_SPRITE)
-		data->images[i].spritesheet = ft_calloc(1, sizeof(t_img));
+		data->img[i].spsh = ft_calloc(1, sizeof(t_img));
 	if (load_all_spritesheets(data))
 		ft_exit_error(data, "Failed to load spritesheet");
 	i = -1;
 	while (++i < NUMBERS_SPRITE)
-		ft_bzero(data->images[i].frames, sizeof(data->images[i].frames));
+		ft_bzero(data->img[i].frames, sizeof(data->img[i].frames));
 	load_all_frames(data);
 }

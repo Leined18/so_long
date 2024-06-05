@@ -64,7 +64,7 @@ typedef struct s_sprites
 {
 	int		sprite;
 	t_img	*frames[F][F];
-	t_img	*spritesheet;
+	t_img	*spsh;
 } t_sprites;
 
 typedef struct s_spritesheet_info
@@ -78,6 +78,7 @@ typedef struct s_spritesheet_info
 
 typedef struct s_info
 {
+	int					bonus;
 	int					hight;
 	int					width;
 	int					px;
@@ -85,7 +86,7 @@ typedef struct s_info
 	int					has_changed;
 	int					running;
 	int					player;
-	int					count;
+	int					coins;
 	int					finish;
 	unsigned int		step;
 	char				*txt;
@@ -93,8 +94,8 @@ typedef struct s_info
 	void				*mlx;
 	void				*win;
 	char				direction;
-	void				*img;
-	t_sprites			images[NUMBERS_SPRITE];
+	void				*img_ptr;
+	t_sprites			img[NUMBERS_SPRITE];
 	t_spritesheetInfo	s_info;
 } t_info;
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_map_is_posible.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 10:58:50 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 10:59:22 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	malloc_and_fill(t_checker *c, t_info *data)
@@ -49,7 +61,7 @@ void	free_checker(t_checker *c, int hight)
 
 void	ft_is_posible(t_info *data, int j, int i, int left)
 {
-	t_checker c;
+	t_checker	c;
 
 	c.coins_left = left;
 	malloc_and_fill(&c, data);

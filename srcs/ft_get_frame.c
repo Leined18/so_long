@@ -26,7 +26,7 @@ static void	extract_colors(t_info *data, t_img *frame, sprite_type sprite,
 		x = -1;
 		while (++x < frame_width)
 		{
-			color = get_pixel_color(data->images[sprite].spritesheet, frame_x
+			color = get_pixel_color(data->img[sprite].spsh, frame_x
 					+ x, frame_y + y);
 			dst = frame->addr + (y * frame->line_length + x
 					* (frame->bits_per_pixel / 8));

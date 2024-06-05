@@ -20,19 +20,6 @@ void	ft_exit_error(t_info *data, char *err)
 	exit(EXIT_FAILURE);
 }
 
-static int winner(t_info *data)
-{
-	if (data->direction == 'N')
-		ft_animate(data, WINNER, UP, &data->px, &data->py);
-	else if (data->direction == 'S')
-		ft_animate(data, WINNER, DOWN, &data->px, &data->py);
-	else if (data->direction == 'E')
-		ft_animate(data, WINNER, RIGHT, &data->px, &data->py);
-	else if (data->direction == 'W')
-		ft_animate(data, WINNER, LEFT, &data->px, &data->py);
-	return (0);
-}
-
 void	ft_game_result(t_info *data)
 {
 	int i;
@@ -42,7 +29,5 @@ void	ft_game_result(t_info *data)
 	j = (data->hight) * RES / 4;
 	mlx_clear_window(data->mlx, data->win);
 	mlx_string_put(data->mlx, data->win, i, j, 0x00FF00, "You won!");
-	mlx_loop_hook(data->mlx, winner, data);
-	
 	data->running = 0;
 }

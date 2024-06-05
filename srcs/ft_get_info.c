@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_info.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 11:00:41 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 11:09:34 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
@@ -21,13 +33,13 @@ void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
 
 int	ft_get_s_sheet_img(t_info *data, char *path, sprite_type sprite)
 {
-	data->images[sprite].spritesheet->img = mlx_xpm_file_to_image(data->mlx,
+	data->img[sprite].spsh->img = mlx_xpm_file_to_image(data->mlx,
 			path, &data->s_info.width[sprite], &data->s_info.height[sprite]);
-	if (!data->images[sprite].spritesheet->img)
+	if (!data->img[sprite].spsh->img)
 		return (1);
-	data->images[sprite].spritesheet->addr = mlx_get_data_addr(data->images[sprite].spritesheet->img,
-			&data->images[sprite].spritesheet->bits_per_pixel,
-			&data->images[sprite].spritesheet->line_length,
-			&data->images[sprite].spritesheet->endian);
+	data->img[sprite].spsh->addr = mlx_get_data_addr(data->img[sprite].spsh->img,
+			&data->img[sprite].spsh->bits_per_pixel,
+			&data->img[sprite].spsh->line_length,
+			&data->img[sprite].spsh->endian);
 	return (0);
 }

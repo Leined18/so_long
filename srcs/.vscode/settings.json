@@ -55,7 +55,5 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false,
-  "42header.username": "danpalac",
-  "42header.email": "danpalac@student.42madrid.com "
+  "C_Cpp_Runner.msvcSecureNoWarnings": false
 }

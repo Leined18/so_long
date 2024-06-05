@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_spritesheet.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 10:56:05 by danpalac          #+#    #+#             */
+/*   Updated: 2024/06/05 11:09:40 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	ft_spritesheet(t_info *data, char *path, sprite_type type)
@@ -13,26 +25,28 @@ int	ft_spritesheet(t_info *data, char *path, sprite_type type)
 		data->s_info.rows[type], data->s_info.total_frames[type]);
 	return (i);
 }
+
 void	ft_load_frames(t_info *data, int i)
 {
-    int r;
-    int f;
-    int count;
+	int	r;
+	int	f;
+	int	count;
 
-    count = 0;
-    while (count < data->s_info.total_frames[i])
-    {
-        r = 0;
-        while (r < data->s_info.rows[i])
-        {
-            f = 0;
-            while (f < data->s_info.frames[i])
-            {
-                data->images[i].frames[r][f] = ft_extract_frame(data, i, f * RES, r * RES);
-                count++;
-                f++;
-            }
-            r++;
-        }
-    }
+	count = 0;
+	while (count < data->s_info.total_frames[i])
+	{
+		r = 0;
+		while (r < data->s_info.rows[i])
+		{
+			f = 0;
+			while (f < data->s_info.frames[i])
+			{
+				data->img[i].frames[r][f] = ft_extract_frame(data, i, f
+						* RES, r * RES);
+				count++;
+				f++;
+			}
+			r++;
+		}
+	}
 }

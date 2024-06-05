@@ -24,10 +24,10 @@ void	ft_free(t_info *data)
 	i = 0;
 	while (i < NUMBERS_SPRITE)
 	{
-		if (data->images[i].spritesheet && data->images[i].spritesheet->img)
+		if (data->img[i].spsh && data->img[i].spsh->img)
 		{
-			mlx_destroy_image(data->mlx, data->images[i].spritesheet->img);
-			freedom((void **)&data->images[i].spritesheet);
+			mlx_destroy_image(data->mlx, data->img[i].spsh->img);
+			freedom((void **)&data->img[i].spsh);
 		}
 		i++;
 	}
@@ -40,11 +40,11 @@ void	ft_free(t_info *data)
 	        k = 0;
 	        while (k < data->s_info.frames[i])
 	        {
-	            if (data->images[i].frames[j][k])
+	            if (data->img[i].frames[j][k])
 	            {
-	                if (data->images[i].frames[j][k]->img)
-	                    mlx_destroy_image(data->mlx, data->images[i].frames[j][k]->img);
-	                freedom((void **)&data->images[i].frames[j][k]);
+	                if (data->img[i].frames[j][k]->img)
+	                    mlx_destroy_image(data->mlx, data->img[i].frames[j][k]->img);
+	                freedom((void **)&data->img[i].frames[j][k]);
 	            }
 	            k++;
 	        }
