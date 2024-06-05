@@ -6,13 +6,13 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:05 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 11:09:40 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:32:40 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_spritesheet(t_info *data, char *path, sprite_type type)
+int	ft_spritesheet(t_info *data, char *path, t_spr type)
 {
 	int	i;
 

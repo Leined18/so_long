@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:01:01 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:28:34 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:31:50 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	size_t	len;
 	char	*result;
-	int		i;
+	size_t	i;
 
 	if (!s || !f)
 		return (NULL);

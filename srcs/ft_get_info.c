@@ -6,14 +6,14 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:00:41 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 11:55:20 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:32:26 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
-		int frame_height, sprite_type sprite)
+		int frame_height, t_spr sprite)
 {
 	int	columns;
 
@@ -31,7 +31,7 @@ void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
 	}
 }
 
-int	ft_get_s_sheet_img(t_info *data, char *path, sprite_type sp)
+int	ft_get_s_sheet_img(t_info *data, char *path, t_spr sp)
 {
 	data->img[sp].spsh->img = mlx_xpm_file_to_image(data->mlx, path,
 			&data->s_info.width[sp], &data->s_info.height[sp]);

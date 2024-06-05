@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:55:30 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:08:34 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:32:08 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	get_pixel_color(t_img *img, int x, int y)
 	return (color);
 }
 
-static void	extract_colors(t_info *data, t_img *frame, sprite_type sprite,
+static void	extract_colors(t_info *data, t_img *frame, t_spr sprite,
 		int *frames_x_y)
 {
 	unsigned int	color;
@@ -58,11 +58,11 @@ static t_img	*initialize_frame(t_info *data, int frame_width,
 	frame->img = mlx_new_image(data->mlx, frame_width, frame_height);
 	frame->addr = mlx_get_data_addr(frame->img, &frame->bits_per_pixel,
 			&frame->line_length, &frame->endian);
-	frame->frameNumber = 0;
+	frame->framenumber = 0;
 	return (frame);
 }
 
-t_img	*ft_extract_frame(t_info *data, sprite_type sprite, int frame_x,
+t_img	*ft_extract_frame(t_info *data, t_spr sprite, int frame_x,
 		int frame_y)
 {
 	t_img	*frame;
