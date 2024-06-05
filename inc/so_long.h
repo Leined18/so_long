@@ -16,10 +16,10 @@
 # define DELAY 10000
 # define FALSE 0
 # define TRUE 1
-# define UP 16
+# define UP 9
 # define DOWN 4
 # define RIGHT 8
-# define LEFT 12
+# define LEFT 7
 
 # define PLAYER_SPRITESHEET "assets/sprites/p_sprites.xpm"
 # define COLLECT_SPRITESHEET "assets/sprites/c_sprites.xpm"

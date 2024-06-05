@@ -23,13 +23,13 @@ void	ft_exit_error(t_info *data, char *err)
 static int winner(t_info *data)
 {
 	if (data->direction == 'N')
-		ft_animate(data, WINNER, N, &data->px, &data->py);
+		ft_animate(data, WINNER, UP, &data->px, &data->py);
 	else if (data->direction == 'S')
-		ft_animate(data, WINNER, S, &data->px, &data->py);
+		ft_animate(data, WINNER, DOWN, &data->px, &data->py);
 	else if (data->direction == 'E')
-		ft_animate(data, WINNER, E, &data->px, &data->py);
+		ft_animate(data, WINNER, RIGHT, &data->px, &data->py);
 	else if (data->direction == 'W')
-		ft_animate(data, WINNER, W, &data->px, &data->py);
+		ft_animate(data, WINNER, LEFT, &data->px, &data->py);
 	return (0);
 }
 
