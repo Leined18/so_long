@@ -6,26 +6,21 @@
 /*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 11:43:02 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:26:56 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:19:45 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <fcntl.h>
+# include "ft_printf.h"
+# include "get_next_line.h"
 # include <limits.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 16
-# endif
-
-# define MAX_FD 1024
 
 /* ************************************************************************** */
 /*                                 STRUCT                                     */
@@ -61,7 +56,7 @@ void				*ft_memmove(void *dest, const void *src, size_t n);
 void				*ft_memset(void *str, int c, size_t n);
 
 /* ************************************************************************** */
-/*                                  PRINT                                     */
+/*                                  PUT			    				          */
 /* ************************************************************************** */
 
 void				ft_putchar_fd(char c, int fd);
@@ -72,11 +67,18 @@ void				ft_error(char *err);
 void				ft_successful(char *success);
 
 /* ************************************************************************** */
-/*                                 STRING                                     */
+/*                                  TO							              */
 /* ************************************************************************** */
 
 int					ft_atoi(char const *str);
 char				*ft_itoa(int n);
+int					ft_tolower(int c);
+int					ft_toupper(int c);
+
+/* ************************************************************************** */
+/*                                 STRING                                     */
+/* ************************************************************************** */
+
 char				**ft_split(char const *s, char c);
 char				*ft_strchr(char const *str, int c);
 char				*ft_strdup(char const *src);
@@ -87,18 +89,12 @@ size_t				ft_strlcpy(char *dest, char const *src, size_t n);
 size_t				ft_strlen(char const *str);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strncmp(char const *s1, char const *s2, size_t n);
-int					ft_strrncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strnstr(char const *haystack, char const *needle,
 						size_t n);
 char				*ft_strrchr(char const *str, int c);
 char				*ft_strtrim(char const *s1, char const *set);
+int					ft_strrncmp(const char *s1, const char *s2, size_t n);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
-int					ft_tolower(int c);
-int					ft_toupper(int c);
-
-/*ADITIONAL*/
-
-char				*get_next_line(int fd);
 
 /* ************************************************************************** */
 /*                                   LIST                                     */

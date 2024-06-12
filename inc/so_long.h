@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:19:24 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 13:13:18 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:57:23 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define DOWN 4
 # define RIGHT 8
 # define LEFT 7
+# define ESC 53
+# define BONUS FALSE
+#if (BONUS == TRUE)
+	# include "so_long_bonus.h"
+#endif
 
 # define PLAYER_SPRITESHEET "assets/sprites/p_sprites.xpm"
 # define COLLECT_SPRITESHEET "assets/sprites/c_sprites.xpm"
@@ -163,6 +168,8 @@ void					ft_steps(t_info *data);
 int						ft_press_key(int keycode, t_info *data);
 
 // animation
+
+void					init_bonus(int argc, char **argv);
 void					ft_calculate_spritesheet_info(t_info *data,
 							int frame_width, int frame_height,
 							t_spr sprite);
