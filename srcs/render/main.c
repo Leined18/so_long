@@ -28,9 +28,14 @@ int	main(int argc, char **argv)
 		ft_error("Usage: ./program_name map_file");
 		return (1);
 	}
-	if (BONUS == TRUE)
+	if (BONUS)
+	{
+		ft_printf("Bonus\n");
 		init_bonus(argc, argv);
+	}
 	else
+	{
 		init(argv);
+	}
 	return (0);
 }

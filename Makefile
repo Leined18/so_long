@@ -41,6 +41,7 @@ DEF_COLOR		:= \033[0;39m
 #==============================VARIABLES=============================================#
 
 NAME	= so_long
+BONUS_NAME = so_long_bonus
 LIBFT	= $(LIBFT_DIR)libft.a
 MLX		= $(MLX_DIR)libmlx.a
 MLX_LINUX	= $(MLX_DIR)libmlx_Linux.a
@@ -78,20 +79,23 @@ BONUS_FILES		:= ft_animate_bonus main_bonus
 
 # ==============================FILES============================================#
 
-
 SRCS_FILES+=$(addprefix $(MAP_DIR), $(MAP_FILES))
 SRCS_FILES+=$(addprefix $(RENDER_DIR), $(RENDER_FILES))
 SRCS_FILES+=$(addprefix $(GRAFIC_DIR), $(GRAFIC_FILES))
 SRCS_FILES+=$(addprefix $(HOOK_DIR), $(HOOK_FILES))
-SRCS_FILES+=$(addprefix $(BONUS_DIR),$(BONUS_FILES))
+BONUS_SRCS_FILES+=$(addprefix $(BONUS_DIR), $(BONUS_FILES))
 
 SRCS		:= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		:= $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
-DEPS		:= $(addprefix $(OBJS_DIR), $(addsuffix .d, $(SRCS_FILES)))
+
+BONUS_SRCS  := $(addprefix $(SRCS_DIR), $(addsuffix .c, $(BONUS_SRCS_FILES)))
+BONUS_OBJS  := $(addprefix $(OBJS_DIR), $(addsuffix .o, $(BONUS_SRCS_FILES)))
+
+DEPS		:= $(addprefix $(OBJS_DIR), $(addsuffix .d, $(SRCS_FILES) $(BONUS_SRCS_FILES)))
 
 #==============================RULES=============================================#
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run bonus
 
 all: $(NAME)
 
@@ -103,6 +107,14 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c Makefile
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "\n$(GREEN)$(NAME)✓ compiled!$(DEF_COLOR)"
+	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
+
+bonus: CFLAGS += -DBONUS=1
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(LIBFT) $(MLX) $(OBJS) $(BONUS_OBJS)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(BONUS_OBJS) $(LDFLAGS) -o $(BONUS_NAME)
+	@echo "\n$(GREEN)$(BONUS_NAME)✓ compiled!$(DEF_COLOR)"
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 $(LIBFT):
@@ -124,8 +136,8 @@ clean:
 	@make clean -sC $(MLX_DIR)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@echo "$(GREEN)$(NAME)$(YELLOW) cleaned$(DEF_COLOR)"
+	@rm -rf $(NAME) $(BONUS_NAME)
+	@echo "$(GREEN)$(NAME) $(BONUS_NAME)$(YELLOW) cleaned$(DEF_COLOR)"
 
 re: fclean all
 

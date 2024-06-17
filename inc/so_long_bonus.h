@@ -14,14 +14,11 @@
 # define SO_LONG_BONUS_H
 
 # include "key_linux.h"
-# include "libft.h"
 # include "mlx.h"
 # include <fcntl.h>
 # include <unistd.h>
+# define NAME_B "so_long_bonus"
 # include "so_long.h"
-
-# define NAME_BONUS "so_long_bonus"
-
 
 typedef struct s_grafics
 {
@@ -68,6 +65,8 @@ typedef struct s_bonus
 	t_obj_node			*exit;
 	t_obj_node			*walls;
 	t_obj_node			*winner;
+	t_obj_node			*field;
+	t_info				info;
 }						t_bonus;
 
 void	init_bonus(int argc, char **argv);

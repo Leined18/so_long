@@ -21,7 +21,6 @@ void	init_bonus(int argc, char **argv)
 	t_bonus data;
 
 	ft_printf("\x1b[32mStarting program...\x1b[0m\n");
-	exit(0);
 	if (argc != 2)
 		ft_error("Usage: ./program_name map_file");
 	ft_bzero(&data, sizeof(t_bonus));

@@ -32,9 +32,9 @@
 # define RIGHT 8
 # define LEFT 7
 # define ESC 53
-# define BONUS FALSE
-#if (BONUS == TRUE)
-	# include "so_long_bonus.h"
+
+#ifndef BONUS
+#  define BONUS 0
 #endif
 
 # define PLAYER_SPRITESHEET "assets/sprites/p_sprites.xpm"
@@ -94,7 +94,6 @@ typedef struct s_spritesheet_info
 
 typedef struct s_info
 {
-	int					bonus;
 	int					lost;
 	int					height;
 	int					width;
