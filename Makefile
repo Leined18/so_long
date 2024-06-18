@@ -6,7 +6,7 @@
 #    By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:15:37 by danpalac          #+#    #+#              #
-#    Updated: 2024/06/12 13:46:40 by danpalac         ###   ########.fr        #
+#    Updated: 2024/06/18 17:40:34 by danpalac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 bonus: CFLAGS += -DBONUS=1
-bonus: $(BONUS_NAME)
+bonus: fclean $(BONUS_NAME)  
 
 $(BONUS_NAME): $(LIBFT) $(MLX) $(OBJS) $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(BONUS_OBJS) $(LDFLAGS) -o $(BONUS_NAME)
