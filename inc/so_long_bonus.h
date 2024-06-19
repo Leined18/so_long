@@ -20,55 +20,39 @@
 # define NAME_B "so_long_bonus"
 # include "so_long.h"
 
-typedef struct s_grafics
+typedef struct s_animation
 {
-	void				*mlx;
-	void				*win;
-	t_img				*img;
-	int					width;
-	int					height;
-}						t_grafics;
+    int frame;
+    int count;
+} t_animation;
 
-typedef struct s_obj
+typedef struct s_info2
 {
-	int					x;
-	int					y;
-	int					moves;
-	int					collectibles;
-	char				direction;
-	t_img				*img;
-}						t_obj;
+	int direction;
+    int x;
+    int y;
+	int sprite;
+    t_animation *anim;
+	t_animation	player_anim;
+    t_animation collect_anim;
+    t_animation wall_anim;
+    t_animation exit_anim;
+	t_animation enemy_anim;
+} t_info2;
+   
 
-// Estructura para una lista enlazada de objetos
-typedef struct s_obj_node
-{
-	t_obj				*obj;
-	struct s_obj_node	*next;
-}						t_obj_node;
 
-// Estructura para el mapa del juego
-typedef struct s_map
-{
-	int					x;
-	int					y;
-	char				**map;
-}						t_map;
 
-// Estructura principal del juego
 typedef struct s_bonus
 {
-	char				*arg;
-	t_grafics			grafics;
-	t_map				map;
-	t_obj_node			*player;
-	t_obj_node			*collectibles;
-	t_obj_node			*exit;
-	t_obj_node			*walls;
-	t_obj_node			*winner;
-	t_obj_node			*field;
+	t_obj				enemy;
+	t_sprites			enemies;
+	t_info2				info_bonus;
 	t_info				info;
 }						t_bonus;
 
 void	init_bonus(int argc, char **argv);
+void	ft_animation(t_bonus *data);
 
-#endif
+
+# endif

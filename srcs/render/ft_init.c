@@ -14,20 +14,27 @@
 
 void	ft_reset_data(t_info *data, char *name)
 {
-	data->lost = 0;
-	data->height = 0;
-	data->width = 0;
-	data->px = 0;
-	data->py = 0;
-	data->player = 0;
-	data->coins = 0;
-	data->step = 0;
+	int	i;
+	
+	data->grafics.height = 0;
+	data->grafics.width = 0;
+	data->player.x = 0;
+	data->player.y = 0;
+	data->player.alive = 0;
+	data->player.coins = 0;
+	data->player.step = 0;
 	data->finish = 0;
-	data->txt = name;
-	data->direction = 'S';
+	data->grafics.txt = name;
+	data->player.direction = 'S';
 	data->has_changed = 1;
 	data->running = 1;
-	data->map = NULL;
+	data->grafics.map = NULL;
+	i = -1;
+	while (++i < NUMBERS_SPRITE)
+		data->img[i].spsh = ft_calloc(1, sizeof(t_img));
+	i = -1;
+	while (++i < NUMBERS_SPRITE)
+		ft_bzero(data->img[i].frames, sizeof(data->img[i].frames));
 	ft_load_img(data);
 	ft_successful("Reset Data");
 }
@@ -44,11 +51,11 @@ void	ft_general_check(t_info *data)
 
 int	ft_frame(t_info *data)
 {
-	if (data->coins == 0 && data->player == 1 && data->finish == 1)
+	if (data->player.alive == 0 || (data->player.coins == 0 && data->finish == 1))
 		ft_game_result(data);
 	else if (data->has_changed == 1)
 	{
-		mlx_clear_window(data->mlx, data->win);
+		mlx_clear_window(data->grafics.mlx, data->grafics.win);
 		ft_draw_map(data);
 		data->has_changed = 0;
 	}
@@ -72,19 +79,19 @@ void	init(char **argv)
 {
 	t_info	data;
 
-	data.mlx = mlx_init(data);
-	if (!data.mlx)
+	data.grafics.mlx = mlx_init(data);
+	if (!data.grafics.mlx)
 		ft_error("Error: mlx_init() failed");
 	ft_reset_data(&data, argv[1]);
 	ft_map_size(&data);
 	ft_malloc_map(&data);
 	ft_general_check(&data);
-	data.win = mlx_new_window(data.mlx, data.width * RES, data.height * RES,
+	data.grafics.win = mlx_new_window(data.grafics.mlx, data.grafics.width * RES, data.grafics.height * RES,
 			NAME);
-	if (!data.win)
+	if (!data.grafics.win)
 		ft_error("Error: mlx_new_window() failed");
-	mlx_hook(data.win, 17, 0, ft_exit, &data);
-	mlx_key_hook(data.win, ft_press_key, &data);
-	mlx_loop_hook(data.mlx, ft_frame, &data);
-	mlx_loop(data.mlx);
+	mlx_hook(data.grafics.win, 17, 0, ft_exit, &data);
+	mlx_key_hook(data.grafics.win, ft_press_key, &data);
+	mlx_loop_hook(data.grafics.mlx, ft_frame, &data);
+	mlx_loop(data.grafics.mlx);
 }

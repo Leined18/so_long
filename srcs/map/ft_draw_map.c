@@ -14,32 +14,32 @@
 
 static void	put_wall_img(t_info *data, int *j, int *i)
 {
-	mlx_put_image_to_window(data->mlx, data->win,
+	mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
 		data->img[WALL].frames[0][0]->img, (*j) * RES, (*i) * RES);
 }
 
 static void	put_empty_img(t_info *data, int *j, int *i)
 {
-	mlx_put_image_to_window(data->mlx, data->win,
+	mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
 		data->img[FIELD].frames[0][0]->img, (*j) * RES, (*i) * RES);
 }
 
 static void	put_player_img(t_info *data, int *j, int *i)
 {
-	if (data->direction == 'N')
-		mlx_put_image_to_window(data->mlx, data->win,
+	if (data->player.direction == 'N')
+		mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
 			data->img[PLAYER].frames[N][0]->img, (*j) * RES, (*i) * RES);
-	else if (data->direction == 'S')
-		mlx_put_image_to_window(data->mlx, data->win,
+	else if (data->player.direction == 'S')
+		mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
 			data->img[PLAYER].frames[S][0]->img, (*j) * RES, (*i) * RES);
-	else if (data->direction == 'E')
-		mlx_put_image_to_window(data->mlx, data->win,
+	else if (data->player.direction == 'E')
+		mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
 			data->img[PLAYER].frames[E][0]->img, (*j) * RES, (*i) * RES);
-	else if (data->direction == 'W')
-		mlx_put_image_to_window(data->mlx, data->win,
+	else if (data->player.direction == 'W')
+		mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
 			data->img[PLAYER].frames[W][0]->img, (*j) * RES, (*i) * RES);
-	data->py = *i;
-	data->px = *j;
+	data->player.y = *i;
+	data->player.x = *j;
 }
 
 void	ft_draw_map(t_info *data)
@@ -49,12 +49,12 @@ void	ft_draw_map(t_info *data)
 	int		x;
 
 	y = -1;
-	while (data->map[++y])
+	while (data->grafics.map[++y])
 	{
 		x = -1;
-		while (data->map[y][++x])
+		while (data->grafics.map[y][++x])
 		{
-			tile = data->map[y][x];
+			tile = data->grafics.map[y][x];
 			if (tile == '1')
 				put_wall_img(data, &x, &y);
 			else if (tile == '0')
@@ -62,10 +62,10 @@ void	ft_draw_map(t_info *data)
 			else if (tile == 'P')
 				put_player_img(data, &x, &y);
 			else if (tile == 'C')
-				mlx_put_image_to_window(data->mlx, data->win,
+				mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
 					data->img[COLLECT].frames[0][0]->img, x * RES, y * RES);
 			else if (tile == 'E')
-				mlx_put_image_to_window(data->mlx, data->win,
+				mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
 					data->img[EXIT].frames[0][0]->img, x * RES, y * RES);
 		}
 	}
@@ -75,14 +75,14 @@ void	ft_steps(t_info *data)
 {
 	char	*num_str;
 
-	if (data->step == 100)
+	if (data->player.step == 100)
 	{
 		write(1, "\033[0;31mYou have reached the maximum number of steps\n\033[0m", 52);
-		data->lost = 1;
+		data->player.alive = 0;
 		data->finish = 1;
 		return ;
 	}
-	num_str = ft_itoa(data->step);
+	num_str = ft_itoa(data->player.step);
 	if (num_str)
 	{
 		write(1, "Steps: ", 7);

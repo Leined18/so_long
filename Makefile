@@ -110,7 +110,11 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 bonus: CFLAGS += -DBONUS=1
+<<<<<<< HEAD
 bonus: fclean $(BONUS_NAME)  
+=======
+bonus: fclean $(BONUS_NAME)
+>>>>>>> a08a2cb (Refactor code and update game logic: Update Makefile to include bonus target)
 
 $(BONUS_NAME): $(LIBFT) $(MLX) $(OBJS) $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(BONUS_OBJS) $(LDFLAGS) -o $(BONUS_NAME)
@@ -128,6 +132,13 @@ run: $(NAME)
 	echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP=nombre_del_mapa $(DEF_COLOR)"; \
 	else \
 		./$(NAME) $(MAPS)/$(MAP); \
+	fi
+
+run_bonus: bonus
+	@if [ -z "$(MAP)" ]; then \
+	echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP=nombre_del_mapa $(DEF_COLOR)"; \
+	else \
+		./$(BONUS_NAME) $(MAPS)/$(MAP); \
 	fi
 
 clean:

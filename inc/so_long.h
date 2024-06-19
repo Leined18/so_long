@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 12:19:24 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/12 13:57:23 by danpalac         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -76,6 +64,19 @@ typedef struct s_img
 	int					height;
 }						t_img;
 
+typedef struct s_grafics
+{
+	void				*mlx;
+	void				*win;
+	t_img				*img;
+	int					width;
+	int					height;
+	int					x;
+	int					y;
+	char				**map;
+	char				*txt;
+}						t_grafics;
+
 typedef struct s_sprites
 {
 	int					sprite;
@@ -92,25 +93,26 @@ typedef struct s_spritesheet_info
 	int					height[NUMBERS_SPRITE];
 }						t_spritesheetInfo;
 
+typedef struct s_obj
+{
+	int					x;
+	int					y;
+	unsigned int		step;
+	int					coins;
+	char				direction;
+	int					alive;
+	t_img				*img;
+}						t_obj;
+
+
 typedef struct s_info
 {
-	int					lost;
-	int					height;
-	int					width;
-	int					px;
-	int					py;
 	int					has_changed;
 	int					running;
-	int					player;
-	int					coins;
 	int					finish;
-	unsigned int		step;
-	char				*txt;
-	char				**map;
-	void				*mlx;
-	void				*win;
-	char				direction;
 	void				*img_ptr;
+	t_obj				player;
+	t_grafics			grafics;
 	t_sprites			img[NUMBERS_SPRITE];
 	t_spritesheetInfo	s_info;
 }						t_info;
@@ -141,6 +143,7 @@ void					ft_malloc_map(t_info *data);
 int						ft_frame(t_info *data);
 
 // checks
+void					ft_general_check(t_info *data);
 void					ft_check_outline(t_info *data);
 void					ft_check_format_dotber(t_info *data);
 void					ft_check_map_inputs(t_info *data);
@@ -176,6 +179,4 @@ int						ft_spritesheet(t_info *data, char *path,
 							t_spr type);
 int						ft_get_s_sheet_img(t_info *data, char *path,
 							t_spr sprite);
-void					ft_animation(t_info *data);
-
 #endif

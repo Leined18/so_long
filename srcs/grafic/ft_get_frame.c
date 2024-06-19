@@ -55,7 +55,7 @@ static t_img	*initialize_frame(t_info *data, int frame_width,
 	frame = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!frame)
 		return (NULL);
-	frame->img = mlx_new_image(data->mlx, frame_width, frame_height);
+	frame->img = mlx_new_image(data->grafics.mlx, frame_width, frame_height);
 	frame->addr = mlx_get_data_addr(frame->img, &frame->bits_per_pixel,
 			&frame->line_length, &frame->endian);
 	frame->framenumber = 0;

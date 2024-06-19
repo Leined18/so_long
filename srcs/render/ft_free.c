@@ -17,11 +17,11 @@ static void	ft_free_map(t_info *data)
 	int	i;
 
 	i = -1;
-	while (++i < data->height)
-		if (data->map[i])
-			freedom((void **)&data->map[i]);
-	if (data->map)
-		freedom((void **)&data->map);
+	while (++i < data->grafics.height)
+		if (data->grafics.map[i])
+			freedom((void **)&data->grafics.map[i]);
+	if (data->grafics.map)
+		freedom((void **)&data->grafics.map);
 }
 
 static void	ft_free_sprites(t_info *data)
@@ -33,7 +33,7 @@ static void	ft_free_sprites(t_info *data)
 	{
 		if (data->img[i].spsh && data->img[i].spsh->img)
 		{
-			mlx_destroy_image(data->mlx, data->img[i].spsh->img);
+			mlx_destroy_image(data->grafics.mlx, data->img[i].spsh->img);
 			freedom((void **)&data->img[i].spsh);
 		}
 	}
@@ -57,7 +57,7 @@ static void	ft_free_frames(t_info *data)
 				if (data->img[i].frames[j][k])
 				{
 					if (data->img[i].frames[j][k]->img)
-						mlx_destroy_image(data->mlx,
+						mlx_destroy_image(data->grafics.mlx,
 							data->img[i].frames[j][k]->img);
 					freedom((void **)&data->img[i].frames[j][k]);
 				}

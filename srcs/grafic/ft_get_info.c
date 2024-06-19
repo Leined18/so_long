@@ -33,7 +33,7 @@ void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
 
 int	ft_get_s_sheet_img(t_info *data, char *path, t_spr sp)
 {
-	data->img[sp].spsh->img = mlx_xpm_file_to_image(data->mlx, path,
+	data->img[sp].spsh->img = mlx_xpm_file_to_image(data->grafics.mlx, path,
 			&data->s_info.width[sp], &data->s_info.height[sp]);
 	if (!data->img[sp].spsh->img)
 		return (1);

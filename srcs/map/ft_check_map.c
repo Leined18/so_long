@@ -19,16 +19,16 @@ void	ft_check_outline(t_info *data)
 
 	i = 0;
 	err = 0;
-	while (i < data->width)
+	while (i < data->grafics.width)
 	{
-		if (data->map[0][i] != '1' || data->map[data->height - 1][i] != '1')
+		if (data->grafics.map[0][i] != '1' || data->grafics.map[data->grafics.height - 1][i] != '1')
 			err = 1;
 		i++;
 	}
 	i = 0;
-	while (i < data->height)
+	while (i < data->grafics.height)
 	{
-		if (data->map[i][0] != '1' || data->map[i][data->width - 1] != '1')
+		if (data->grafics.map[i][0] != '1' || data->grafics.map[i][data->grafics.width - 1] != '1')
 			err = 1;
 		i++;
 	}
@@ -38,7 +38,7 @@ void	ft_check_outline(t_info *data)
 
 void	ft_check_format_dotber(t_info *data)
 {
-	if (ft_strrncmp(data->txt, ".ber", 4))
+	if (ft_strrncmp(data->grafics.txt, ".ber", 4))
 		ft_error("Bad extension");
 }
 
@@ -48,14 +48,14 @@ void	ft_check_map_inputs(t_info *data)
 	int	y;
 
 	y = 0;
-	while (data->map[y])
+	while (data->grafics.map[y])
 	{
 		x = 0;
-		while (data->map[y][x])
+		while (data->grafics.map[y][x])
 		{
-			if (data->map[y][x] != '1' && data->map[y][x] != '0'
-				&& data->map[y][x] != 'C' && data->map[y][x] != 'P'
-				&& data->map[y][x] != 'E')
+			if (data->grafics.map[y][x] != '1' && data->grafics.map[y][x] != '0'
+				&& data->grafics.map[y][x] != 'C' && data->grafics.map[y][x] != 'P'
+				&& data->grafics.map[y][x] != 'E')
 				ft_error("Bad map input");
 			else
 				x++;
@@ -72,20 +72,20 @@ void	ft_check_map_objects(t_info *data)
 
 	end = 0;
 	y = -1;
-	while (data->map[++y])
+	while (data->grafics.map[++y])
 	{
 		x = -1;
-		while (data->map[y][++x])
+		while (data->grafics.map[y][++x])
 		{
-			if (data->map[y][x] == 'P')
-				data->player++;
-			if (data->map[y][x] == 'C')
-				data->coins++;
-			if (data->map[y][x] == 'E')
+			if (data->grafics.map[y][x] == 'P')
+				data->player.alive++;
+			if (data->grafics.map[y][x] == 'C')
+				data->player.coins++;
+			if (data->grafics.map[y][x] == 'E')
 				end++;
 		}
 	}
-	if (data->player != 1 || data->coins < 1 || end != 1)
+	if (data->player.alive != 1 || data->player.coins < 1 || end != 1)
 		ft_error("Bad map inputs");
 }
 
@@ -97,17 +97,17 @@ void	ft_check_is_posible(t_info *data)
 
 	left = 0;
 	i[0] = -1;
-	while (data->map[++i[0]])
+	while (data->grafics.map[++i[0]])
 	{
 		i[1] = -1;
-		while (data->map[i[0]][++i[1]])
+		while (data->grafics.map[i[0]][++i[1]])
 		{
-			if (data->map[i[0]][i[1]] == 'P')
+			if (data->grafics.map[i[0]][i[1]] == 'P')
 			{
 				j[0] = i[0];
 				j[1] = i[1];
 			}
-			if (data->map[i[0]][i[1]] == 'E' || data->map[i[0]][i[1]] == 'C')
+			if (data->grafics.map[i[0]][i[1]] == 'E' || data->grafics.map[i[0]][i[1]] == 'C')
 				left++;
 		}
 	}

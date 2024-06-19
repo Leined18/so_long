@@ -15,7 +15,7 @@
 int	ft_exit(t_info *data)
 {
 	ft_free_info(data);
-	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_window(data->grafics.mlx, data->grafics.win);
 	exit(EXIT_SUCCESS);
 }
 
@@ -28,7 +28,7 @@ void	ft_exit_error(t_info *data, char *err)
 		write(2, "\n", 1);
 	}
 	ft_free_info(data);
-	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_window(data->grafics.mlx, data->grafics.win);
 	exit(EXIT_FAILURE);
 }
 
@@ -37,12 +37,12 @@ void	ft_game_result(t_info *data)
 	int	i;
 	int	j;
 
-	i = (data->width) * RES / 2.2;
-	j = (data->height) * RES / 4;
-	mlx_clear_window(data->mlx, data->win);
-	if (data->lost == 0)
-		mlx_string_put(data->mlx, data->win, i, j, 0x00FF00, "You won!");
+	i = (data->grafics.width) * RES / 2.2;
+	j = (data->grafics.height) * RES / 4;
+	mlx_clear_window(data->grafics.mlx, data->grafics.win);
+	if (data->player.alive == 1)
+		mlx_string_put(data->grafics.mlx, data->grafics.win, i, j, 0x00FF00, "You won!");
 	else
-		mlx_string_put(data->mlx, data->win, i, j, 0xFF0000, "You lost!");
+		mlx_string_put(data->grafics.mlx, data->grafics.win, i, j, 0xFF0000, "You lost!");
 	data->running = 0;
 }

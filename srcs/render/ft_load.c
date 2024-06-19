@@ -25,27 +25,12 @@ static int	load_all_spritesheets(t_info *data)
 	result += ft_spritesheet(data, WINNER_SPRITESHEET, WINNER);
 	return (result);
 }
-
-static void	load_all_frames(t_info *data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < NUMBERS_SPRITE)
-		ft_load_frames(data, i);
-}
-
 void	ft_load_img(t_info *data)
 {
 	int	i;
-
-	i = -1;
-	while (++i < NUMBERS_SPRITE)
-		data->img[i].spsh = ft_calloc(1, sizeof(t_img));
 	if (load_all_spritesheets(data))
 		ft_exit_error(data, "Failed to load spritesheet");
 	i = -1;
 	while (++i < NUMBERS_SPRITE)
-		ft_bzero(data->img[i].frames, sizeof(data->img[i].frames));
-	load_all_frames(data);
+		ft_load_frames(data, i);
 }

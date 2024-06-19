@@ -17,17 +17,17 @@ void	ft_map_size(t_info *data)
 	char	*line;
 	int		fd;
 
-	fd = open(data->txt, O_RDONLY);
+	fd = open(data->grafics.txt, O_RDONLY);
 	line = get_next_line(fd);
 	if (!line)
 		ft_error("Map not read");
-	data->width = ft_strlen(line) - 1;
-	data->height = 0;
+	data->grafics.width = ft_strlen(line) - 1;
+	data->grafics.height = 0;
 	while (line)
 	{
-		if (((int)ft_strlen(line) - 1) != (data->width))
+		if (((int)ft_strlen(line) - 1) != (data->grafics.width))
 			ft_error("Map not valid");
-		data->height++;
+		data->grafics.height++;
 		freedom((void **)&line);
 		line = get_next_line(fd);
 	}
@@ -40,23 +40,23 @@ void	ft_malloc_map(t_info *data)
 	int		fd;
 	int		i;
 
-	fd = open(data->txt, O_RDONLY);
+	fd = open(data->grafics.txt, O_RDONLY);
 	i = 0;
-	data->map = (char **)malloc(sizeof(char *) * (data->height + 1));
-	if (!data->map)
+	data->grafics.map = (char **)malloc(sizeof(char *) * (data->grafics.height + 1));
+	if (!data->grafics.map)
 		ft_error("not Malloc");
-	while (i < data->height)
+	while (i < data->grafics.height)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			ft_error("not Malloc");
-		data->map[i] = ft_strdup(line);
-		if (!data->map[i])
+		data->grafics.map[i] = ft_strdup(line);
+		if (!data->grafics.map[i])
 			ft_error("not Malloc");
-		data->map[i][data->width] = '\0';
+		data->grafics.map[i][data->grafics.width] = '\0';
 		i++;
 		freedom((void **)&line);
 	}
-	data->map[i] = NULL;
+	data->grafics.map[i] = NULL;
 	close(fd);
 }
