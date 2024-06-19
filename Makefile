@@ -110,11 +110,7 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
 
 bonus: CFLAGS += -DBONUS=1
-<<<<<<< HEAD
 bonus: fclean $(BONUS_NAME)  
-=======
-bonus: fclean $(BONUS_NAME)
->>>>>>> a08a2cb (Refactor code and update game logic: Update Makefile to include bonus target)
 
 $(BONUS_NAME): $(LIBFT) $(MLX) $(OBJS) $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(BONUS_OBJS) $(LDFLAGS) -o $(BONUS_NAME)
