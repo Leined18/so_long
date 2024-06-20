@@ -31,6 +31,7 @@
 # define EXIT_SPRITESHEET "assets/sprites/x_sprites.xpm"
 # define WALL_SPRITESHEET "assets/sprites/w_sprites.xpm"
 # define WINNER_SPRITESHEET "assets/sprites/win_sprites.xpm"
+# define ENEMY_SPRITESHEET "assets/sprites/e_sprites.xpm"
 
 typedef enum e_direction
 {
@@ -49,6 +50,7 @@ typedef enum e_sp
 	PLAYER,
 	WALL,
 	WINNER,
+	ENEMY,
 	NUMBERS_SPRITE
 }						t_spr;
 

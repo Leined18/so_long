@@ -23,6 +23,8 @@ static int	load_all_spritesheets(t_info *data)
 	result += ft_spritesheet(data, PLAYER_SPRITESHEET, PLAYER);
 	result += ft_spritesheet(data, WALL_SPRITESHEET, WALL);
 	result += ft_spritesheet(data, WINNER_SPRITESHEET, WINNER);
+	if (BONUS)
+		result += ft_spritesheet(data, ENEMY_SPRITESHEET, ENEMY);
 	return (result);
 }
 void	ft_load_img(t_info *data)

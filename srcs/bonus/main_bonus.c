@@ -35,7 +35,7 @@ int	ft_frame_bonus(t_bonus *data)
 	if (data->info.has_changed == 1)
 	{
 		mlx_clear_window(data->info.grafics.mlx, data->info.grafics.win);
-		ft_frame(&data->info);
+		ft_draw_map_bonus(&data->info);
 		data->info.has_changed = 0;
 	}
 	else if (data->info.player.alive == 1)

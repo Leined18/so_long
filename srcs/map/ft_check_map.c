@@ -83,6 +83,7 @@ void	ft_check_map_objects(t_info *data)
 				data->player.coins++;
 			if (data->grafics.map[y][x] == 'E')
 				end++;
+			
 		}
 	}
 	if (data->player.alive != 1 || data->player.coins < 1 || end != 1)
