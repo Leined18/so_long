@@ -24,7 +24,7 @@ static int	get_pixel_color(t_img *img, int x, int y)
 	return (color);
 }
 
-static void	extract_colors(t_info *data, t_img *frame, t_spr sprite,
+static void	extract_colors(t_info *data, t_img *frame, int sprite,
 		int *frames_x_y)
 {
 	unsigned int	color;
@@ -62,7 +62,7 @@ static t_img	*initialize_frame(t_info *data, int frame_width,
 	return (frame);
 }
 
-t_img	*ft_extract_frame(t_info *data, t_spr sprite, int frame_x,
+t_img	*ft_extract_frame(t_info *data, int sprite, int frame_x,
 		int frame_y)
 {
 	t_img	*frame;

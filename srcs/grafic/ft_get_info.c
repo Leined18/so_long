@@ -13,28 +13,28 @@
 #include "so_long.h"
 
 void	ft_calculate_spritesheet_info(t_info *data, int frame_width,
-		int frame_height, t_spr sprite)
+		int frame_height, int sprite)
 {
 	int	columns;
 
 	if (frame_width == 0 || frame_height == 0)
 	{
-		data->s_info.total_frames[sprite] = 0;
-		data->s_info.rows[sprite] = 0;
+		data->s_info[sprite].total_frames = 0;
+		data->s_info[sprite].rows = 0;
 	}
 	else
 	{
-		data->s_info.rows[sprite] = data->s_info.height[sprite] / frame_height;
-		columns = data->s_info.width[sprite] / frame_width;
-		data->s_info.total_frames[sprite] = data->s_info.rows[sprite] * columns;
-		data->s_info.frames[sprite] = columns;
+		data->s_info[sprite].rows = data->s_info[sprite].height / frame_height;
+		columns = data->s_info[sprite].width / frame_width;
+		data->s_info[sprite].total_frames = data->s_info[sprite].rows * columns;
+		data->s_info[sprite].frames = columns;
 	}
 }
 
-int	ft_get_s_sheet_img(t_info *data, char *path, t_spr sp)
+int	ft_get_s_sheet_img(t_info *data, char *path, int sp)
 {
 	data->img[sp].spsh->img = mlx_xpm_file_to_image(data->grafics.mlx, path,
-			&data->s_info.width[sp], &data->s_info.height[sp]);
+			&data->s_info[sp].width, &data->s_info[sp].height);
 	if (!data->img[sp].spsh->img)
 		return (1);
 	data->img[sp].spsh->addr = mlx_get_data_addr(data->img[sp].spsh->img,

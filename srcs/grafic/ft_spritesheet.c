@@ -12,12 +12,12 @@
 
 #include "so_long.h"
 
-int	ft_spritesheet(t_info *data, char *path, t_spr type)
+int	ft_spritesheet(t_info *data, char *path, int type)
 {
 	int	i;
 
 	i = ft_get_s_sheet_img(data, path, type);
-	if (!data->s_info.width[type] || !data->s_info.height[type])
+	if (!data->s_info[type].width || !data->s_info[type].height)
 		return (1);
 	ft_calculate_spritesheet_info(data, RES, RES, type);
 	return (i);
@@ -30,13 +30,13 @@ void	ft_load_frames(t_info *data, int i)
 	int	count;
 
 	count = 0;
-	while (count < data->s_info.total_frames[i])
+	while (count < data->s_info[i].total_frames)
 	{
 		r = 0;
-		while (r < data->s_info.rows[i])
+		while (r < data->s_info[i].rows)
 		{
 			f = 0;
-			while (f < data->s_info.frames[i])
+			while (f < data->s_info[i].frames)
 			{
 				data->img[i].frames[r][f] = ft_extract_frame(data, i, f
 						* RES, r * RES);

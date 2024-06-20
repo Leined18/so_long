@@ -31,7 +31,6 @@
 # define EXIT_SPRITESHEET "assets/sprites/x_sprites.xpm"
 # define WALL_SPRITESHEET "assets/sprites/w_sprites.xpm"
 # define WINNER_SPRITESHEET "assets/sprites/win_sprites.xpm"
-# define ENEMY_SPRITESHEET "assets/sprites/e_sprites.xpm"
 
 typedef enum e_direction
 {
@@ -88,11 +87,11 @@ typedef struct s_sprites
 
 typedef struct s_spritesheet_info
 {
-	int					total_frames[NUMBERS_SPRITE];
-	int					frames[NUMBERS_SPRITE];
-	int					rows[NUMBERS_SPRITE];
-	int					width[NUMBERS_SPRITE];
-	int					height[NUMBERS_SPRITE];
+	int					total_frames;
+	int					frames;
+	int					rows;
+	int					width;
+	int					height;
 }						t_spritesheetInfo;
 
 typedef struct s_obj
@@ -109,6 +108,7 @@ typedef struct s_obj
 
 typedef struct s_info
 {
+	int					enemies;
 	int					has_changed;
 	int					running;
 	int					finish;
@@ -116,7 +116,7 @@ typedef struct s_info
 	t_obj				player;
 	t_grafics			grafics;
 	t_sprites			img[NUMBERS_SPRITE];
-	t_spritesheetInfo	s_info;
+	t_spritesheetInfo	s_info[NUMBERS_SPRITE];
 }						t_info;
 
 typedef struct s_checker
@@ -134,7 +134,7 @@ void					insertAtEnd(t_img **head, int framenumber);
 void					deleteNode(t_img **head, int framenumber);
 
 // get_frame
-t_img					*ft_extract_frame(t_info *data, t_spr sprite,
+t_img					*ft_extract_frame(t_info *data, int sprite,
 							int frame_x, int frame_y);
 void					ft_load_img(t_info *data);
 void					ft_load_frames(t_info *data, int i);
@@ -176,9 +176,9 @@ int						ft_press_key(int keycode, t_info *data);
 void					init_bonus(int argc, char **argv);
 void					ft_calculate_spritesheet_info(t_info *data,
 							int frame_width, int frame_height,
-							t_spr sprite);
+							int sprite);
 int						ft_spritesheet(t_info *data, char *path,
-							t_spr type);
+							int type);
 int						ft_get_s_sheet_img(t_info *data, char *path,
-							t_spr sprite);
+							int sprite);
 #endif

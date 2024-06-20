@@ -75,7 +75,8 @@ MAP_FILES		:= ft_check_map ft_draw_map ft_map_is_posible ft_read_map
 RENDER_FILES	:= ft_init ft_load ft_free main
 GRAFIC_FILES	:= ft_get_frame ft_get_info ft_spritesheet
 HOOK_FILES		:= ft_finish ft_move_key
-BONUS_FILES		:= ft_animate_bonus main_bonus
+BONUS_FILES		:= ft_animate_bonus main_bonus ft_draw_bonus ft_checks_bonus\
+					ft_hook_bonus
 
 # ==============================FILES============================================#
 
@@ -134,7 +135,7 @@ run_bonus: bonus
 	@if [ -z "$(MAP)" ]; then \
 	echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP=nombre_del_mapa $(DEF_COLOR)"; \
 	else \
-		./$(BONUS_NAME) $(MAPS)/$(MAP); \
+		./$(BONUS_NAME) $(MAPS)/bonus/$(MAP); \
 	fi
 
 clean:

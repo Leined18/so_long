@@ -31,10 +31,7 @@ void ft_animate(t_info *data, t_info2 *info2)
 
 static void put_stand_player_img(t_bonus *data, int x, int y)
 {
-    data->info_bonus.x = x;
-    data->info_bonus.y = y;
     data->info_bonus.anim = &data->info_bonus.player_anim;
-
     if (data->info.player.direction == 'N')
         data->info_bonus.direction = N;
     else if (data->info.player.direction == 'S')

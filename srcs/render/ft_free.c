@@ -49,10 +49,10 @@ static void	ft_free_frames(t_info *data)
 	while (++i < NUMBERS_SPRITE)
 	{
 		j = -1;
-		while (++j < data->s_info.rows[i])
+		while (++j < data->s_info[i].rows)
 		{
 			k = -1;
-			while (++k < data->s_info.frames[i])
+			while (++k < data->s_info[i].frames)
 			{
 				if (data->img[i].frames[j][k])
 				{

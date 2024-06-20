@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/so_long_bonus",  // Ruta a tu ejecutable
-            "args": ["assets/maps/map1.ber"],              // Argumentos para tu programa
+            "args": ["assets/maps/bonus/map1.ber"],              // Argumentos para tu programa
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "unistd.h": "c",
-        "functional": "c"
+        "functional": "c",
+        "so_long.h": "c",
+        "so_long_bonus.h": "c"
     }
 }
