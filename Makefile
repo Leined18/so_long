@@ -76,7 +76,7 @@ RENDER_FILES	:= ft_init ft_load ft_free main
 GRAFIC_FILES	:= ft_get_frame ft_get_info ft_spritesheet
 HOOK_FILES		:= ft_finish ft_move_key
 BONUS_FILES		:= ft_animate_bonus main_bonus ft_draw_bonus ft_checks_bonus\
-					ft_hook_bonus
+					ft_hook_bonus ft_tile_handler_bonus ft_animate_helpers_bonus\
 
 # ==============================FILES============================================#
 

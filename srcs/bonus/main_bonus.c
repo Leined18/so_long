@@ -42,6 +42,7 @@ int	ft_frame_bonus(t_bonus *data)
 		ft_draw_map_bonus(data);
 		data->info.has_changed = 0;
 	}
+	ft_animation(data);
 	return (0);
 }
 

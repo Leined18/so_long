@@ -57,6 +57,9 @@ void	ft_check_map_inputs_bonus(t_bonus *data);
 void	ft_check_map_objects_bonus(t_bonus *data);
 int     ft_press_key_bonus(int keycode, t_bonus *data);
 int     move_enemy_loop(t_bonus *data);
+void    ft_animation(t_bonus *data);
+void ft_animate(t_info *data, t_info2 *info2);
+void handle_tile(t_bonus *data, char tile, int x, int y);
 
 
 
