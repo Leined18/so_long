@@ -91,7 +91,7 @@ void	init(char **argv)
 	if (!data.grafics.win)
 		ft_error("Error: mlx_new_window() failed");
 	mlx_hook(data.grafics.win, 17, 0, ft_exit, &data);
-	mlx_key_hook(data.grafics.win, ft_press_key, &data);
+	mlx_hook(data.grafics.win, 2, 1L >> 0,ft_press_key, &data);
 	mlx_loop_hook(data.grafics.mlx, ft_frame, &data);
 	mlx_loop(data.grafics.mlx);
 }

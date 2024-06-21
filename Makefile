@@ -101,8 +101,7 @@ DEPS		:= $(addprefix $(OBJS_DIR), $(addsuffix .d, $(SRCS_FILES) $(BONUS_SRCS_FIL
 all: $(NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c Makefile
-	@$(MKDIR) $(dir $@)
-	@echo "$(BLUE) Compiling So_long  ➟  $(CYAN)[$<]$(WHITE)"
+	@$(MKDIR) $(dir $@)	
 	@$(CC) $(CFLAGS) -I$(INC) -I$(LIBFT_INC) -I$(MLX_DIR) -MP -MMD -c $< -o $@
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)

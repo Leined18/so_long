@@ -95,8 +95,7 @@ DEPS := $(addprefix $(OBJ_DIR), $(addsuffix .d, $(SRC_FILES)))
 all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c Makefile
-	@$(MKDIR) $(dir $@)
-	@echo "$(BLUE) Compiling libft  ➟  $(CYAN)[$<]$(WHITE)"
+	@$(MKDIR) $(dir $@)	
 	@$(CC) $(CFLAGS) -I$(INCLUDES) -MMD -MP -c $< -o $@
 
 $(NAME) : $(OBJS)
