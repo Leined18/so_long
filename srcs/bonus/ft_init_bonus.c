@@ -1,6 +1,5 @@
 #include "so_long_bonus.h"
 
-
 /*
 #include <stdio.h>
 
@@ -14,9 +13,10 @@ void	print(t_info *data)
 }
 */
 
-static void ft_reset_info(t_bonus *data, char *name)
+static void	ft_reset_info(t_bonus *data, char *name)
 {
-	int i;
+	int	i;
+
 	data->info.grafics.txt = name;
 	data->info.player.direction = 'S';
 	data->info.has_changed = 1;
@@ -33,16 +33,24 @@ static void ft_reset_info(t_bonus *data, char *name)
 int	ft_frame_bonus(t_bonus *data)
 {
 	if (data->info.player.coins == 0 && data->info.finish == 1)
-		ft_game_result(&data->info);
-	if (data->info.player.alive == 0)
-		ft_game_result(&data->info);
-	if (data->info.has_changed == 1)
 	{
-		mlx_clear_window(data->info.grafics.mlx, data->info.grafics.win);
+		ft_game_result(&data->info);
+		return (0);
+	}
+	if (data->info.player.alive == 0 && data->info.finish == 1)
+		ft_game_result(&data->info);
+	if (data->info.has_changed == 1 && data->info.finish != 1
+		&& data->info.player.alive != 0)
+	{
+		//mlx_clear_window(data->info.grafics.mlx, data->info.grafics.win);
 		ft_draw_map_bonus(data);
 		data->info.has_changed = 0;
 	}
-	ft_animation(data);
+	else if (data->info.has_changed == 0 && data->info.finish != 1
+		&& data->info.player.alive != 0)
+	{
+		ft_animation(data);
+	}
 	return (0);
 }
 
@@ -56,13 +64,10 @@ static void	ft_general_check_bonus(t_bonus *data)
 	ft_successful("General Check");
 }
 
-void	init_bonus(int argc, char **argv)
+void	init_bonus(char **argv)
 {
 	t_bonus data;
 
-	ft_printf("\x1b[32mStarting program...\x1b[0m\n");
-	if (argc != 2)
-		ft_error("Usage: ./program_name map_file");
 	ft_bzero(&data, sizeof(t_bonus));
 	data.info.grafics.mlx = mlx_init();
 	if (!data.info.grafics.mlx)
@@ -71,12 +76,15 @@ void	init_bonus(int argc, char **argv)
 	ft_map_size(&data.info);
 	ft_malloc_map(&data.info);
 	ft_general_check_bonus(&data);
-	data.info.grafics.win = mlx_new_window(data.info.grafics.mlx, data.info.grafics.width
-			* RES, data.info.grafics.height * RES, NAME_B);
+	if (data.info.grafics.height * RES > MAC_H || data.info.grafics.width * RES > MAC_W)
+		ft_error("map error: map is too large");
+	data.info.grafics.win = mlx_new_window(data.info.grafics.mlx,
+			data.info.grafics.width * RES, data.info.grafics.height * RES,
+			NAME_B);
 	if (!data.info.grafics.win)
 		ft_error("Error: mlx_new_window() failed");
 	mlx_hook(data.info.grafics.win, 17, 0, ft_exit, &data.info);
-	mlx_key_hook(data.info.grafics.win, ft_press_key_bonus, &data);
+	mlx_hook(data.info.grafics.win, 2, 1L >> 0, ft_press_key_bonus, &data);
 	mlx_loop_hook(data.info.grafics.mlx, move_enemy_loop, &data);
 	mlx_loop_hook(data.info.grafics.mlx, ft_frame_bonus, &data);
 	mlx_loop(data.info.grafics.mlx);

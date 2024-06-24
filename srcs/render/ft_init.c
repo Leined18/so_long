@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:59:55 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/18 17:43:54 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:28:44 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_reset_data(t_info *data, char *name)
 {
 	int	i;
-	
+
 	data->grafics.height = 0;
 	data->grafics.width = 0;
 	data->player.x = 0;
@@ -51,7 +51,8 @@ void	ft_general_check(t_info *data)
 
 int	ft_frame(t_info *data)
 {
-	if (data->player.alive == 0 || (data->player.coins == 0 && data->finish == 1))
+	if (data->player.alive == 0 || (data->player.coins == 0
+			&& data->finish == 1))
 		ft_game_result(data);
 	else if (data->has_changed == 1)
 	{
@@ -86,12 +87,14 @@ void	init(char **argv)
 	ft_map_size(&data);
 	ft_malloc_map(&data);
 	ft_general_check(&data);
-	data.grafics.win = mlx_new_window(data.grafics.mlx, data.grafics.width * RES, data.grafics.height * RES,
-			NAME);
+	if (data.grafics.height * RES > MAC_H || data.grafics.width * RES > MAC_W)
+		ft_error("map error: map is too large");
+	data.grafics.win = mlx_new_window(data.grafics.mlx, data.grafics.width
+			* RES, data.grafics.height * RES, NAME);
 	if (!data.grafics.win)
 		ft_error("Error: mlx_new_window() failed");
 	mlx_hook(data.grafics.win, 17, 0, ft_exit, &data);
-	mlx_hook(data.grafics.win, 2, 1L >> 0,ft_press_key, &data);
+	mlx_hook(data.grafics.win, 2, 1L >> 0, ft_press_key, &data);
 	mlx_loop_hook(data.grafics.mlx, ft_frame, &data);
 	mlx_loop(data.grafics.mlx);
 }

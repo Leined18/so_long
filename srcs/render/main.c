@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:53:48 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/12 13:55:19 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:32:18 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	if (BONUS)
 	{
 		ft_printf("Bonus\n");
-		init_bonus(argc, argv);
+		init_bonus(argv);
 	}
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:53 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 13:05:21 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:16:19 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_map_size(t_info *data)
 		freedom((void **)&line);
 		line = get_next_line(fd);
 	}
+	if (data->grafics.height == 0)
+		ft_error("Map not valid");
 	close(fd);
 }
 

@@ -12,6 +12,10 @@
 # define RES 40
 # define N_FPD 4
 # define F 20
+
+# define MAC_W 4096
+# define MAC_H 2304
+
 # define DELAY 10000
 # define FALSE 0
 # define TRUE 1
@@ -21,9 +25,9 @@
 # define LEFT 7
 # define ESC 53
 
-#ifndef BONUS
+# ifndef BONUS
 #  define BONUS 0
-#endif
+# endif
 
 # define PLAYER_SPRITESHEET "assets/sprites/p_sprites.xpm"
 # define COLLECT_SPRITESHEET "assets/sprites/c_sprites.xpm"
@@ -105,7 +109,6 @@ typedef struct s_obj
 	t_img				*img;
 }						t_obj;
 
-
 typedef struct s_info
 {
 	int					enemies;
@@ -126,16 +129,18 @@ typedef struct s_checker
 }						t_checker;
 
 // init
+void					init_bonus(char **argv);
 void					init(char **argv);
 void					ft_init_img(t_img **img, int sp);
+
 // lists
 t_img					*createNode(int framenumber);
 void					insertAtEnd(t_img **head, int framenumber);
 void					deleteNode(t_img **head, int framenumber);
 
 // get_frame
-t_img					*ft_extract_frame(t_info *data, int sprite,
-							int frame_x, int frame_y);
+t_img					*ft_extract_frame(t_info *data, int sprite, int frame_x,
+							int frame_y);
 void					ft_load_img(t_info *data);
 void					ft_load_frames(t_info *data, int i);
 
@@ -171,14 +176,11 @@ void					ft_steps(t_info *data);
 // move_key
 int						ft_press_key(int keycode, t_info *data);
 
-// animation
+// Frame
 
-void					init_bonus(int argc, char **argv);
 void					ft_calculate_spritesheet_info(t_info *data,
-							int frame_width, int frame_height,
-							int sprite);
-int						ft_spritesheet(t_info *data, char *path,
-							int type);
+							int frame_width, int frame_height, int sprite);
+int						ft_spritesheet(t_info *data, char *path, int type);
 int						ft_get_s_sheet_img(t_info *data, char *path,
 							int sprite);
 #endif

@@ -55,7 +55,10 @@ void	move_bonus(t_info *data, int dx, int dy)
 	else if (data->grafics.map[data->player.y + dy][data->player.x + dx] == 'E' && data->player.coins == 0)
 		data->finish = 1;
     else if (data->grafics.map[data->player.y + dy][data->player.x + dx] == 'X' && data->player.alive == 1)
+	{
 		data->player.alive = 0;
+		data->finish = 1;
+	}
 }
 
 int	ft_press_key_bonus(int keycode, t_bonus *data)

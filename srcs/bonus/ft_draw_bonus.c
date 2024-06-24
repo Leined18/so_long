@@ -1,5 +1,11 @@
 # include "so_long_bonus.h"
 
+void	ft_draw(t_bonus *data, int x, int y, int sprite)
+{
+	mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
+		data->info.img[sprite].frames[0][0]->img, x * RES, y * RES);
+}
+
 static void	put_wall_img(t_bonus *data, int *j, int *i)
 {
 	mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
@@ -50,14 +56,11 @@ void	ft_draw_map_bonus(t_bonus *data)
 			else if (tile == 'P')
 				put_player_img(data, &x, &y);
 			else if (tile == 'C')
-				mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-					data->info.img[COLLECT].frames[0][0]->img, x * RES, y * RES);
+				ft_draw(data, x, y, COLLECT);
 			else if (tile == 'E')
-				mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-					data->info.img[EXIT].frames[0][0]->img, x * RES, y * RES);
+				ft_draw(data, x, y, EXIT);
             else if (tile == 'X')
-                mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-                    data->info.img[ENEMY].frames[0][0]->img, x * RES, y * RES);
+				ft_draw(data, x, y, ENEMY);
 		}
 	}
 }

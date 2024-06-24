@@ -6,7 +6,7 @@
 #    By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:15:37 by danpalac          #+#    #+#              #
-#    Updated: 2024/06/18 17:40:34 by danpalac         ###   ########.fr        #
+#    Updated: 2024/06/24 13:31:04 by danpalac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,8 @@ MAP_FILES		:= ft_check_map ft_draw_map ft_map_is_posible ft_read_map
 RENDER_FILES	:= ft_init ft_load ft_free main
 GRAFIC_FILES	:= ft_get_frame ft_get_info ft_spritesheet
 HOOK_FILES		:= ft_finish ft_move_key
-BONUS_FILES		:= ft_animate_bonus main_bonus ft_draw_bonus ft_checks_bonus\
-					ft_hook_bonus ft_tile_handler_bonus ft_animate_helpers_bonus\
+BONUS_FILES		:= ft_animate_bonus ft_init_bonus ft_draw_bonus ft_checks_bonus\
+					ft_hook_bonus\
 
 # ==============================FILES============================================#
 
@@ -130,7 +130,7 @@ run: $(NAME)
 		./$(NAME) $(MAPS)/$(MAP); \
 	fi
 
-run_bonus: bonus
+run_bonus:
 	@if [ -z "$(MAP)" ]; then \
 	echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP=nombre_del_mapa $(DEF_COLOR)"; \
 	else \
