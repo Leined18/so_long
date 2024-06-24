@@ -42,7 +42,7 @@ int	ft_frame_bonus(t_bonus *data)
 	if (data->info.has_changed == 1 && data->info.finish != 1
 		&& data->info.player.alive != 0)
 	{
-		//mlx_clear_window(data->info.grafics.mlx, data->info.grafics.win);
+		// mlx_clear_window(data->info.grafics.mlx, data->info.grafics.win);
 		ft_draw_map_bonus(data);
 		data->info.has_changed = 0;
 	}
@@ -76,7 +76,8 @@ void	init_bonus(char **argv)
 	ft_map_size(&data.info);
 	ft_malloc_map(&data.info);
 	ft_general_check_bonus(&data);
-	if (data.info.grafics.height * RES > MAC_H || data.info.grafics.width * RES > MAC_W)
+	if (data.info.grafics.height * RES > MAC_H || data.info.grafics.width
+		* RES > MAC_W)
 		ft_error("map error: map is too large");
 	data.info.grafics.win = mlx_new_window(data.info.grafics.mlx,
 			data.info.grafics.width * RES, data.info.grafics.height * RES,
