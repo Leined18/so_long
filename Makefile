@@ -6,7 +6,7 @@
 #    By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:15:37 by danpalac          #+#    #+#              #
-#    Updated: 2024/06/24 13:31:04 by danpalac         ###   ########.fr        #
+#    Updated: 2024/06/25 13:23:09 by danpalac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ DEPS		:= $(addprefix $(OBJS_DIR), $(addsuffix .d, $(SRCS_FILES) $(BONUS_SRCS_FIL
 
 #==============================RULES=============================================#
 
-.PHONY: all clean fclean re run bonus
+.PHONY: all clean fclean re run bonus NOBONUS BONUS
 
 all: $(NAME)
 
@@ -104,18 +104,25 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c Makefile
 	@$(MKDIR) $(dir $@)	
 	@$(CC) $(CFLAGS) -I$(INC) -I$(LIBFT_INC) -I$(MLX_DIR) -MP -MMD -c $< -o $@
 
-$(NAME): $(LIBFT) $(MLX) $(OBJS)
+$(NAME): $(LIBFT) $(MLX) $(OBJS) NOBONUS
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "\n$(GREEN)$(NAME)✓ compiled!$(DEF_COLOR)"
-	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
+	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------$(DEF_COLOR)"
 
-bonus: CFLAGS += -DBONUS=1
-bonus: fclean $(BONUS_NAME)  
+bonus: BONUS $(BONUS_NAME)
 
 $(BONUS_NAME): $(LIBFT) $(MLX) $(OBJS) $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(BONUS_OBJS) $(LDFLAGS) -o $(BONUS_NAME)
 	@echo "\n$(GREEN)$(BONUS_NAME)✓ compiled!$(DEF_COLOR)"
-	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------\$(DEF_COLOR)"
+	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------$(DEF_COLOR)"
+
+NOBONUS:
+	@$(eval CFLAGS += -DBONUS=0)
+	@echo "$(LIGHT_PURPLE)Compilación sin bonus: CFLAGS=$(CFLAGS)$(DEF_COLOR)"
+
+BONUS:
+	@$(eval CFLAGS += -DBONUS=1)
+	@echo "$(LIGHT_PURPLE)Compilación con bonus: CFLAGS=$(CFLAGS)$(DEF_COLOR)"
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)
@@ -123,14 +130,14 @@ $(LIBFT):
 $(MLX):
 	@make -sC $(MLX_DIR)
 
-run: $(NAME)
+run: clean $(NAME) 
 	@if [ -z "$(MAP)" ]; then \
 	echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP=nombre_del_mapa $(DEF_COLOR)"; \
 	else \
 		./$(NAME) $(MAPS)/$(MAP); \
 	fi
 
-run_bonus:
+run_bonus: clean bonus
 	@if [ -z "$(MAP)" ]; then \
 	echo "$(BOLD_RED)Error$(DEF_COLOR): $(LIGHT_WHITE)Debes especificar el nombre del mapa con MAP=nombre_del_mapa $(DEF_COLOR)"; \
 	else \

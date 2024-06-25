@@ -22,16 +22,16 @@ static void	put_player_img(t_bonus *data, int *j, int *i)
 {
 	if (data->info.player.direction == 'N')
 		mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-			data->info.img[PLAYER].frames[N][0]->img, (*j) * RES, (*i) * RES);
+			data->info.img[PLAYER].frames[UP][0]->img, (*j) * RES, (*i) * RES);
 	else if (data->info.player.direction == 'S')
 		mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-			data->info.img[PLAYER].frames[S][0]->img, (*j) * RES, (*i) * RES);
+			data->info.img[PLAYER].frames[DOWN][0]->img, (*j) * RES, (*i) * RES);
 	else if (data->info.player.direction == 'E')
 		mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-			data->info.img[PLAYER].frames[E][0]->img, (*j) * RES, (*i) * RES);
+			data->info.img[PLAYER].frames[RIGHT][0]->img, (*j) * RES, (*i) * RES);
 	else if (data->info.player.direction == 'W')
 		mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-			data->info.img[PLAYER].frames[W][0]->img, (*j) * RES, (*i) * RES);
+			data->info.img[PLAYER].frames[LEFT][0]->img, (*j) * RES, (*i) * RES);
 	data->info.player.y = *i;
 	data->info.player.x = *j;
 }

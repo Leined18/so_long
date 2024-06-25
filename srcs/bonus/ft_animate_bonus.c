@@ -18,7 +18,7 @@ void	ft_animate(t_bonus *data, int direction, int *j, int *i)
 	data->info.img_ptr = NULL;
 	data->info.img_ptr = data->info.img[data->info_bonus.sprite].frames[direction][frame]->img;
 	mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-	 data->info.img_ptr, (*j) * RES, (*i) * RES);
+		data->info.img_ptr, (*j) * RES, (*i) * RES);
 }
 
 static void	put_stand_player_img(t_bonus *data, int *j, int *i)
