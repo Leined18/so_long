@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_animate_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/08 01:05:26 by danpalac          #+#    #+#             */
+/*   Updated: 2024/07/08 01:12:39 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
 void	ft_animate(t_bonus *data, int direction, int *j, int *i)
@@ -21,26 +33,50 @@ void	ft_animate(t_bonus *data, int direction, int *j, int *i)
 		data->info.img_ptr, (*j) * RES, (*i) * RES);
 }
 
-static void	put_stand_player_img(t_bonus *data, int *j, int *i)
+static void	animate_player_tile(t_bonus *data, int *x, int *y)
 {
 	data->info_bonus.sprite = PLAYER;
 	if (data->info.player.direction == 'N')
-		ft_animate(data, N, j, i);
+		ft_animate(data, N, x, y);
 	else if (data->info.player.direction == 'S')
-		ft_animate(data, S, j, i);
+		ft_animate(data, S, x, y);
 	else if (data->info.player.direction == 'E')
-		ft_animate(data, E, j, i);
+		ft_animate(data, E, x, y);
 	else if (data->info.player.direction == 'W')
-		ft_animate(data, W, j, i);
-	data->info.player.y = *i;
-	data->info.player.x = *j;
+		ft_animate(data, W, x, y);
+	data->info.player.y = *y;
+	data->info.player.x = *x;
+}
+
+static void	animate_other_tiles(t_bonus *data, char tile, int *x, int *y)
+{
+	if (tile == 'C')
+	{
+		data->info_bonus.sprite = COLLECT;
+		ft_animate(data, 0, x, y);
+	}
+	else if (tile == '1')
+	{
+		data->info_bonus.sprite = WALL;
+		ft_animate(data, 0, x, y);
+	}
+	else if (tile == 'E')
+	{
+		data->info_bonus.sprite = EXIT;
+		ft_animate(data, data->info_bonus.open, x, y);
+	}
+	else if (tile == 'X')
+	{
+		data->info_bonus.sprite = ENEMY;
+		ft_animate(data, 0, x, y);
+	}
 }
 
 void	ft_animation(t_bonus *data)
 {
-	char tile;
-	int y;
-	int x;
+	char	tile;
+	int		y;
+	int		x;
 
 	y = -1;
 	while (data->info.grafics.map[++y])
@@ -50,27 +86,9 @@ void	ft_animation(t_bonus *data)
 		{
 			tile = data->info.grafics.map[y][x];
 			if (tile == 'P')
-				put_stand_player_img(data, &x, &y);
-			if (tile == 'C')
-			{
-				data->info_bonus.sprite = COLLECT;
-				ft_animate(data, 0, &x, &y);
-			}
-			if (tile == '1')
-			{
-				data->info_bonus.sprite = WALL;
-				ft_animate(data, 0, &x, &y);
-			}
-			if (tile == 'E')
-			{
-				data->info_bonus.sprite = EXIT;
-				ft_animate(data, data->info_bonus.open, &x, &y);
-			}
-			if (tile == 'X')
-			{
-				data->info_bonus.sprite = ENEMY;
-				ft_animate(data, 0, &x, &y);
-			}
+				animate_player_tile(data, &x, &y);
+			else
+				animate_other_tiles(data, tile, &x, &y);
 		}
 	}
 }
