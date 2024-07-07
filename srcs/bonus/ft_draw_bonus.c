@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 23:13:45 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/07 23:13:46 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 00:02:08 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_draw(t_bonus *data, int x, int y, int sprite)
 static void	put_wall_img(t_bonus *data, int *j, int *i)
 {
 	mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-		data->info.img[WALL].frames[data->info_bonus.open][0]->img, (*j) * RES, (*i) * RES);
+		data->info.img[WALL].frames[0][0]->img, (*j) * RES, (*i) * RES);
 }
 
 static void	put_empty_img(t_bonus *data, int *j, int *i)

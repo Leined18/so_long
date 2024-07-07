@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 23:04:41 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/07 23:29:09 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 00:04:09 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static int	ft_event_check(t_bonus *data)
 		ft_game_result(&data->info);
 		return (0);
 	}
-	if (data->info.player.coins == 0 && data->info.finish == 0)
-		data->info.player.open = 1;
 	if (data->info.player.alive == 0 && data->info.finish == 1)
 		ft_game_result(&data->info);
 	if (data->info.has_changed == 1 && data->info.finish != 1

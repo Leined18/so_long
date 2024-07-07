@@ -64,7 +64,7 @@ void	ft_animation(t_bonus *data)
 			if (tile == 'E')
 			{
 				data->info_bonus.sprite = EXIT;
-				ft_animate(data, 0, &x, &y);
+				ft_animate(data, data->info_bonus.open, &x, &y);
 			}
 			if (tile == 'X')
 			{

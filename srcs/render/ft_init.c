@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:59:55 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/07 23:14:24 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 00:04:31 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_general_check(t_info *data)
 
 int	ft_frame(t_info *data)
 {
+	if (data->player.coins == 0 && data->finish == 0)
+		data->player.open = 1;
 	if (data->player.alive == 0 || (data->player.coins == 0
 			&& data->finish == 1))
 		ft_game_result(data);

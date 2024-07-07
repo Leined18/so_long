@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:19:24 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/07 23:13:03 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 00:03:25 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_info2
 
 typedef struct s_bonus
 {
+	int			open;
 	t_obj		enemy;
 	t_sprites	enemies;
 	t_info2		info_bonus;
