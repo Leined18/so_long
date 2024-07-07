@@ -6,7 +6,7 @@
 #    By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:15:37 by danpalac          #+#    #+#              #
-#    Updated: 2024/06/25 13:32:22 by danpalac         ###   ########.fr        #
+#    Updated: 2024/07/07 22:47:00 by danpalac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,20 +98,20 @@ DEPS		:= $(addprefix $(OBJS_DIR), $(addsuffix .d, $(SRCS_FILES) $(BONUS_SRCS_FIL
 
 .PHONY: all clean fclean re run bonus NOBONUS BONUS
 
-all: clean $(NAME)
+all: $(NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c Makefile
 	@$(MKDIR) $(dir $@)	
 	@$(CC) $(CFLAGS) -I$(INC) -I$(LIBFT_INC) -I$(MLX_DIR) -MP -MMD -c $< -o $@
 
-$(NAME): NOBONUS $(LIBFT) $(MLX) $(OBJS) 
+$(NAME): $(MLX) $(LIBFT) $(OBJS) NOBONUS
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 	@echo "\n$(GREEN)$(NAME)✓ compiled!$(DEF_COLOR)"
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------$(DEF_COLOR)"
 
 bonus: clean BONUS $(BONUS_NAME)
 
-$(BONUS_NAME): $(LIBFT) $(MLX) $(OBJS) $(BONUS_OBJS)
+$(BONUS_NAME): $(MLX) $(LIBFT) $(OBJS) $(BONUS_OBJS)
 	@$(CC) $(CFLAGS) $(IFLAGS) $(OBJS) $(BONUS_OBJS) $(LDFLAGS) -o $(BONUS_NAME)
 	@echo "\n$(GREEN)$(BONUS_NAME)✓ compiled!$(DEF_COLOR)"
 	@echo "$(BOLD_CYAN)\n------------\n| Done! 👌 |\n------------$(DEF_COLOR)"
