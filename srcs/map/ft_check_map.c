@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:15:37 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 13:05:33 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:58:48 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ void	ft_check_outline(t_info *data)
 	err = 0;
 	while (i < data->grafics.width)
 	{
-		if (data->grafics.map[0][i] != '1' || data->grafics.map[data->grafics.height - 1][i] != '1')
+		if (data->grafics.map[0][i] != '1'
+			|| data->grafics.map[data->grafics.height - 1][i] != '1')
 			err = 1;
 		i++;
 	}
 	i = 0;
 	while (i < data->grafics.height)
 	{
-		if (data->grafics.map[i][0] != '1' || data->grafics.map[i][data->grafics.width - 1] != '1')
+		if (data->grafics.map[i][0] != '1'
+			|| data->grafics.map[i][data->grafics.width - 1] != '1')
 			err = 1;
 		i++;
 	}
@@ -54,7 +56,8 @@ void	ft_check_map_inputs(t_info *data)
 		while (data->grafics.map[y][x])
 		{
 			if (data->grafics.map[y][x] != '1' && data->grafics.map[y][x] != '0'
-				&& data->grafics.map[y][x] != 'C' && data->grafics.map[y][x] != 'P'
+				&& data->grafics.map[y][x] != 'C'
+				&& data->grafics.map[y][x] != 'P'
 				&& data->grafics.map[y][x] != 'E')
 				ft_error("Bad map input");
 			else
@@ -107,7 +110,8 @@ void	ft_check_is_posible(t_info *data)
 				j[0] = i[0];
 				j[1] = i[1];
 			}
-			if (data->grafics.map[i[0]][i[1]] == 'E' || data->grafics.map[i[0]][i[1]] == 'C')
+			if (data->grafics.map[i[0]][i[1]] == 'E'
+				|| data->grafics.map[i[0]][i[1]] == 'C')
 				left++;
 		}
 	}

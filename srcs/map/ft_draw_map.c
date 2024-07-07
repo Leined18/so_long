@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:13:31 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 13:19:20 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/07 23:10:02 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_steps(t_info *data)
 
 	if (data->player.step == 100)
 	{
-		write(1, "\033[0;31mYou have reached the maximum number of steps\n\033[0m", 52);
+		ft_printf("\033[0;31mYou have reached the max of steps\n\033[0m");
 		data->player.alive = 0;
 		data->finish = 1;
 		return ;

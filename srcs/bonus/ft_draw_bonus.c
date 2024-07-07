@@ -1,4 +1,16 @@
-# include "so_long_bonus.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_draw_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/07 23:13:45 by danpalac          #+#    #+#             */
+/*   Updated: 2024/07/07 23:13:46 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long_bonus.h"
 
 void	ft_draw(t_bonus *data, int x, int y, int sprite)
 {
@@ -9,7 +21,7 @@ void	ft_draw(t_bonus *data, int x, int y, int sprite)
 static void	put_wall_img(t_bonus *data, int *j, int *i)
 {
 	mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-		data->info.img[WALL].frames[0][0]->img, (*j) * RES, (*i) * RES);
+		data->info.img[WALL].frames[data->info_bonus.open][0]->img, (*j) * RES, (*i) * RES);
 }
 
 static void	put_empty_img(t_bonus *data, int *j, int *i)
@@ -25,22 +37,25 @@ static void	put_player_img(t_bonus *data, int *j, int *i)
 			data->info.img[PLAYER].frames[UP][0]->img, (*j) * RES, (*i) * RES);
 	else if (data->info.player.direction == 'S')
 		mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-			data->info.img[PLAYER].frames[DOWN][0]->img, (*j) * RES, (*i) * RES);
+			data->info.img[PLAYER].frames[DOWN][0]->img, (*j) * RES, (*i)
+			* RES);
 	else if (data->info.player.direction == 'E')
 		mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-			data->info.img[PLAYER].frames[RIGHT][0]->img, (*j) * RES, (*i) * RES);
+			data->info.img[PLAYER].frames[RIGHT][0]->img, (*j) * RES, (*i)
+			* RES);
 	else if (data->info.player.direction == 'W')
 		mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-			data->info.img[PLAYER].frames[LEFT][0]->img, (*j) * RES, (*i) * RES);
+			data->info.img[PLAYER].frames[LEFT][0]->img, (*j) * RES, (*i)
+			* RES);
 	data->info.player.y = *i;
 	data->info.player.x = *j;
 }
 
 void	ft_draw_map_bonus(t_bonus *data)
 {
-	char	tile;
-	int		y;
-	int		x;
+	char tile;
+	int y;
+	int x;
 
 	y = -1;
 	while (data->info.grafics.map[++y])
@@ -59,7 +74,7 @@ void	ft_draw_map_bonus(t_bonus *data)
 				ft_draw(data, x, y, COLLECT);
 			else if (tile == 'E')
 				ft_draw(data, x, y, EXIT);
-            else if (tile == 'X')
+			else if (tile == 'X')
 				ft_draw(data, x, y, ENEMY);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:58:50 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/24 13:07:11 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:57:57 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	iter_checker(t_checker *c, t_info *data, int i, int j)
 {
 	if (c->coins_left == 0)
 		return ;
-	if (c->map[i][j] == 0 && data->grafics.map[i][j] != '1' && data->grafics.map[i][j] != 'X')
+	if (c->map[i][j] == 0 && data->grafics.map[i][j] != '1'
+		&& data->grafics.map[i][j] != 'X')
 	{
 		c->map[i][j] = 1;
 		if (data->grafics.map[i][j] == 'C' || data->grafics.map[i][j] == 'E')

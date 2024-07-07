@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/07 23:04:41 by danpalac          #+#    #+#             */
+/*   Updated: 2024/07/07 23:29:09 by danpalac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
 /*
@@ -12,6 +24,31 @@ void	print(t_info *data)
 		printf("%s\n", data->map[i++]);
 }
 */
+
+static int	ft_event_check(t_bonus *data)
+{
+	if (data->info.player.coins == 0 && data->info.finish == 1)
+	{
+		ft_game_result(&data->info);
+		return (0);
+	}
+	if (data->info.player.coins == 0 && data->info.finish == 0)
+		data->info.player.open = 1;
+	if (data->info.player.alive == 0 && data->info.finish == 1)
+		ft_game_result(&data->info);
+	if (data->info.has_changed == 1 && data->info.finish != 1
+		&& data->info.player.alive != 0)
+	{
+		ft_draw_map_bonus(data);
+		data->info.has_changed = 0;
+	}
+	else if (data->info.has_changed == 0 && data->info.finish != 1
+		&& data->info.player.alive != 0)
+	{
+		ft_animation(data);
+	}
+	return (0);
+}
 
 static void	ft_reset_info(t_bonus *data, char *name)
 {
@@ -32,26 +69,13 @@ static void	ft_reset_info(t_bonus *data, char *name)
 
 int	ft_frame_bonus(t_bonus *data)
 {
-	if (data->info.player.coins == 0 && data->info.finish == 1)
-	{
-		ft_game_result(&data->info);
-		return (0);
-	}
-	if (data->info.player.alive == 0 && data->info.finish == 1)
-		ft_game_result(&data->info);
-	if (data->info.has_changed == 1 && data->info.finish != 1
-		&& data->info.player.alive != 0)
-	{
-		// mlx_clear_window(data->info.grafics.mlx, data->info.grafics.win);
-		ft_draw_map_bonus(data);
-		data->info.has_changed = 0;
-	}
-	else if (data->info.has_changed == 0 && data->info.finish != 1
-		&& data->info.player.alive != 0)
-	{
-		ft_animation(data);
-	}
-	return (0);
+	int	i;
+
+	i = 0;
+	if (data->info.player.coins == 0 && data->info.finish == 0)
+		data->info_bonus.open = 1;
+	i = ft_event_check(data);
+	return (i);
 }
 
 static void	ft_general_check_bonus(t_bonus *data)
@@ -66,7 +90,7 @@ static void	ft_general_check_bonus(t_bonus *data)
 
 void	init_bonus(char **argv)
 {
-	t_bonus data;
+	t_bonus	data;
 
 	ft_bzero(&data, sizeof(t_bonus));
 	data.info.grafics.mlx = mlx_init();
@@ -86,7 +110,6 @@ void	init_bonus(char **argv)
 		ft_error("Error: mlx_new_window() failed");
 	mlx_hook(data.info.grafics.win, 17, 0, ft_exit, &data.info);
 	mlx_hook(data.info.grafics.win, 2, 1L >> 0, ft_press_key_bonus, &data);
-	mlx_loop_hook(data.info.grafics.mlx, move_enemy_loop, &data);
 	mlx_loop_hook(data.info.grafics.mlx, ft_frame_bonus, &data);
 	mlx_loop(data.info.grafics.mlx);
 }

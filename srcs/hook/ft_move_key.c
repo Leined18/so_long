@@ -14,13 +14,15 @@
 
 void	move(t_info *data, int dx, int dy)
 {
-	if (data->grafics.map[data->player.y + dy][data->player.x + dx] != '1' && data->grafics.map[data->player.y
-		+ dy][data->player.x + dx] != 'E')
+	if (data->grafics.map[data->player.y + dy][data->player.x + dx] != '1'
+		&& data->grafics.map[data->player.y + dy][data->player.x + dx] != 'E')
 	{
-		if (data->grafics.map[data->player.y + dy][data->player.x + dx] == 'C' || data->grafics.map[data->player.y
-			+ dy][data->player.x + dx] == '0')
+		if (data->grafics.map[data->player.y + dy][data->player.x + dx] == 'C'
+			|| data->grafics.map[data->player.y + dy][data->player.x
+			+ dx] == '0')
 		{
-			if (data->grafics.map[data->player.y + dy][data->player.x + dx] == 'C')
+			if (data->grafics.map[data->player.y + dy][data->player.x
+				+ dx] == 'C')
 				data->player.coins--;
 			data->grafics.map[data->player.y][data->player.x] = '0';
 			data->grafics.map[data->player.y + dy][data->player.x + dx] = 'P';
@@ -31,7 +33,8 @@ void	move(t_info *data, int dx, int dy)
 		data->has_changed = 1;
 		ft_steps(data);
 	}
-	else if (data->grafics.map[data->player.y + dy][data->player.x + dx] == 'E' && data->player.coins == 0)
+	else if (data->grafics.map[data->player.y + dy][data->player.x + dx] == 'E'
+		&& data->player.coins == 0)
 		data->finish = 1;
 }
 

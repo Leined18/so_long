@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:19:24 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/24 13:32:05 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/07 23:13:03 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,7 @@ typedef struct s_info2
 	int			x;
 	int			y;
 	int			sprite;
-	t_animation	*anim;
-	t_animation	player_anim;
-	t_animation	collect_anim;
-	t_animation	wall_anim;
-	t_animation	exit_anim;
-	t_animation	enemy_anim;
+	int			open;
 }				t_info2;
 
 typedef struct s_bonus

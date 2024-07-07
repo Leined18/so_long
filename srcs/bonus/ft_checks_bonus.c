@@ -23,9 +23,12 @@ void	ft_check_map_inputs_bonus(t_bonus *data)
 		x = 0;
 		while (data->info.grafics.map[y][x])
 		{
-			if (data->info.grafics.map[y][x] != '1' && data->info.grafics.map[y][x] != '0'
-				&& data->info.grafics.map[y][x] != 'C' && data->info.grafics.map[y][x] != 'P'
-				&& data->info.grafics.map[y][x] != 'E' && data->info.grafics.map[y][x] != 'X')
+			if (data->info.grafics.map[y][x] != '1'
+				&& data->info.grafics.map[y][x] != '0'
+				&& data->info.grafics.map[y][x] != 'C'
+				&& data->info.grafics.map[y][x] != 'P'
+				&& data->info.grafics.map[y][x] != 'E'
+				&& data->info.grafics.map[y][x] != 'X')
 				ft_error("Bad map input");
 			else
 				x++;
@@ -53,10 +56,11 @@ void	ft_check_map_objects_bonus(t_bonus *data)
 				data->info.player.coins++;
 			if (data->info.grafics.map[y][x] == 'E')
 				end++;
-            if (data->info.grafics.map[y][x] == 'X')
-                data->enemy.alive++;
+			if (data->info.grafics.map[y][x] == 'X')
+				data->enemy.alive++;
 		}
 	}
-	if (data->info.player.alive != 1 || data->info.player.coins < 1 || end != 1 || data->enemy.alive < 1)
+	if (data->info.player.alive != 1 || data->info.player.coins < 1 || end != 1
+		|| data->enemy.alive < 1)
 		ft_error("Bad map inputs");
 }

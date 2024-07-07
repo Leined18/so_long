@@ -39,7 +39,6 @@ int	ft_get_s_sheet_img(t_info *data, char *path, int sp)
 		return (1);
 	data->img[sp].spsh->addr = mlx_get_data_addr(data->img[sp].spsh->img,
 			&data->img[sp].spsh->bits_per_pixel,
-			&data->img[sp].spsh->line_length,
-			&data->img[sp].spsh->endian);
+			&data->img[sp].spsh->line_length, &data->img[sp].spsh->endian);
 	return (0);
 }

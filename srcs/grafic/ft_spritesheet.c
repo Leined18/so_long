@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:05 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:49:14 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/07 23:04:18 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	ft_load_frames(t_info *data, int i)
 			f = 0;
 			while (f < data->s_info[i].frames)
 			{
-				data->img[i].frames[r][f] = ft_extract_frame(data, i, f
-						* RES, r * RES);
+				data->img[i].frames[r][f] = ft_extract_frame(data, i, f * RES, r
+						* RES);
 				count++;
 				f++;
 			}

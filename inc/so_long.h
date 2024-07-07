@@ -106,6 +106,7 @@ typedef struct s_obj
 	int					coins;
 	char				direction;
 	int					alive;
+	int					open;
 	t_img				*img;
 }						t_obj;
 

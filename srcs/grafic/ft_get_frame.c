@@ -62,8 +62,7 @@ static t_img	*initialize_frame(t_info *data, int frame_width,
 	return (frame);
 }
 
-t_img	*ft_extract_frame(t_info *data, int sprite, int frame_x,
-		int frame_y)
+t_img	*ft_extract_frame(t_info *data, int sprite, int frame_x, int frame_y)
 {
 	t_img	*frame;
 	int		frames_x_y[2];

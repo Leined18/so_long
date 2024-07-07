@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:59:55 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/24 13:28:44 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/07 23:14:24 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_reset_data(t_info *data, char *name)
 	data->has_changed = 1;
 	data->running = 1;
 	data->grafics.map = NULL;
+	data->player.open = 0;
 	i = -1;
 	while (++i < NUMBERS_SPRITE)
 		data->img[i].spsh = ft_calloc(1, sizeof(t_img));

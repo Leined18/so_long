@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:53 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/24 13:16:19 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:57:48 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	ft_malloc_map(t_info *data)
 
 	fd = open(data->grafics.txt, O_RDONLY);
 	i = 0;
-	data->grafics.map = (char **)malloc(sizeof(char *) * (data->grafics.height + 1));
+	data->grafics.map = (char **)malloc(sizeof(char *) * (data->grafics.height
+				+ 1));
 	if (!data->grafics.map)
 		ft_error("not Malloc");
 	while (i < data->grafics.height)

@@ -41,8 +41,10 @@ void	ft_game_result(t_info *data)
 	j = (data->grafics.height) * RES / 4;
 	mlx_clear_window(data->grafics.mlx, data->grafics.win);
 	if (data->player.alive == 1)
-		mlx_string_put(data->grafics.mlx, data->grafics.win, i, j, 0x00FF00, "You won!");
+		mlx_string_put(data->grafics.mlx, data->grafics.win, i, j, 0x00FF00,
+			"You won!");
 	else
-		mlx_string_put(data->grafics.mlx, data->grafics.win, i, j, 0xFF0000, "You lost!");
+		mlx_string_put(data->grafics.mlx, data->grafics.win, i, j, 0xFF0000,
+			"You lost!");
 	data->running = 0;
 }
