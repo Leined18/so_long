@@ -6,22 +6,16 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:13:31 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/07 23:10:02 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 05:22:00 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	put_wall_img(t_info *data, int *j, int *i)
+static void	ft_draw(t_info *data, int x, int y, int sprite)
 {
 	mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
-		data->img[WALL].frames[0][0]->img, (*j) * RES, (*i) * RES);
-}
-
-static void	put_empty_img(t_info *data, int *j, int *i)
-{
-	mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
-		data->img[FIELD].frames[0][0]->img, (*j) * RES, (*i) * RES);
+		data->img[sprite].frames[0][0]->img, x * RES, y * RES);
 }
 
 static void	put_player_img(t_info *data, int *j, int *i)
@@ -56,17 +50,17 @@ void	ft_draw_map(t_info *data)
 		{
 			tile = data->grafics.map[y][x];
 			if (tile == '1')
-				put_wall_img(data, &x, &y);
+				ft_draw(data, x, y, WALL);
 			else if (tile == '0')
-				put_empty_img(data, &x, &y);
+				ft_draw(data, x, y, FIELD);
 			else if (tile == 'P')
 				put_player_img(data, &x, &y);
 			else if (tile == 'C')
-				mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
-					data->img[COLLECT].frames[0][0]->img, x * RES, y * RES);
+				ft_draw(data, x, y, COLLECT);
 			else if (tile == 'E')
 				mlx_put_image_to_window(data->grafics.mlx, data->grafics.win,
-					data->img[EXIT].frames[0][0]->img, x * RES, y * RES);
+					data->img[EXIT].frames[data->player.open][0]->img, x * RES,
+					y * RES);
 		}
 	}
 }

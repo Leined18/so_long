@@ -6,12 +6,12 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:36:36 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/12 10:33:00 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 05:31:24 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <fcntl.h>
 # include <limits.h>
@@ -25,6 +25,6 @@
 #  define BUFFER_SIZE 42
 # endif
 
-char		*get_next_line(int fd);
+char	*get_next_line(int fd);
 
 #endif

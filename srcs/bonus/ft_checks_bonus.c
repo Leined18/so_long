@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_map.c                                     :+:      :+:    :+:   */
+/*   ft_checks_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:15:37 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 13:05:33 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 05:25:53 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	ft_check_map_objects_bonus(t_bonus *data)
 			if (data->info.grafics.map[y][x] == 'E')
 				end++;
 			if (data->info.grafics.map[y][x] == 'X')
-				data->enemy.alive++;
+				data->info2.enemy.alive++;
 		}
 	}
 	if (data->info.player.alive != 1 || data->info.player.coins < 1 || end != 1
-		|| data->enemy.alive < 1)
+		|| data->info2.enemy.alive < 1)
 		ft_error("Bad map inputs");
 }

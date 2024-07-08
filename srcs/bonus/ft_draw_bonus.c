@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 23:13:45 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/08 00:02:08 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 05:29:08 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,6 @@ void	ft_draw(t_bonus *data, int x, int y, int sprite)
 {
 	mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
 		data->info.img[sprite].frames[0][0]->img, x * RES, y * RES);
-}
-
-static void	put_wall_img(t_bonus *data, int *j, int *i)
-{
-	mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-		data->info.img[WALL].frames[0][0]->img, (*j) * RES, (*i) * RES);
-}
-
-static void	put_empty_img(t_bonus *data, int *j, int *i)
-{
-	mlx_put_image_to_window(data->info.grafics.mlx, data->info.grafics.win,
-		data->info.img[FIELD].frames[0][0]->img, (*j) * RES, (*i) * RES);
 }
 
 static void	put_player_img(t_bonus *data, int *j, int *i)
@@ -53,9 +41,9 @@ static void	put_player_img(t_bonus *data, int *j, int *i)
 
 void	ft_draw_map_bonus(t_bonus *data)
 {
-	char tile;
-	int y;
-	int x;
+	char	tile;
+	int		y;
+	int		x;
 
 	y = -1;
 	while (data->info.grafics.map[++y])
@@ -65,9 +53,9 @@ void	ft_draw_map_bonus(t_bonus *data)
 		{
 			tile = data->info.grafics.map[y][x];
 			if (tile == '1')
-				put_wall_img(data, &x, &y);
+				ft_draw(data, x, y, WALL);
 			else if (tile == '0')
-				put_empty_img(data, &x, &y);
+				ft_draw(data, x, y, FIELD);
 			else if (tile == 'P')
 				put_player_img(data, &x, &y);
 			else if (tile == 'C')

@@ -6,34 +6,11 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 23:06:39 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/07 23:09:20 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/08 05:28:37 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-int	move_enemy(t_bonus *data, int dx, int dy)
-{
-	if (data->info.grafics.map[data->enemy.y + dy][data->enemy.x + dx] != '1'
-		&& data->info.grafics.map[data->enemy.y + dy][data->enemy.x + dx] != 'E'
-		&& data->info.grafics.map[data->enemy.y + dy][data->enemy.x
-		+ dx] != 'X')
-	{
-		if (data->info.grafics.map[data->enemy.y + dy][data->enemy.x
-			+ dx] == 'C' || data->info.grafics.map[data->enemy.y
-			+ dy][data->enemy.x + dx] == '0')
-		{
-			data->info.grafics.map[data->enemy.y][data->enemy.x] = '0';
-			data->info.grafics.map[data->enemy.y + dy][data->enemy.x
-				+ dx] = 'X';
-		}
-		data->enemy.x += dx;
-		data->enemy.y += dy;
-		data->info.has_changed = 1;
-		return (1);
-	}
-	return (0);
-}
 
 static void	ft_checkmove(t_info *data, int dx, int dy)
 {
