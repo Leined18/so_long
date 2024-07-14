@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:59:55 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/08 00:04:31 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/14 20:04:28 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ int	ft_frame(t_info *data)
 		ft_draw_map(data);
 		data->has_changed = 0;
 	}
+	if (data->player.step == 112 && data->finish == 0)
+	{
+		ft_printf("\033[0;31mYou have reached the max of steps\n\033[0m");
+		data->player.alive = 0;
+		data->finish = 1;
+	}
+	ft_steps(data);
 	return (0);
 }
 

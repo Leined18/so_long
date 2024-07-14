@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:13:31 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/08 05:22:00 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/14 20:00:24 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,8 @@ void	ft_steps(t_info *data)
 {
 	char	*num_str;
 
-	if (data->player.step == 100)
-	{
-		ft_printf("\033[0;31mYou have reached the max of steps\n\033[0m");
-		data->player.alive = 0;
-		data->finish = 1;
-		return ;
-	}
 	num_str = ft_itoa(data->player.step);
-	if (num_str)
-	{
-		write(1, "Steps: ", 7);
-		write(1, num_str, ft_strlen(num_str));
-		free(num_str);
-	}
-	write(1, "\n", 1);
+	mlx_string_put(data->grafics.mlx, data->grafics.win, 35, 35, 0x00FF0066,
+		num_str);
+	free(num_str);
 }

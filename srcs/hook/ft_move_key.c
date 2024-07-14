@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_key.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: danpalac <danpalac@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 10:56:35 by danpalac          #+#    #+#             */
-/*   Updated: 2024/06/05 12:58:49 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/14 19:59:36 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	move(t_info *data, int dx, int dy)
 		data->player.y += dy;
 		data->player.step++;
 		data->has_changed = 1;
-		ft_steps(data);
+		ft_printf("step : %d\n", data->player.step);
 	}
 	else if (data->grafics.map[data->player.y + dy][data->player.x + dx] == 'E'
 		&& data->player.coins == 0)

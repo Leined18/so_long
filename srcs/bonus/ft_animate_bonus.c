@@ -6,7 +6,7 @@
 /*   By: danpalac <danpalac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 01:05:26 by danpalac          #+#    #+#             */
-/*   Updated: 2024/07/08 05:24:38 by danpalac         ###   ########.fr       */
+/*   Updated: 2024/07/14 20:12:02 by danpalac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,5 @@ void	ft_animation(t_bonus *data)
 				animate_other_tiles(data, tile, &x, &y);
 		}
 	}
+	ft_steps(&data->info);
 }
