@@ -9,4 +9,4 @@ Requirements for Linux
 - ```sudo apt-get install libbsd-dev```
 - ```sudo apt-get install libx11-dev```
 
-- ```make run MAP_NAME=<nombre del mapa>```
+- ```make run MAP=<nombre del mapa>```
