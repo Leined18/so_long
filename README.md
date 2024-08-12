@@ -1,3 +1,4 @@
+<img src="assets/game.png" width="100%" />
 
 Requirements for Linux
 
