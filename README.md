@@ -12,7 +12,7 @@ Requirements for Linux
 # How To Play This Game
 To play this game, copy the URL below into Terminal:
 
-```git clone git@github.com:Leined18/so_long.git && cd so_Long && make && ./so_long assets/maps/map1.ber```
+```git clone git@github.com:Leined18/so_long.git && cd so_long && make && ./so_long assets/maps/map1.ber```
 
 ## or:
 
